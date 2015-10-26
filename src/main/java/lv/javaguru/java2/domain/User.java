@@ -9,47 +9,55 @@ public class User {
     private String firstName;
     private String lastName;
 
-    private long IntellegenceLevel;
-    private long HealthLevel;
-    private long CommunicationLevel;
-    private long Willpower;
+    private long intellegence;
+    private long health;
+    private long communication;
+    private long willPower;
+    private long dailyTodos;
 
-
-
-    public long getIntellegenceLevel() {
-        return IntellegenceLevel;
-    }
-
-    public void setIntellegenceLevel(long intellegenceLevel) {
-        IntellegenceLevel = intellegenceLevel;
-    }
-
-    public long getHealthLevel() {
-        return HealthLevel;
-    }
-
-    public void setHealthLevel(long healthLevel) {
-        HealthLevel = healthLevel;
-    }
-
-    public long getCommunicationLevel() {
-        return CommunicationLevel;
-    }
-
-    public void setCommunicationLevel(long communicationLevel) {
-        CommunicationLevel = communicationLevel;
-    }
-
-    public long getWillpower() {
-        return Willpower;
-    }
-
-    public void setWillpower(long willpower) {
-        Willpower = willpower;
-    }
 
     public long getUserId() {
         return userId;
+    }
+
+    public long getIntellegence() {
+        return intellegence;
+    }
+
+    public void setIntellegence(long intellegence) {
+        this.intellegence = intellegence;
+    }
+
+    public long getHealth() {
+        return health;
+    }
+
+    public void setHealth(long health) {
+        this.health = health;
+    }
+
+    public long getCommunication() {
+        return communication;
+    }
+
+    public void setCommunication(long communication) {
+        this.communication = communication;
+    }
+
+    public long getWillPower() {
+        return willPower;
+    }
+
+    public void setWillPower(long willPower) {
+        this.willPower = willPower;
+    }
+
+    public long getDailyTodos() {
+        return dailyTodos;
+    }
+
+    public void setDailyTodos(long dailyTodos) {
+        this.dailyTodos = dailyTodos;
     }
 
     public void setUserId(long userId) {
