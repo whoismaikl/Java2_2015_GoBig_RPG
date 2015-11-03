@@ -4,30 +4,21 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 CREATE SCHEMA IF NOT EXISTS `Java2_test` DEFAULT CHARACTER SET utf8 ;
 
-DROP TABLE IF EXISTS `login`;
-
-CREATE TABLE `login` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `email` CHAR(50) NULL DEFAULT NULL,
-  `password` CHAR(30) NULL DEFAULT NULL,
-  `lastLogin` DATETIME NULL DEFAULT NULL,
-  `dateRegistered` DATETIME NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-);
-
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `name` CHAR(25) NULL DEFAULT NULL,
-  `Surname` CHAR(25) NULL DEFAULT NULL,
+  `email` CHAR(25) NULL DEFAULT NULL,
+  `password` CHAR(25) NULL DEFAULT NULL,
   `nickName` CHAR(25) NULL DEFAULT NULL,
+  `userType` CHAR NULL DEFAULT 'U',
   `health` INTEGER NULL DEFAULT 50,
   `intellegence` INTEGER NULL DEFAULT 50,
   `communication` INTEGER NULL DEFAULT 50,
   `willPower` INTEGER NULL DEFAULT 30,
   `dailyTodo` INTEGER NULL DEFAULT NULL,
-  `userType` CHAR NULL DEFAULT 'U',
+  `lastLogin` DATETIME NULL DEFAULT NULL,
+  `dateRegistered` DATETIME NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -49,10 +40,7 @@ CREATE TABLE `tasks` (
 );
 
 
-
- INSERT INTO `login` (`id`,`email`,`password`,`lastLogin`,`dateRegistered`) VALUES
- (1,'','','2015-10-26 02:01:03','2015-10-26 02:01:03');
- INSERT INTO `users` (`id`,`name`,`Surname`,`nickName`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`userType`) VALUES
- (1,'','','','0','0','0','0','0','');
- INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
- (1,'0','','0','','','','2015-10-26 02:01:03','2015-10-26 02:01:03');
+INSERT INTO `users` (`id`,`email`,`password`,`nickName`,`userType`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`, `dateRegistered`) VALUES
+  (1,'','','','','0','0','0','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  (1,'0','','0','','','','2015-10-26 02:01:03','2015-10-26 02:01:03');

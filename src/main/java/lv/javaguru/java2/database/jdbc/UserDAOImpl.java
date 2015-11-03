@@ -5,7 +5,9 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 
+import java.security.Timestamp;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -27,16 +29,18 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO users VALUES (default, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getSurname());
+                    connection.prepareStatement("INSERT INTO users VALUES (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, user.getEmail());
+            preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getNickName());
-            preparedStatement.setLong(4, user.getHealth());
-            preparedStatement.setLong(5, user.getIntelligence());
-            preparedStatement.setLong(6, user.getCommunication());
-            preparedStatement.setLong(7, user.getWillPower());
-            preparedStatement.setLong(8, user.getDailyTodos());
-            preparedStatement.setString(9, user.getUserType());
+            preparedStatement.setString(4, user.getUserType());
+            preparedStatement.setLong(5, user.getHealth());
+            preparedStatement.setLong(6, user.getIntelligence());
+            preparedStatement.setLong(7, user.getCommunication());
+            preparedStatement.setLong(8, user.getWillPower());
+            preparedStatement.setLong(9, user.getDailyTodo());
+            preparedStatement.setTimestamp(10, new java.sql.Timestamp(user.getLastLogin().getTime()));
+            preparedStatement.setTimestamp(11, new java.sql.Timestamp(user.getDateRegistered().getTime()));
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()){
@@ -65,8 +69,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             if (resultSet.next()) {
                 user = new User();
                 user.setId(resultSet.getLong("id"));
-                user.setName(resultSet.getString("name"));
-                user.setSurname(resultSet.getString("Surname"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
                 user.setNickName(resultSet.getString("nickName"));
                 user.setUserType(resultSet.getString("userType"));
             }
@@ -93,8 +97,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             while (resultSet.next()) {
                 user = new User();
                 user.setId(resultSet.getLong("id"));
-                user.setName(resultSet.getString("name"));
-                user.setSurname(resultSet.getString("Surname"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
                 user.setNickName(resultSet.getString("nickName"));
                 user.setUserType(resultSet.getString("userType"));
                 users.add(user);
@@ -122,9 +126,9 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             if (resultSet.next()) {
                 user = new User();
                 user.setId(resultSet.getLong("id"));
-                user.setName(resultSet.getString("name"));
-                user.setSurname(resultSet.getString("Surname"));
-                user.setNickName(resultSet.getString("Surname"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                user.setNickName(resultSet.getString("nickName"));
                 user.setUserType(resultSet.getString("userType"));
             }
             return user;
@@ -163,9 +167,9 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE users SET name = ?, Surename = ?, nickName = ?, userType = ?" + "WHERE id = ?");
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getSurname());
+                    .prepareStatement("UPDATE users SET email = ?, password = ?, nickName = ?, userType = ?" + "WHERE id = ?");
+            preparedStatement.setString(1, user.getEmail());
+            preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getNickName());
             preparedStatement.setString(4, user.getUserType());
 

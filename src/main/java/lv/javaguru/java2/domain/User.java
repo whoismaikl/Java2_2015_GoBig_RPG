@@ -1,38 +1,61 @@
 package lv.javaguru.java2.domain;
 
+import java.util.Date;
+
 public class User {
 
     private Long id;
-    private String name;
-    private String surname;
+    private String email;
+    private String password;
     private String nickName;
-    private long health;
     private String userType;
+    private long health;
     private long intelligence;
     private long communication;
     private long willPower;
-    private long dailyTodos;
+    private long dailyTodo;
+    private Date lastLogin;
+    private Date dateRegistered;
 
     public User(){}
 
-    public User(String name, String surname, String nickName, String userType){
-        setName(name);
-        setSurname(surname);
+    public User(String email, String password, String nickName, String userType){
+        setEmail(email);
+        setPassword(password);
         setNickName(nickName);
         setUserType(userType);
         setHealth(50);
         setIntelligence(50);
         setCommunication(50);
         setWillPower(30);
-        setDailyTodos(0);
+        setDailyTodo(0);
+        setLastLogin(date);
+        setDateRegistered(date);
+    }
+    Date date = new Date();
+
+    public Date getLastLogin() {
+        return lastLogin;
     }
 
-    public String getName() {
-        return name;
+    public void setLastLogin(Date lastLogin) {
+        this.lastLogin = lastLogin;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Date getDateRegistered() {
+        return dateRegistered;
+    }
+
+    public void setDateRegistered(Date dateRegistered) {
+        this.dateRegistered = dateRegistered;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public long getId() {
@@ -43,20 +66,20 @@ public class User {
         this.id = id;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public long getDailyTodos() {
-        return dailyTodos;
+    public long getDailyTodo() {
+        return dailyTodo;
     }
 
-    public void setDailyTodos(long dailyTodos) {
-        this.dailyTodos = dailyTodos;
+    public void setDailyTodo(long dailyTodo) {
+        this.dailyTodo = dailyTodo;
     }
 
     public String getNickName() {
@@ -106,4 +129,11 @@ public class User {
     public void setWillPower(long willPower) {
         this.willPower = willPower;
     }
+    public java.sql.Date getSqlDate(Date date){
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        return sqlDate;
+    }
 }
+
+
