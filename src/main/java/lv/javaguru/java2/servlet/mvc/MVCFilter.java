@@ -22,6 +22,7 @@ public class MVCFilter implements Filter {
         controllers.put("/hello", new HelloWorldController());
         controllers.put("/login", new LoginController());
         controllers.put("/register", new RegisterController());
+        controllers.put("/main", new MainController());
 
     }
 
