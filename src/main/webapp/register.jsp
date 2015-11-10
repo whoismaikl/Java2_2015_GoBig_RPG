@@ -11,8 +11,8 @@
   <meta charset="UTF-8">
   <title>Register New User</title>
 
-  <link rel='stylesheet prefetch' href='css/jquery-ui.css'>
-  <link rel="stylesheet" href="css/style.css">
+
+
 
 </head>
 
@@ -25,7 +25,7 @@
     <input type="text" name="email" placeholder="email">
     <input type="password" name="password1" placeholder="Password">
     <input type="password" name="password2" placeholder="Repeat Password">
-    <input type="submit" name="login3333333" class="login login-submit" value="register">
+    <input type="submit" name="login" class="login login-submit" value="register">
   </form>
 
   <div class="login-help">
