@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface MVCController {
     MVCModel execute(HttpServletRequest request) throws DBException;
-   // MVCModel doGet(HttpServletRequest request, HttpServletResponse response) throws DBException;
-   // MVCModel doPost(HttpServletRequest request, HttpServletResponse response) throws DBException;
+   // MVCModel executeDoGet(HttpServletRequest request, HttpServletResponse response) throws DBException;
+   // MVCModel executeDoPost(HttpServletRequest request, HttpServletResponse response) throws DBException;
 
 }

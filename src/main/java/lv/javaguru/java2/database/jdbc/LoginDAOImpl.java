@@ -10,25 +10,7 @@ import java.sql.ResultSet;
  */
 public class LoginDAOImpl extends DAOImpl {
 
-    public boolean checkLoginData(String eMail, String password) throws DBException {
-        Connection connection = null;
 
-        try {
-            connection = getConnection();
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("select * from LOGIN where email = " + eMail + " AND  + password = " + password);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            return resultSet.next();
-
-        } catch (Throwable e) {
-            System.out.println("Exception while execute LoginDAOImpl.checkLoginData()");
-            e.printStackTrace();
-            throw new DBException(e);
-        } finally {
-            closeConnection(connection);
-        }
-    }
 
 
 }

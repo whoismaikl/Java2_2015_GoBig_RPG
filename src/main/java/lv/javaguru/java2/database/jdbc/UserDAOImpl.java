@@ -13,10 +13,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Viktor on 01/07/2014.
- */
-@SuppressWarnings("DefaultFileTemplate")
+
 public class UserDAOImpl extends DAOImpl implements UserDAO {
 
     public void create(User user) throws DBException {
@@ -29,7 +26,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO users VALUES (default, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("INSERT INTO users VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getNickName());
@@ -113,34 +110,6 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         return users;
     }
 
-    public User getUserByName(String name) throws DBException {
-        Connection connection = null;
-
-        try {
-            connection = getConnection();
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("SELECT * FROM users WHERE name = ?");
-            preparedStatement.setString(1, name);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            User user = null;
-            if (resultSet.next()) {
-                user = new User();
-                user.setId(resultSet.getLong("id"));
-                user.setEmail(resultSet.getString("email"));
-                user.setPassword(resultSet.getString("password"));
-                user.setNickName(resultSet.getString("nickName"));
-                user.setUserType(resultSet.getString("userType"));
-            }
-            return user;
-        } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.getByLogin()");
-            e.printStackTrace();
-            throw new DBException(e);
-        } finally {
-            closeConnection(connection);
-        }
-    }
-
     public void delete(Long id) throws DBException {
         Connection connection = null;
         try {
@@ -176,6 +145,75 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.update()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    public boolean getUserByMail(String email) throws DBException {
+            Connection connection = null;
+
+            try {
+                connection = getConnection();
+                PreparedStatement preparedStatement = connection
+                        .prepareStatement("SELECT * FROM users WHERE email = ?");
+                preparedStatement.setString(1, email);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                /*/
+                if (resultSet.next()) {
+                    return true;
+                }
+                return false;
+                /*/
+                return resultSet.next();
+            } catch (Throwable e) {
+                System.out.println("Exception while execute UserDAOImpl.getById()");
+                e.printStackTrace();
+                throw new DBException(e);
+            } finally {
+                closeConnection(connection);
+            }
+        }
+
+    public boolean getUserByName(String name) throws DBException {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("SELECT * FROM users WHERE userName = ?");
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            /*/
+            if (resultSet.next()) {
+                return true;
+            }
+            return false;
+            /*/
+            return resultSet.next();
+        } catch (Throwable e) {
+            System.out.println("Exception while execute UserDAOImpl.getByLogin()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+    public boolean checkLoginData(String email, String password) throws DBException {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("select * from users where email = " + email + " AND  + password = " + password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+
+        } catch (Throwable e) {
+            System.out.println("Exception while execute LoginDAOImpl.checkLoginData()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {

@@ -20,6 +20,10 @@ public interface UserDAO {
 
     List<User> getAll() throws DBException;
 
-    User getUserByName(String username) throws DBException;
+    boolean getUserByMail(String mail) throws DBException;
+
+    boolean getUserByName(String name) throws DBException;
+
+    boolean checkLoginData(String email, String password) throws DBException;
 
 }

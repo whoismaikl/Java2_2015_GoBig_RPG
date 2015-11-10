@@ -43,6 +43,8 @@ public class MVCFilter implements Filter {
             } catch (DBException e) {
                 e.printStackTrace();
             }
+
+
             req.setAttribute("model", model.getData());
 
             ServletContext context = req.getServletContext();
