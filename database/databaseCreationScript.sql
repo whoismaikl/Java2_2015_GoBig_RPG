@@ -3,23 +3,20 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- ---
 -- Globals
--- ---
 
--- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
--- SET FOREIGN_KEY_CHECKS=0;
 
 -- ---
 -- Table 'users'
--- 
+--
 -- ---
 
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `eMail` CHAR(40) NULL DEFAULT NULL,
+  `email` CHAR(40) NULL DEFAULT NULL,
   `password` CHAR(40) NULL DEFAULT NULL,
-  `nickName` CHAR(30) NULL DEFAULT NULL,
+  `userName` CHAR(30) NULL DEFAULT NULL,
   `userType` CHAR(1) NULL DEFAULT 'U',
   `health` INTEGER NULL DEFAULT NULL,
   `intellegence` INTEGER NULL DEFAULT NULL,
@@ -33,7 +30,7 @@ CREATE TABLE `users` (
 
 -- ---
 -- Table 'tasks'
--- 
+--
 -- ---
 
 DROP TABLE IF EXISTS `tasks`;
@@ -53,7 +50,7 @@ CREATE TABLE `tasks` (
 
 -- ---
 -- Table 'statHistory'
--- 
+--
 -- ---
 
 DROP TABLE IF EXISTS `statHistory`;
@@ -72,7 +69,7 @@ CREATE TABLE `statHistory` (
 
 -- ---
 -- Table 'customTasks'
--- 
+--
 -- ---
 
 DROP TABLE IF EXISTS `customTasks`;
@@ -88,7 +85,7 @@ CREATE TABLE `customTasks` (
 );
 
 -- ---
--- Foreign Keys 
+-- Foreign Keys
 -- ---
 
 ALTER TABLE `tasks` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
