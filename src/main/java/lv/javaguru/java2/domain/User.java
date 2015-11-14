@@ -7,7 +7,7 @@ public class User {
     private Long id;
     private String email;
     private String password;
-    private String nickName;
+    private String userName;
     private String userType;
     private long health;
     private long intelligence;
@@ -19,10 +19,10 @@ public class User {
 
     public User(){}
 
-    public User(String email, String password, String nickName, String userType){
+    public User(String email, String password, String userName, String userType){
         setEmail(email);
         setPassword(password);
-        setNickName(nickName);
+        setUserName(userName);
         setUserType(userType);
         setHealth(50);
         setIntelligence(50);
@@ -82,12 +82,12 @@ public class User {
         this.dailyTodo = dailyTodo;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public long getHealth() {

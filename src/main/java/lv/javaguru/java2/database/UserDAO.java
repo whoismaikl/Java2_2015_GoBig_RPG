@@ -2,6 +2,7 @@ package lv.javaguru.java2.database;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.domain.UserTask;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface UserDAO {
 
-    void create(User user) throws DBException;
+    public void create(User user) throws DBException;
 
     void delete(Long id) throws DBException;
 
@@ -25,5 +26,7 @@ public interface UserDAO {
     boolean getUserByName(String name) throws DBException;
 
     boolean checkLoginData(String email, String password) throws DBException;
+
+    User getUserByLoginData(String email, String password) throws DBException;
 
 }

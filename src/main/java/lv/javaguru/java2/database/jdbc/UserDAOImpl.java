@@ -5,9 +5,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 
-import java.security.Timestamp;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -29,7 +27,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                     connection.prepareStatement("INSERT INTO users VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getNickName());
+            preparedStatement.setString(3, user.getUserName());
             preparedStatement.setString(4, user.getUserType());
             preparedStatement.setLong(5, user.getHealth());
             preparedStatement.setLong(6, user.getIntelligence());
@@ -68,7 +66,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 user.setId(resultSet.getLong("id"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPassword(resultSet.getString("password"));
-                user.setNickName(resultSet.getString("nickName"));
+                user.setUserName(resultSet.getString("userName"));
                 user.setUserType(resultSet.getString("userType"));
             }
             return user;
@@ -96,7 +94,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 user.setId(resultSet.getLong("id"));
                 user.setEmail(resultSet.getString("email"));
                 user.setPassword(resultSet.getString("password"));
-                user.setNickName(resultSet.getString("nickName"));
+                user.setUserName(resultSet.getString("userName"));
                 user.setUserType(resultSet.getString("userType"));
                 users.add(user);
             }
@@ -136,10 +134,10 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE users SET email = ?, password = ?, nickName = ?, userType = ?" + "WHERE id = ?");
+                    .prepareStatement("UPDATE users SET email = ?, password = ?, userName = ?, userType = ?" + "WHERE id = ?");
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getNickName());
+            preparedStatement.setString(3, user.getUserName());
             preparedStatement.setString(4, user.getUserType());
 
             preparedStatement.executeUpdate();
@@ -208,9 +206,42 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("select * from users where email = " + email + " AND  + password = " + password);
+                    .prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+                   // .prepareStatement("select * from users where email = " + email + " AND  password = " + password);
             ResultSet resultSet = preparedStatement.executeQuery();
             return resultSet.next();
+
+        } catch (Throwable e) {
+            System.out.println("Exception while execute LoginDAOImpl.checkLoginData()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+    public User getUserByLoginData(String email, String password) throws DBException {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, password);
+                    //.prepareStatement("select * from users where email = " + email + " AND  password = " + password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User user = null;
+            if (resultSet.next()) {
+                user = new User();
+                user.setId(resultSet.getLong("id"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                user.setUserName(resultSet.getString("userName"));
+                user.setUserType(resultSet.getString("userType"));
+            }
+            return user;
 
         } catch (Throwable e) {
             System.out.println("Exception while execute LoginDAOImpl.checkLoginData()");

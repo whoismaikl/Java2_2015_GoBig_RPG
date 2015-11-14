@@ -63,10 +63,9 @@
 
 <body>
 
-
 <section id="secondary_bar">
   <div class="user">
-    <p> Welcome to GoBig_RPG - Username (<a href="#">email</a>)</p>
+    <p> Welcome to GoBig_RPG - ${sessionScope.userName} - (<a href="#">email</a>) ${sessionScope.user.email}</p>
     <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
   </div>
 
@@ -133,90 +132,28 @@
   </article><!-- end of stats article -->
 
   <article class="module width_full">
-    <header><h3 class="tabs_involved">Content Manager</h3>
+    <header><h3 class="tabs_involved">Manage Tasks</h3>
     </header>
 
     <div class="tab_container">
       <div id="tab1" class="tab_content"-->
-        <table class="tablesorter" cellspacing="0">
-          <thead>
-          <tr>
-            <th></th>
-            <th>Task Name</th>
-            <th>Category</th>
-            <th>Created On</th>
-            <th>Is Task Accomplished ?</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td>Task 1</td>
-            <td>Health</td>
-            <td>2015_10_30</td>
-            <td>
-              <input type="submit" value="Yes" class="alt_btn">
-              <input type="submit" value="No" class="alt_btn">
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td>Task 2</td>
-            <td>Health</td>
-            <td>2015_10_30</td>
-            <td>
-              <input type="submit" value="Yes" class="alt_btn">
-              <input type="submit" value="No" class="alt_btn">
-            </td>
-          </tr>
-          <tr>
-            <td><input type="checkbox"></td>
-            <td>Task 3</td>
-            <td>Health</td>
-            <td>2015_10_30</td>
-            <td>
-              <input type="submit" value="Yes" class="alt_btn">
-              <input type="submit" value="No" class="alt_btn">
-            </td>
-          </tr>
-          </tbody>
-        </table>
+          <jsp:include page="tasks_List.jsp" />
       </div><!-- end of #tab1 -->
     </div><!-- end of #tab -->
   </article><!-- end of messages article -->
 
 
   <article class="module width_3_quarter">
-    <header><h3>Create New Task</h3></header>
+    <header><h3>New Task</h3></header>
     <div class="module_content">
       <table class="tablesorter" cellspacing="0">
-        <fieldset>
-          <label>Task Name</label>
-          <input type="text">
-        </fieldset>
-        <fieldset> <!-- to make two field float next to one another, adjust values accordingly -->
-          <label>Category</label>
-          <select style="width:92%;">
-            <option>Health</option>
-            <option>Intelligence</option>
-            <option>Communication</option>
-          </select>
-        </fieldset>
-        <fieldset>
-          <label>Scores for Yes</label>
-          <input type="text">
-        </fieldset>
-        <fieldset>
-          <label>Scores for No</label>
-          <input type="text">
-        </fieldset>
+          <fieldset>
+              <jsp:include page="tasks_New.jsp" />
+          </fieldset>
       </table>
     </div>
     <footer>
       <div class="submit_link">
-        <input type="submit" value="Create" class="alt_btn">
-        <input type="submit" value="Reset">
-      </div>
     </footer>
   </article><!-- end of post new article -->
 </section>

@@ -106,9 +106,9 @@ ALTER TABLE `customTasks` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
 -- ---
 
 -- INSERT INTO `users` (`id`,`eMail`,`password`,`nickName`,`userType`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`) VALUES
--- ('','','','','','','','','','','','');
+-- ('1','a','a','a','50','50','50','50','','','2015-10-26 02:01:03','2015-10-26 02:01:03');
 -- INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
--- ('','','','','','','','','');
+-- ('','1','','','','','','2015-10-26 02:01:03','2015-10-26 02:01:03');
 -- INSERT INTO `statHistory` (`id`,`userID`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`dateReceived`) VALUES
 -- ('','','','','','','','');
 -- INSERT INTO `customTasks` (`id`,`userID`,`taskDescription`,`taskType`,`taskValue`,`dateCompleted`) VALUES

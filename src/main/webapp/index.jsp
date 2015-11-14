@@ -32,10 +32,10 @@
 <div class="login-card">
   <h1>Log-in</h1><br>
  <!-- <form method="post" action="/index.jsp"> -->
-  <form action="/index" method="post">
-    <input type="text" name="email" placeholder="email">
-    <input type="password" name="password" placeholder="Password">
-    <input type="submit" name="login" class="login login-submit" value="login">
+    <form action="/java2/login" method="post">
+        <input type="text" name="email" placeholder="email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="submit" name="login" class="login login-submit" value="login">
   </form>
 
   <div class="login-help">
