@@ -25,6 +25,7 @@ CREATE TABLE `users` (
   `dailyTodo` INTEGER NULL DEFAULT NULL,
   `lastLogin` DATETIME NULL DEFAULT NULL,
   `dateRegistered` DATETIME NULL DEFAULT NULL,
+  `accountActivetYN` CHAR NOT NULL DEFAULT 'Y',
   PRIMARY KEY (`id`)
 );
 
