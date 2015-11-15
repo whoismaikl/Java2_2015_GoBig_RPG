@@ -61,7 +61,7 @@ public class UserTaskDAOImplTest {
         userTaskDAO.create(task2);
         userTaskDAO.create(task3);
         List<UserTask> usersTasks = userTaskDAO.getAll(user1);
-        assertEquals(3, usersTasks.size());
+        assertEquals(2, usersTasks.size());
     }
     @Test
     public void testDeleteUserTask() throws DBException {

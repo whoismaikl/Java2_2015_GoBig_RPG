@@ -209,7 +209,6 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                     .prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
-                   // .prepareStatement("select * from users where email = " + email + " AND  password = " + password);
             ResultSet resultSet = preparedStatement.executeQuery();
             return resultSet.next();
 
@@ -230,7 +229,6 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                     .prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?");
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, password);
-                    //.prepareStatement("select * from users where email = " + email + " AND  password = " + password);
             ResultSet resultSet = preparedStatement.executeQuery();
             User user = null;
             if (resultSet.next()) {

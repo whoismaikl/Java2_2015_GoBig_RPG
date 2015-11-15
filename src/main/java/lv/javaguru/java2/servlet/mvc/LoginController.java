@@ -26,7 +26,6 @@ public class LoginController implements MVCController {
 
         MVCModel model = new MVCModel("Blank","/noPage.jsp");
         UserDAOImpl userDAO = new UserDAOImpl();
-        UserTaskDAOImpl userTaskDAO = new UserTaskDAOImpl();
         if (userDAO.checkLoginData(email, password)){
 
             //create session;
@@ -37,13 +36,11 @@ public class LoginController implements MVCController {
 
             HttpSession session = request.getSession();
             User user = userDAO.getUserByLoginData(email, password);
-            String userName = user.getUserName();
-            UserTask userTask = new UserTask();
-            session.setAttribute("userName", userName);
             session.setAttribute("user", user);
-            List<UserTask> userTasks = userTaskDAO.getAll(user);
-            request.setAttribute("userTasks", userTasks);
 
+            UserTaskDAOImpl userTaskDAO = new UserTaskDAOImpl();
+            List<UserTask> userTasks = userTaskDAO.getAll(user);
+            session.setAttribute("userTasks", userTasks);
 
         } else {
             model.setData("Name Or Password not found in Our Database");

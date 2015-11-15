@@ -86,11 +86,12 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
     public List<UserTask> getAll(User user) throws DBException {
         List<UserTask> userTasks = new ArrayList<UserTask>();
         Connection connection = null;
-        Long userId = user.getId();
+        Long userId1 = user.getId();
 
         try {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tasks WHERE userID=userId");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tasks WHERE userID="
+                    + userId1);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             UserTask userTask;

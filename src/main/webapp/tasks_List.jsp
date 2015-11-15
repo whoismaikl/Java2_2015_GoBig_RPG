@@ -13,27 +13,26 @@
     <title></title>
 </head>
 <body>
+<form action="/java2/taskDelete" method="post">
 <table class="tablesorter" cellspacing="0">
   <thead>
   <tr>
-    <th>UserID</th>
+    <th>Delete</th>
     <th>Task Description</th>
     <th>Category</th>
     <th>Value</th>
-    <th>Created On</th>
     <th>Is Task Accomplished ?</th>
   </tr>
   </thead>
   <tbody>
 
   <c:forEach var="userTask" items="${userTasks}">
-  
+
   <tr>
-    <td>${userTask.userID}</td>
+    <td><input type="submit" name="${userTask.id}" class="login login-submit" value="Delete"></td>
     <td>${userTask.statDescription}</td>
     <td>${userTask.statType}</td>
     <td>${userTask.statValue}</td>
-    <td>${userTask.dateAdded}</td>
     <td>
       <input type="submit" value="Yes" class="alt_btn">
       <input type="submit" value="No" class="alt_btn">
@@ -44,5 +43,6 @@
 
 </tbody>
 </table>
+  </form>
 </body>
 </html>

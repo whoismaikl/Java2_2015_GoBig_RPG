@@ -65,7 +65,7 @@
 
 <section id="secondary_bar">
   <div class="user">
-    <p> Welcome to GoBig_RPG - ${sessionScope.userName} - (<a href="#">email</a>) ${sessionScope.user.email}</p>
+    <p> Welcome to GoBig_RPG - ${sessionScope.user.userName} - (<a href="#">email</a>) ${sessionScope.user.email}</p>
     <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
   </div>
 
@@ -142,7 +142,18 @@
     </div><!-- end of #tab -->
   </article><!-- end of messages article -->
 
+  <article class="module width_full">
+    <header><h3 class="tabs_involved">New Tasks</h3>
+    </header>
 
+    <div class="tab_container">
+      <div id="tab3" class="tab_content"-->
+        <jsp:include page="tasks_New.jsp" />
+      </div><!-- end of #tab1 -->
+    </div><!-- end of #tab -->
+  </article><!-- end of messages article -->
+
+<%--
   <article class="module width_3_quarter">
     <header><h3>New Task</h3></header>
     <div class="module_content">
@@ -156,6 +167,7 @@
       <div class="submit_link">
     </footer>
   </article><!-- end of post new article -->
+  --%>
 </section>
 
 

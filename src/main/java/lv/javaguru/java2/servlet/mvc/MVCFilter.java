@@ -23,6 +23,8 @@ public class MVCFilter implements Filter {
         controllers.put("/login", new LoginController());
         controllers.put("/register", new RegisterController());
         controllers.put("/main", new MainController());
+        controllers.put("/taskDelete", new TaskDeleteController());
+        controllers.put("/taskNew", new TaskNewController());
 
     }
 
