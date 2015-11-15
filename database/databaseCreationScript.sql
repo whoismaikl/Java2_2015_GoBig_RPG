@@ -73,9 +73,9 @@ CREATE TABLE `statHistory` (
 --
 -- ---
 
-DROP TABLE IF EXISTS `customTasks`;
+DROP TABLE IF EXISTS `defaultTasks`;
 
-CREATE TABLE `customTasks` (
+CREATE TABLE `defaultTasks` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `userID` INTEGER NULL DEFAULT NULL,
   `taskDescription` CHAR(255) NULL DEFAULT NULL,
@@ -91,17 +91,8 @@ CREATE TABLE `customTasks` (
 
 ALTER TABLE `tasks` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
 ALTER TABLE `statHistory` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
-ALTER TABLE `customTasks` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
 
--- ---
--- Table Properties
--- ---
-
--- ALTER TABLE `users` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `tasks` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `statHistory` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
--- ALTER TABLE `customTasks` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
+--
 -- ---
 -- Test Data
 -- ---
