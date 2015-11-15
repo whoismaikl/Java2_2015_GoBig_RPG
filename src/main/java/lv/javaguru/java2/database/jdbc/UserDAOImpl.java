@@ -24,7 +24,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO users VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("INSERT INTO users VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getUserName());
@@ -36,6 +36,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             preparedStatement.setLong(9, user.getDailyTodo());
             preparedStatement.setTimestamp(10, new java.sql.Timestamp(user.getLastLogin().getTime()));
             preparedStatement.setTimestamp(11, new java.sql.Timestamp(user.getDateRegistered().getTime()));
+            preparedStatement.setString(12, user.getAccountActivetYN());
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()){

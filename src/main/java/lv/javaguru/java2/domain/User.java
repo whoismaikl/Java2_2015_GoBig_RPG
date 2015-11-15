@@ -17,6 +17,16 @@ public class User {
     private Date lastLogin;
     private Date dateRegistered;
 
+    public String getAccountActivetYN() {
+        return accountActivetYN;
+    }
+
+    public void setAccountActivetYN(String accountActivetYN) {
+        this.accountActivetYN = accountActivetYN;
+    }
+
+    private String accountActivetYN;
+
     public User(){}
 
     public User(String email, String password, String userName, String userType){
@@ -31,6 +41,7 @@ public class User {
         setDailyTodo(0);
         setLastLogin(date);
         setDateRegistered(date);
+        setAccountActivetYN("Y");
     }
     Date date = new Date();
 
