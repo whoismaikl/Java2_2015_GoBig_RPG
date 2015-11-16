@@ -10,14 +10,14 @@ import java.util.List;
  */
 public interface UserTaskDAO {
 
-    void create(UserTask userTask) throws DBException;
+    void createTask(UserTask userTask) throws DBException;
 
-    void delete(Long id) throws DBException;
+    void deleteTaskByID(Long id) throws DBException;
 
     void update(UserTask userTask) throws DBException;
 
-    UserTask getById(Long id) throws DBException;
+    UserTask getTaskById(Long id) throws DBException;
 
-    List<UserTask> getAll(User user) throws DBException;
+    List<UserTask> getAllUserTasks(User user) throws DBException;
 
 }

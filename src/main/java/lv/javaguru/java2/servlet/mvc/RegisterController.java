@@ -24,7 +24,7 @@ public class RegisterController implements MVCController {
             User user = new User(email, password1, username, "U");
             UserDAOImpl userDAO = new UserDAOImpl();
             if (!userDAO.getUserByMail(email) && !userDAO.getUserByName(username)){
-                userDAO.create(user);
+                userDAO.createUser(user);
                 model.setData("User Registered");
                 model.setViewName("/index.jsp");
             } else {

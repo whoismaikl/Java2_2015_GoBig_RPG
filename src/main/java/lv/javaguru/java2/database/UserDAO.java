@@ -11,15 +11,15 @@ import java.util.List;
  */
 public interface UserDAO {
 
-    public void create(User user) throws DBException;
+    public void createUser(User user) throws DBException;
 
-    void delete(Long id) throws DBException;
+    void deleteUser(Long id) throws DBException;
 
-    void update(User user) throws DBException;
+    void updateUserData(User user) throws DBException;
 
-    User getById(Long id) throws DBException;
+    User getUserById(Long id) throws DBException;
 
-    List<User> getAll() throws DBException;
+    List<User> getAllUsers() throws DBException;
 
     boolean getUserByMail(String mail) throws DBException;
 

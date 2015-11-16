@@ -8,9 +8,7 @@ import lv.javaguru.java2.domain.UserTask;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by AST on 2015.11.03..
@@ -28,7 +26,7 @@ public class LoginController implements MVCController {
         UserDAOImpl userDAO = new UserDAOImpl();
         if (userDAO.checkLoginData(email, password)){
 
-            //create session;
+            //createUser session;
             //Open user page;
             model.setData("Login Success");
             model.setViewName("/main.jsp");
@@ -39,7 +37,7 @@ public class LoginController implements MVCController {
             session.setAttribute("user", user);
 
             UserTaskDAOImpl userTaskDAO = new UserTaskDAOImpl();
-            List<UserTask> userTasks = userTaskDAO.getAll(user);
+            List<UserTask> userTasks = userTaskDAO.getAllUserTasks(user);
             session.setAttribute("userTasks", userTasks);
 
         } else {

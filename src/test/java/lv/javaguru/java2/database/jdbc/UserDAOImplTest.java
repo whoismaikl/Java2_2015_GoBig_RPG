@@ -27,9 +27,9 @@ public class UserDAOImplTest {
     public void testCreate() throws DBException {
         User user = new User("1@com", "p1", "n1", "U");
 
-        userDAO.create(user);
+        userDAO.createUser(user);
 
-        User userFromDB = userDAO.getById(user.getId());
+        User userFromDB = userDAO.getUserById(user.getId());
         assertNotNull(userFromDB);
         assertEquals(user.getId(), userFromDB.getId());
         assertEquals(user.getEmail(), userFromDB.getEmail());
@@ -40,9 +40,9 @@ public class UserDAOImplTest {
      public void testMultipleUserCreation() throws DBException {
         User user1 = new User("2@com", "p2", "n2", "U");
         User user2 = new User("3@com", "p3", "n3", "U");
-        userDAO.create(user1);
-        userDAO.create(user2);
-        List<User> users = userDAO.getAll();
+        userDAO.createUser(user1);
+        userDAO.createUser(user2);
+        List<User> users = userDAO.getAllUsers();
         assertEquals(2, users.size());
     }
     @Test
@@ -51,14 +51,14 @@ public class UserDAOImplTest {
         User user2 = new User("5@com", "p5", "n5", "U");
         User user3 = new User("6@com", "p6", "n6", "U");
         User user4 = new User("7@com", "p7", "n7", "U");
-        userDAO.create(user1);
-        userDAO.create(user2);
-        userDAO.create(user3);
-        userDAO.create(user4);
-        List<User> users = userDAO.getAll();
+        userDAO.createUser(user1);
+        userDAO.createUser(user2);
+        userDAO.createUser(user3);
+        userDAO.createUser(user4);
+        List<User> users = userDAO.getAllUsers();
         assertEquals(4, users.size());
-        userDAO.delete(user2.getId());
-        users = userDAO.getAll();
+        userDAO.deleteUser(user2.getId());
+        users = userDAO.getAllUsers();
         assertEquals(3, users.size());
     }
 

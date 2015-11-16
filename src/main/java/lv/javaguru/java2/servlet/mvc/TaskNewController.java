@@ -1,7 +1,6 @@
 package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.database.jdbc.UserTaskDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserTask;
@@ -31,10 +30,10 @@ public class TaskNewController implements MVCController {
         UserTask userTask = createUserTask(user.getId(),statType,statValue,statDescription,"N","N");
 
 
-        userTaskDAO.create(userTask);
+        userTaskDAO.createTask(userTask);
 
 
-        List<UserTask> userTasks = userTaskDAO.getAll(user);
+        List<UserTask> userTasks = userTaskDAO.getAllUserTasks(user);
         session.setAttribute("userTasks", userTasks);
 
 

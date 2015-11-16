@@ -1,7 +1,6 @@
 package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.database.jdbc.UserTaskDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserTask;
@@ -24,12 +23,12 @@ public class TaskDeleteController implements MVCController {
         String taskIdString = searchButtonName(request);
         if(!taskIdString.isEmpty()) {
             Long taskId = Long.valueOf(taskIdString);
-            userTaskDAO.delete(taskId);
+            userTaskDAO.deleteTaskByID(taskId);
         }
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        List<UserTask> userTasks = userTaskDAO.getAll(user);
+        List<UserTask> userTasks = userTaskDAO.getAllUserTasks(user);
         session.setAttribute("userTasks", userTasks);
 
 

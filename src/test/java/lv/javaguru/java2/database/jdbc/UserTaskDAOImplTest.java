@@ -33,13 +33,13 @@ public class UserTaskDAOImplTest {
         UserTask userTask = new UserTask();
         User user1 = new User("2@com", "p2", "n2", "U");
         User user2 = new User("3@com", "p3", "n3", "U");
-        userDAO.create(user1);
-        userDAO.create(user2);
+        userDAO.createUser(user1);
+        userDAO.createUser(user2);
         Long userId = user2.getId();
         userTask = createUserTask(userId, "Health", 5, "Description1", "Y", "N");
-        userTaskDAO.create(userTask);
+        userTaskDAO.createTask(userTask);
 
-        UserTask userTaskFromDB = userTaskDAO.getById(userTask.getId());
+        UserTask userTaskFromDB = userTaskDAO.getTaskById(userTask.getId());
         assertNotNull(userTaskFromDB);
         assertEquals(userTask.getId(), userTaskFromDB.getId());
         assertEquals(userTask.getUserID(), userTaskFromDB.getUserID());
@@ -50,17 +50,17 @@ public class UserTaskDAOImplTest {
      public void testMultipleTaskCreation() throws DBException {
         User user1 = new User("2@com", "p2", "n2", "U");
         User user2 = new User("3@com", "p3", "n3", "U");
-        userDAO.create(user1);
-        userDAO.create(user2);
+        userDAO.createUser(user1);
+        userDAO.createUser(user2);
         Long userId1 = user1.getId();
         Long userId2 = user2.getId();
         UserTask task1 = createUserTask(userId1, "Health", 5, "Description1", "Y", "N");
         UserTask task2 = createUserTask(userId1, "Health", 4, "Description2", "Y", "N");
         UserTask task3 = createUserTask(userId2, "Health", 6, "Description3", "Y", "N");
-        userTaskDAO.create(task1);
-        userTaskDAO.create(task2);
-        userTaskDAO.create(task3);
-        List<UserTask> usersTasks = userTaskDAO.getAll(user1);
+        userTaskDAO.createTask(task1);
+        userTaskDAO.createTask(task2);
+        userTaskDAO.createTask(task3);
+        List<UserTask> usersTasks = userTaskDAO.getAllUserTasks(user1);
         assertEquals(2, usersTasks.size());
     }
     @Test
@@ -68,23 +68,23 @@ public class UserTaskDAOImplTest {
         User user1 = new User("4", "p4", "n4", "U");
         User user2 = new User("5", "p5", "n5", "U");
 
-        userDAO.create(user1);
-        userDAO.create(user2);
+        userDAO.createUser(user1);
+        userDAO.createUser(user2);
         Long userId1 = user1.getId();
         Long userId2 = user2.getId();
         UserTask task1 = createUserTask(userId1, "Health", 3, "Description1", "Y", "N");
         UserTask task2 = createUserTask(userId1, "Health", 4, "Description2", "Y", "N");
         UserTask task3 = createUserTask(userId1, "Health", 5, "Description3", "Y", "N");
         UserTask task4 = createUserTask(userId1, "Health", 6, "Description4", "Y", "N");
-        userTaskDAO.create(task1);
-        userTaskDAO.create(task2);
-        userTaskDAO.create(task3);
-        userTaskDAO.create(task4);
+        userTaskDAO.createTask(task1);
+        userTaskDAO.createTask(task2);
+        userTaskDAO.createTask(task3);
+        userTaskDAO.createTask(task4);
 
-        List<UserTask> userTasks = userTaskDAO.getAll(user1);
+        List<UserTask> userTasks = userTaskDAO.getAllUserTasks(user1);
         assertEquals(4, userTasks.size());
-        userTaskDAO.delete(task2.getId());
-        userTasks = userTaskDAO.getAll(user1);
+        userTaskDAO.deleteTaskByID(task2.getId());
+        userTasks = userTaskDAO.getAllUserTasks(user1);
         assertEquals(3, userTasks.size());
     }
 

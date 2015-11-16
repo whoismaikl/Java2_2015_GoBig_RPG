@@ -14,11 +14,10 @@ import java.util.List;
 
 public class UserDAOImpl extends DAOImpl implements UserDAO {
 
-    public void create(User user) throws DBException {
+    public void createUser(User user) throws DBException {
         if (user == null) {
             return;
         }
-
         Connection connection = null;
 
         try {
@@ -43,7 +42,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 user.setId(rs.getLong(1));
             }
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.create()");
+            System.out.println("Exception while execute UserDAOImpl.createUser()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -52,7 +51,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
 
     }
 
-    public User getById(Long id) throws DBException {
+    public User getUserById(Long id) throws DBException {
         Connection connection = null;
 
         try {
@@ -72,7 +71,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             }
             return user;
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.getById()");
+            System.out.println("Exception while execute UserDAOImpl.getUserById()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -80,7 +79,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         }
     }
 
-    public List<User> getAll() throws DBException {
+    public List<User> getAllUsers() throws DBException {
         List<User> users = new ArrayList<User>();
         Connection connection = null;
 
@@ -109,7 +108,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         return users;
     }
 
-    public void delete(Long id) throws DBException {
+    public void deleteUser(Long id) throws DBException {
         Connection connection = null;
         try {
             connection = getConnection();
@@ -118,7 +117,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.delete()");
+            System.out.println("Exception while execute UserDAOImpl.deleteUser()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -126,7 +125,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         }
     }
 
-    public void update(User user) throws DBException {
+    public void updateUserData(User user) throws DBException {
         if (user == null) {
             return;
         }
@@ -143,7 +142,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
 
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.update()");
+            System.out.println("Exception while execute UserDAOImpl.updateUserData()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -168,7 +167,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                 /*/
                 return resultSet.next();
             } catch (Throwable e) {
-                System.out.println("Exception while execute UserDAOImpl.getById()");
+                System.out.println("Exception while execute UserDAOImpl.getUserById()");
                 e.printStackTrace();
                 throw new DBException(e);
             } finally {
@@ -221,6 +220,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             closeConnection(connection);
         }
     }
+
     public User getUserByLoginData(String email, String password) throws DBException {
         Connection connection = null;
 

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
 
-    public void create(UserTask userTask) throws DBException {
+    public void createTask(UserTask userTask) throws DBException {
         if (userTask == null) {
             return;
         }
@@ -42,7 +42,7 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
                 userTask.setId(rs.getLong(1));
             }
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserTaskDAOImpl.create()");
+            System.out.println("Exception while execute UserTaskDAOImpl.createUser()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -51,7 +51,7 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
 
     }
 
-    public UserTask getById(Long id) throws DBException {
+    public UserTask getTaskById(Long id) throws DBException {
         Connection connection = null;
 
         try {
@@ -75,15 +75,17 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
             }
             return userTask;
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserTaskDAOImpl.getById()");
+            System.out.println("Exception while execute UserTaskDAOImpl.getUserById()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
             closeConnection(connection);
         }
     }
-
-    public List<UserTask> getAll(User user) throws DBException {
+    // getAllUserTasks nado budet dodelat', tk v dannom QueryBudut pokazyvatsja vse taski i vypolnennye i nevypolnennye
+    // ili dobavit' metod getActiveTasks where AccomplishedYN = N
+    // i getCompltedTasks wgere AccomplishedYN = Y
+    public List<UserTask> getAllUserTasks(User user) throws DBException {
         List<UserTask> userTasks = new ArrayList<UserTask>();
         Connection connection = null;
         Long userId1 = user.getId();
@@ -118,7 +120,7 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
         return userTasks;
     }
 
-    public void delete(Long id) throws DBException {
+    public void deleteTaskByID(Long id) throws DBException {
         Connection connection = null;
         try {
             connection = getConnection();
@@ -127,7 +129,7 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.delete()");
+            System.out.println("Exception while execute UserDAOImpl.deleteUser()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -155,7 +157,7 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
             preparedStatement.setTimestamp(8, new Timestamp(userTask.getDateAccomplished().getTime()));
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.update()");
+            System.out.println("Exception while execute UserDAOImpl.updateUserData()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
