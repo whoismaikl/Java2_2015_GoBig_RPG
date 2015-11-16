@@ -137,24 +137,17 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
         }
     }
 
-    public void update(UserTask userTask) throws DBException {
-        if (userTask == null) {
-            return;
-        }
-
+    public void editTask(UserTask userTask) throws DBException {
         Connection connection = null;
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE tasks SET email = ?, password = ?, nickName = ?, userType = ?" + "WHERE id = ?");
-            preparedStatement.setLong(1, userTask.getUserID());
-            preparedStatement.setString(2, userTask.getStatType());
-            preparedStatement.setInt(3, userTask.getStatValue());
-            preparedStatement.setString(4, userTask.getStatDescription());
-            preparedStatement.setString(5, userTask.getRepeatableYN());
-            preparedStatement.setString(6, userTask.getAccomplishedYN());
-            preparedStatement.setTimestamp(7, new Timestamp(userTask.getDateAdded().getTime()));
-            preparedStatement.setTimestamp(8, new Timestamp(userTask.getDateAccomplished().getTime()));
+                    .prepareStatement("UPDATE tasks SET statType = ?, StatValue = ?, StatDescription = ?, RepeatableYN = ? DateAdded = ?" + "WHERE id = ?");
+            preparedStatement.setString(1, userTask.getStatType());
+            preparedStatement.setInt(2, userTask.getStatValue());
+            preparedStatement.setString(3, userTask.getStatDescription());
+            preparedStatement.setString(4, userTask.getRepeatableYN());
+            preparedStatement.setTimestamp(5, new Timestamp(userTask.getDateAdded().getTime()));
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.updateUserData()");

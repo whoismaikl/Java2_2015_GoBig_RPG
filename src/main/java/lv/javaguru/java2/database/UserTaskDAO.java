@@ -14,7 +14,9 @@ public interface UserTaskDAO {
 
     void deleteTaskByID(Long id) throws DBException;
 
-    void update(UserTask userTask) throws DBException;
+    //void updateit(Long id) throws DBException;
+
+    void editTask(UserTask userTask) throws DBException;
 
     UserTask getTaskById(Long id) throws DBException;
 
