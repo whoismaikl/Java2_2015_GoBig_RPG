@@ -1,16 +1,13 @@
 package lv.javaguru.java2.database.jdbc;
 
-
+import java.util.Date;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.UserTaskDAO;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserTask;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -138,16 +135,38 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
     }
 
     public void editTask(UserTask userTask) throws DBException {
+        if (userTask == null) {
+            return;
+        }
         Connection connection = null;
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE tasks SET statType = ?, StatValue = ?, StatDescription = ?, RepeatableYN = ? DateAdded = ?" + "WHERE id = ?");
+                    .prepareStatement("UPDATE tasks SET statType = ?, statValue = ?, statDescription = ?, repeatableYN = ?, dateAdded = ?" + "WHERE id = ?");
             preparedStatement.setString(1, userTask.getStatType());
             preparedStatement.setInt(2, userTask.getStatValue());
             preparedStatement.setString(3, userTask.getStatDescription());
             preparedStatement.setString(4, userTask.getRepeatableYN());
             preparedStatement.setTimestamp(5, new Timestamp(userTask.getDateAdded().getTime()));
+            preparedStatement.setLong(6, userTask.getId());
+            preparedStatement.executeUpdate();
+        } catch (Throwable e) {
+            System.out.println("Exception while execute UserDAOImpl.updateUserData()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+    public void accomplishTask(Long id) throws DBException {
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("UPDATE tasks SET accomplishedYN = ?, dateAccomplished = ?" + "WHERE id = ?");
+            preparedStatement.setString(1, "Y");
+            preparedStatement.setTimestamp(2,  new java.sql.Timestamp(new Date().getTime()));
+            preparedStatement.setLong(3, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.updateUserData()");

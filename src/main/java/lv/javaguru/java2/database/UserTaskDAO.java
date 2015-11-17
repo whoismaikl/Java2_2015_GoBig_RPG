@@ -16,10 +16,12 @@ public interface UserTaskDAO {
 
     //void updateit(Long id) throws DBException;
 
-    void editTask(UserTask userTask) throws DBException;
-
     UserTask getTaskById(Long id) throws DBException;
 
     List<UserTask> getAllUserTasks(User user) throws DBException;
+
+    void editTask(UserTask userTask) throws DBException;
+
+    void accomplishTask(Long id) throws DBException;
 
 }

@@ -14,13 +14,14 @@ import java.util.Map;
 /**
  * Created by AST on 2015.11.03..
  */
-public class TaskDeleteController implements MVCController {
+public class TaskController implements MVCController {
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
         UserTaskDAOImpl userTaskDAO = new UserTaskDAOImpl();
 
         String taskIdString = searchButtonName(request);
+
         if(!taskIdString.isEmpty()) {
             Long taskId = Long.valueOf(taskIdString);
             userTaskDAO.deleteTaskByID(taskId);
@@ -34,18 +35,12 @@ public class TaskDeleteController implements MVCController {
 
         return  new MVCModel("Register", "/main.jsp");
     }
-    Date date = new Date();
     String searchButtonName(final HttpServletRequest request) {
         String buttonName = "";
         Map<String, String[]> paramMap = request.getParameterMap();
         if (!paramMap.isEmpty()) {
             for (Map.Entry<String, String[]> entry : paramMap.entrySet()) {
-                    /* Search for the button name as given in
-                       the 'value' attribute for the input tag */
-                //if ("Select".equals(entry.getValue()[0])) {
                     buttonName = entry.getKey();
-                 //   break;
-                //}
             }
         }
         return buttonName;

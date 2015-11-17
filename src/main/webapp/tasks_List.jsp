@@ -13,7 +13,7 @@
     <title></title>
 </head>
 <body>
-<form action="/java2/taskDelete" method="post">
+<form action="/java2/task" method="post">
 <table class="tablesorter" cellspacing="0">
   <thead>
   <tr>
@@ -34,8 +34,8 @@
     <td>${userTask.statType}</td>
     <td>${userTask.statValue}</td>
     <td>
-      <input type="submit" value="Yes" class="alt_btn">
-      <input type="submit" value="No" class="alt_btn">
+      <input type="submit" value="Yes" name="yes" +${userTask.id}" class="alt_btn">
+      <input type="submit" value="No" name="no" +${userTask.id}"class="alt_btn">
     </td>
   </tr>
 
