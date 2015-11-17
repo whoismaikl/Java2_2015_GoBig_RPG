@@ -11,7 +11,9 @@
   <meta charset="UTF-8">
   <title>Register New User</title>
 
+  <link rel='stylesheet prefetch' href='css/jquery-ui.css'>
 
+  <link rel="stylesheet" href="css/style.css">
 
 
 </head>

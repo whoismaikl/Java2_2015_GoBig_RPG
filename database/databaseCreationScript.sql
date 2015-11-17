@@ -97,10 +97,15 @@ ALTER TABLE `statHistory` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
 -- Test Data
 -- ---
 
--- INSERT INTO `users` (`id`,`eMail`,`password`,`nickName`,`userType`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`) VALUES
--- ('1','a','a','a','50','50','50','50','','','2015-10-26 02:01:03','2015-10-26 02:01:03');
--- INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
--- ('','1','','','','','','2015-10-26 02:01:03','2015-10-26 02:01:03');
+INSERT INTO `users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`,`accountActivetYN`) VALUES
+  ('1001','a','a','My User Name','U','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','N');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1001','1001','Health','1','Description for health','Y','N','2015-11-17 10:07:46','2015-10-26');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1002','1001','Intellegence','1','Description for intellegence','Y','N','2015-11-17 10:07:46','2015-10-26');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1003','1001','Communication','1','Description for communication','Y','N','2015-11-17 10:07:46','2015-10-26');
+
 -- INSERT INTO `statHistory` (`id`,`userID`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`dateReceived`) VALUES
 -- ('','','','','','','','');
 -- INSERT INTO `customTasks` (`id`,`userID`,`taskDescription`,`taskType`,`taskValue`,`dateCompleted`) VALUES
