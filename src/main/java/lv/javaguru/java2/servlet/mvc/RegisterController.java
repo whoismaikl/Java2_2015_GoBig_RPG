@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by AST on 2015.11.03..
  */
+
 public class RegisterController implements MVCController {
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
