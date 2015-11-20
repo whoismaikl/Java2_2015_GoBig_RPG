@@ -6,12 +6,13 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.UserTaskDAO;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserTask;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
 
     public void createTask(UserTask userTask) throws DBException {

@@ -5,6 +5,8 @@ import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.database.jdbc.UserTaskDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.UserTask;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,21 +15,20 @@ import java.util.List;
 /**
  * Created by AST on 2015.11.03..
  */
+@Component
 public class LoginController implements MVCController {
+    @Autowired
+    private UserDAOImpl userDAO;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
-
-
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
         MVCModel model = new MVCModel("Blank","/noPage.jsp");
-        UserDAOImpl userDAO = new UserDAOImpl();
+
         if (userDAO.checkLoginData(email, password)){
 
-            //createUser session;
-            //Open user page;
             model.setData("Login Success");
             model.setViewName("/main.jsp");
 

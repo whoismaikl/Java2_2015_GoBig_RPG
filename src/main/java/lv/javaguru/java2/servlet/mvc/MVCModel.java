@@ -1,8 +1,11 @@
 package lv.javaguru.java2.servlet.mvc;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by AST on 2015.11.03..
  */
+//@Component
 public class MVCModel {
     private Object data;
     private  String viewName;
