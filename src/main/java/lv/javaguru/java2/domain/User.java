@@ -17,6 +17,8 @@ public class User {
     private Date lastLogin;
     private Date dateRegistered;
 
+
+
     public String getAccountActivetYN() {
         return accountActivetYN;
     }
@@ -43,6 +45,26 @@ public class User {
         setDateRegistered(date);
         setAccountActivetYN("Y");
     }
+
+    public User create()
+    {
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setUserName(userName);
+        user.setUserType(userType);
+        user.setHealth(health);
+        user.setIntelligence(intelligence);
+        user.setCommunication(communication);
+        user.setWillPower(willPower);
+        user.setDailyTodo(dailyTodo);
+        user.setLastLogin(lastLogin);
+        user.setDateRegistered(dateRegistered);
+        user.setAccountActivetYN(accountActivetYN);
+        return user;
+    }
+
+
     Date date = new Date();
 
     public Date getLastLogin() {
@@ -140,6 +162,7 @@ public class User {
     public void setWillPower(long willPower) {
         this.willPower = willPower;
     }
+
     public java.sql.Date getSqlDate(Date date){
         java.util.Date utilDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());

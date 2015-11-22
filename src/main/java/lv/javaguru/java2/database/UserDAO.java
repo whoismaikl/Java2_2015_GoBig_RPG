@@ -1,8 +1,6 @@
 package lv.javaguru.java2.database;
 
-import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.domain.UserTask;
 
 import java.util.List;
 

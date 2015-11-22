@@ -64,8 +64,8 @@ public class UserDAOImplTest {
 
 
 /*
-    private User createUser(String name, String surame) {
-        User user = new User();
+    private UserBuilder createUser(String name, String surame) {
+        UserBuilder user = new UserBuilder();
         user.setFirstName(firstName);
         user.setLastName(lastName);
         return user;

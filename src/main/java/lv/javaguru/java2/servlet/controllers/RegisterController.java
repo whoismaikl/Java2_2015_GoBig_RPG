@@ -1,8 +1,10 @@
-package lv.javaguru.java2.servlet.mvc;
+package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.RegistrationService;
+import lv.javaguru.java2.servlet.mvc.MVCController;
+import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +15,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Component
 public class RegisterController implements MVCController {
+
     @Autowired
-    private UserDAOImpl userDAO;
+    private RegistrationService loginService;
+
+
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
@@ -24,9 +29,21 @@ public class RegisterController implements MVCController {
         String password2 = request.getParameter("password2");
         MVCModel model = new MVCModel("Blank","/noPage.jsp");
 
+
+
+
+        if(!loginService.userExist()){
+
+        }
+
         if (password1.equals(password2) && !password1.equals(null) && !password1.equals("")) {
+
             User user = new User(email, password1, username, "U");
+
+            //if optional.Of(user)
             if (!userDAO.getUserByMail(email) && !userDAO.getUserByName(username)){
+
+
                 userDAO.createUser(user);
                 model.setData("User Registered");
                 model.setViewName("/index.jsp");
