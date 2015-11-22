@@ -43,6 +43,8 @@ CREATE TABLE `tasks` (
   `statValue` INTEGER NULL,
   `statDescription` CHAR(255) NULL DEFAULT NULL,
   `repeatableYN` CHAR NOT NULL DEFAULT 'N',
+  `repeatFrequencyDays` INTEGER NOT NULL,
+
   `accomplishedYN` CHAR(1) NOT NULL DEFAULT 'N',
   `dateAdded` DATETIME NOT NULL,
   `dateAccomplished` DATE NULL,
@@ -62,9 +64,10 @@ CREATE TABLE `statHistory` (
   `health` INTEGER NULL DEFAULT NULL,
   `intellegence` INTEGER NULL DEFAULT NULL,
   `communication` INTEGER NULL DEFAULT NULL,
+  `statValue`INTEGER NULL DEFAULT NULL,
   `willPower` INTEGER NULL DEFAULT NULL,
   `dailyTodo` INTEGER NULL DEFAULT NULL,
-  `dateReceived` DATE NULL DEFAULT NULL,
+  `dateCompleted` DATE NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
