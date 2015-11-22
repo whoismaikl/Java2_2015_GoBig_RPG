@@ -43,8 +43,7 @@ CREATE TABLE `tasks` (
   `statValue` INTEGER NULL,
   `statDescription` CHAR(255) NULL DEFAULT NULL,
   `repeatableYN` CHAR NOT NULL DEFAULT 'N',
-  `repeatFrequencyDays` INTEGER NOT NULL,
-
+  `repeatFrequencyDays` INTEGER NOT NULL DEFAULT 1,
   `accomplishedYN` CHAR(1) NOT NULL DEFAULT 'N',
   `dateAdded` DATETIME NOT NULL,
   `dateAccomplished` DATE NULL,
