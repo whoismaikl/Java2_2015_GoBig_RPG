@@ -6,6 +6,8 @@ import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 /**
  * Created by JavaCourses on 2015.11.19..
  */
@@ -37,15 +39,25 @@ public class RegistrationService {
     }
 
 
-    public boolean correctEmailSyntax() {
+    public boolean correctEmailSyntax(String email) {
+        // add string check for xxx@ccc.zz
         return true;
     }
-    public User createUser(){
+//
+    public User createUser(String email, String password1, String password2, String userName) {
 
-      User user = new User(email, password1, username, "U");
-
-
-    userDAO.createUser(user);
-
+        if (!userExist(email, userName) && passwordsMatch(password1, password2) && correctEmailSyntax(email)) {
+            Optional user1 = Optional.empty();
+            User user = new User(email, password1, userName, "U");
+            try {
+                userDAO.createUser(user);
+            } catch (DBException e) {
+                e.printStackTrace();
+            }
+        return user;
+        } else {
+            return null;
+        }
+    }
 
 }

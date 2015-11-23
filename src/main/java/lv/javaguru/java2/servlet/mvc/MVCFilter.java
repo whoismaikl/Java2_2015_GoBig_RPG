@@ -1,7 +1,7 @@
 package lv.javaguru.java2.servlet.mvc;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.SpringConfig;
+import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.servlet.controllers.*;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -30,7 +30,7 @@ public class MVCFilter implements Filter {
             controllers = new HashMap<String, MVCController>();
             controllers.put("/hello", getBean(HelloWorldController.class));
             controllers.put("/login", getBean(LoginController.class));
-            controllers.put("/register", getBean(RegisterController.class));
+            controllers.put("/register", getBean(RegistrationController.class));
             controllers.put("/main", getBean(MainController.class));
             controllers.put("/task", getBean(TaskController.class));
             controllers.put("/taskNew", getBean(TaskNewController.class));

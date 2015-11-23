@@ -2,6 +2,7 @@ package lv.javaguru.java2.domain;
 
 import java.util.Date;
 
+
 public class User {
 
     private Long id;
@@ -16,20 +17,8 @@ public class User {
     private long dailyTodo;
     private Date lastLogin;
     private Date dateRegistered;
-
-
-
-    public String getAccountActivetYN() {
-        return accountActivetYN;
-    }
-
-    public void setAccountActivetYN(String accountActivetYN) {
-        this.accountActivetYN = accountActivetYN;
-    }
-
     private String accountActivetYN;
 
-    public User(){}
 
     public User(String email, String password, String userName, String userType){
         setEmail(email);
@@ -46,26 +35,11 @@ public class User {
         setAccountActivetYN("Y");
     }
 
-    public User create()
-    {
-        User user = new User();
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setUserName(userName);
-        user.setUserType(userType);
-        user.setHealth(health);
-        user.setIntelligence(intelligence);
-        user.setCommunication(communication);
-        user.setWillPower(willPower);
-        user.setDailyTodo(dailyTodo);
-        user.setLastLogin(lastLogin);
-        user.setDateRegistered(dateRegistered);
-        user.setAccountActivetYN(accountActivetYN);
-        return user;
-    }
-
-
     Date date = new Date();
+
+    public User() {
+
+    }
 
     public Date getLastLogin() {
         return lastLogin;
@@ -168,6 +142,16 @@ public class User {
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
         return sqlDate;
     }
+
+    public String getAccountActivetYN() {
+        return accountActivetYN;
+    }
+
+    public void setAccountActivetYN(String accountActivetYN) {
+        this.accountActivetYN = accountActivetYN;
+    }
+
+
 }
 
 
