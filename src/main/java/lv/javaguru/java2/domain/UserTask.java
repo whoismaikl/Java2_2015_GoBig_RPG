@@ -10,6 +10,16 @@ public class UserTask {
     private int statValue = 0;
     private String statDescription = " ";
     private String repeatableYN = "N";
+
+    public int getRepeatFrequencyDays() {
+        return repeatFrequencyDays;
+    }
+
+    public void setRepeatFrequencyDays(int repeatFrequencyDays) {
+        this.repeatFrequencyDays = repeatFrequencyDays;
+    }
+
+    private int  repeatFrequencyDays;
     private String accomplishedYN = "N";
     private Date dateAdded;
     private Date dateAccomplished;

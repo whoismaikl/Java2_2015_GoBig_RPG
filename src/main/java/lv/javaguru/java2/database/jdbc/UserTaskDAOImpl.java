@@ -24,15 +24,16 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO tasks VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("INSERT INTO tasks VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1, userTask.getUserID());
             preparedStatement.setString(2, userTask.getStatType());
             preparedStatement.setInt(3, userTask.getStatValue());
             preparedStatement.setString(4, userTask.getStatDescription());
             preparedStatement.setString(5, userTask.getRepeatableYN());
-            preparedStatement.setString(6, userTask.getAccomplishedYN());
-            preparedStatement.setTimestamp(7, new Timestamp(userTask.getDateAdded().getTime()));
-            preparedStatement.setTimestamp(8, new Timestamp(userTask.getDateAccomplished().getTime()));
+            preparedStatement.setInt(6, userTask.getStatValue());
+            preparedStatement.setString(7, userTask.getAccomplishedYN());
+            preparedStatement.setTimestamp(8, new Timestamp(userTask.getDateAdded().getTime()));
+            preparedStatement.setTimestamp(9, new Timestamp(userTask.getDateAccomplished().getTime()));
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()){
@@ -66,6 +67,7 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
                 userTask.setStatValue(resultSet.getInt("statValue"));
                 userTask.setStatDescription(resultSet.getString("statDescription"));
                 userTask.setRepeatableYN(resultSet.getString("repeatableYN"));
+                userTask.setStatValue(resultSet.getInt("repeatFrequencyDays"));
                 userTask.setAccomplishedYN(resultSet.getString("accomplishedYN"));
                 userTask.setDateAdded(resultSet.getTimestamp("dateAdded"));
                 userTask.setDateAccomplished(resultSet.getTimestamp("dateAccomplished"));
@@ -102,6 +104,7 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
                 userTask.setStatValue(resultSet.getInt("statValue"));
                 userTask.setStatDescription(resultSet.getString("statDescription"));
                 userTask.setRepeatableYN(resultSet.getString("repeatableYN"));
+                userTask.setStatValue(resultSet.getInt("repeatFrequencyDays"));
                 userTask.setAccomplishedYN(resultSet.getString("accomplishedYN"));
                 userTask.setDateAdded(resultSet.getTimestamp("dateAdded"));
                 userTask.setDateAccomplished(resultSet.getTimestamp("dateAccomplished"));
