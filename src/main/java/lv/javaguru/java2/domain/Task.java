@@ -2,7 +2,7 @@ package lv.javaguru.java2.domain;
 
 import java.util.Date;
 
-public class UserTask {
+public class Task {
 
     private Long id;
     private Long userID;
@@ -24,7 +24,7 @@ public class UserTask {
     private Date dateAdded;
     private Date dateAccomplished;
 
-    public UserTask(){}
+    public Task(){}
 
     public Long getId() {
         return id;
