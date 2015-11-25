@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<jsp:useBean id="userTask" class="lv.javaguru.java2.domain.UserTask" scope="session"/>
+<jsp:useBean id="userTask" class="lv.javaguru.java2.domain.Task" scope="session"/>
 <head>
     <title></title>
 </head>

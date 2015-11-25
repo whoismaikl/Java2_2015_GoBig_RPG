@@ -1,9 +1,9 @@
 package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.UserTaskDAOImpl;
+import lv.javaguru.java2.database.jdbc.TaskDAOImpl;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.domain.UserTask;
+import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ import java.util.List;
 @Component
 public class TaskNewController implements MVCController {
     @Autowired
-    private UserTaskDAOImpl userTaskDAO;
+    private TaskDAOImpl userTaskDAO;
 
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
@@ -32,26 +32,26 @@ public class TaskNewController implements MVCController {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        UserTask userTask = createUserTask(user.getId(),statType,statValue,statDescription,"N","N");
-        userTaskDAO.createTask(userTask);
+        Task task = createUserTask(user.getId(),statType,statValue,statDescription,"N","N");
+        userTaskDAO.createTask(task);
 
-        List<UserTask> userTasks = userTaskDAO.getAllUserTasks(user);
-        session.setAttribute("userTasks", userTasks);
+        List<Task> tasks = userTaskDAO.getAllUserTasks(user);
+        session.setAttribute("userTasks", tasks);
 
         return  new MVCModel("Register", "/main.jsp");
     }
-    private UserTask createUserTask(Long userId, String statType, int statValue, String statDescription,
+    private Task createUserTask(Long userId, String statType, int statValue, String statDescription,
                                     String repeatableYN, String accomplishedYN) {
-        UserTask userTask = new UserTask();
-        userTask.setUserID(userId);
-        userTask.setStatType(statType);
-        userTask.setStatValue(statValue);
-        userTask.setStatDescription(statDescription);
-        userTask.setRepeatableYN(repeatableYN);
-        userTask.setAccomplishedYN(accomplishedYN);
-        userTask.setDateAdded(date);
-        userTask.setDateAccomplished(date);
-        return userTask;
+        Task task = new Task();
+        task.setUserID(userId);
+        task.setStatType(statType);
+        task.setStatValue(statValue);
+        task.setStatDescription(statDescription);
+        task.setRepeatableYN(repeatableYN);
+        task.setAccomplishedYN(accomplishedYN);
+        task.setDateAdded(date);
+        task.setDateAccomplished(date);
+        return task;
     }
     Date date = new Date();
 }

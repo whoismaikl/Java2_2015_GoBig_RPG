@@ -2,9 +2,9 @@ package lv.javaguru.java2.database.jdbc;
 
 import java.util.Date;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.UserTaskDAO;
+import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.domain.UserTask;
+import lv.javaguru.java2.domain.Task;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
+public class TaskDAOImpl extends DAOImpl implements TaskDAO {
 
-    public void createTask(UserTask userTask) throws DBException {
-        if (userTask == null) {
+    public void createTask(Task task) throws DBException {
+        if (task == null) {
             return;
         }
 
@@ -25,19 +25,19 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
             connection = getConnection();
             PreparedStatement preparedStatement =
                     connection.prepareStatement("INSERT INTO tasks VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            preparedStatement.setLong(1, userTask.getUserID());
-            preparedStatement.setString(2, userTask.getStatType());
-            preparedStatement.setInt(3, userTask.getStatValue());
-            preparedStatement.setString(4, userTask.getStatDescription());
-            preparedStatement.setString(5, userTask.getRepeatableYN());
-            preparedStatement.setInt(6, userTask.getStatValue());
-            preparedStatement.setString(7, userTask.getAccomplishedYN());
-            preparedStatement.setTimestamp(8, new Timestamp(userTask.getDateAdded().getTime()));
-            preparedStatement.setTimestamp(9, new Timestamp(userTask.getDateAccomplished().getTime()));
+            preparedStatement.setLong(1, task.getUserID());
+            preparedStatement.setString(2, task.getStatType());
+            preparedStatement.setInt(3, task.getStatValue());
+            preparedStatement.setString(4, task.getStatDescription());
+            preparedStatement.setString(5, task.getRepeatableYN());
+            preparedStatement.setInt(6, task.getStatValue());
+            preparedStatement.setString(7, task.getAccomplishedYN());
+            preparedStatement.setTimestamp(8, new Timestamp(task.getDateAdded().getTime()));
+            preparedStatement.setTimestamp(9, new Timestamp(task.getDateAccomplished().getTime()));
             preparedStatement.executeUpdate();
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()){
-                userTask.setId(rs.getLong(1));
+                task.setId(rs.getLong(1));
             }
         } catch (Throwable e) {
             System.out.println("Exception while execute UserTaskDAOImpl.createUser()");
@@ -49,7 +49,7 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
 
     }
 
-    public UserTask getTaskById(Long id) throws DBException {
+    public Task getTaskById(Long id) throws DBException {
         Connection connection = null;
 
         try {
@@ -58,21 +58,21 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
                     .prepareStatement("SELECT * FROM tasks WHERE id = ?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            UserTask userTask = null;
+            Task task = null;
             if (resultSet.next()) {
-                userTask = new UserTask();
-                userTask.setId(resultSet.getLong("id"));
-                userTask.setUserID(resultSet.getLong("userID"));
-                userTask.setStatType(resultSet.getString("statType"));
-                userTask.setStatValue(resultSet.getInt("statValue"));
-                userTask.setStatDescription(resultSet.getString("statDescription"));
-                userTask.setRepeatableYN(resultSet.getString("repeatableYN"));
-                userTask.setStatValue(resultSet.getInt("repeatFrequencyDays"));
-                userTask.setAccomplishedYN(resultSet.getString("accomplishedYN"));
-                userTask.setDateAdded(resultSet.getTimestamp("dateAdded"));
-                userTask.setDateAccomplished(resultSet.getTimestamp("dateAccomplished"));
+                task = new Task();
+                task.setId(resultSet.getLong("id"));
+                task.setUserID(resultSet.getLong("userID"));
+                task.setStatType(resultSet.getString("statType"));
+                task.setStatValue(resultSet.getInt("statValue"));
+                task.setStatDescription(resultSet.getString("statDescription"));
+                task.setRepeatableYN(resultSet.getString("repeatableYN"));
+                task.setStatValue(resultSet.getInt("repeatFrequencyDays"));
+                task.setAccomplishedYN(resultSet.getString("accomplishedYN"));
+                task.setDateAdded(resultSet.getTimestamp("dateAdded"));
+                task.setDateAccomplished(resultSet.getTimestamp("dateAccomplished"));
             }
-            return userTask;
+            return task;
         } catch (Throwable e) {
             System.out.println("Exception while execute UserTaskDAOImpl.getUserById()");
             e.printStackTrace();
@@ -84,8 +84,8 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
     // getAllUserTasks nado budet dodelat', tk v dannom QueryBudut pokazyvatsja vse taski i vypolnennye i nevypolnennye
     // ili dobavit' metod getActiveTasks where AccomplishedYN = N
     // i getCompltedTasks wgere AccomplishedYN = Y
-    public List<UserTask> getAllUserTasks(User user) throws DBException {
-        List<UserTask> userTasks = new ArrayList<UserTask>();
+    public List<Task> getAllUserTasks(User user) throws DBException {
+        List<Task> tasks = new ArrayList<Task>();
         Connection connection = null;
         Long userId1 = user.getId();
 
@@ -95,20 +95,20 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
                     + userId1);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            UserTask userTask;
+            Task task;
             while (resultSet.next()) {
-                userTask = new UserTask();
-                userTask.setId(resultSet.getLong("id"));
-                userTask.setUserID(resultSet.getLong("userID"));
-                userTask.setStatType(resultSet.getString("statType"));
-                userTask.setStatValue(resultSet.getInt("statValue"));
-                userTask.setStatDescription(resultSet.getString("statDescription"));
-                userTask.setRepeatableYN(resultSet.getString("repeatableYN"));
-                userTask.setStatValue(resultSet.getInt("repeatFrequencyDays"));
-                userTask.setAccomplishedYN(resultSet.getString("accomplishedYN"));
-                userTask.setDateAdded(resultSet.getTimestamp("dateAdded"));
-                userTask.setDateAccomplished(resultSet.getTimestamp("dateAccomplished"));
-                userTasks.add(userTask);
+                task = new Task();
+                task.setId(resultSet.getLong("id"));
+                task.setUserID(resultSet.getLong("userID"));
+                task.setStatType(resultSet.getString("statType"));
+                task.setStatValue(resultSet.getInt("statValue"));
+                task.setStatDescription(resultSet.getString("statDescription"));
+                task.setRepeatableYN(resultSet.getString("repeatableYN"));
+                task.setStatValue(resultSet.getInt("repeatFrequencyDays"));
+                task.setAccomplishedYN(resultSet.getString("accomplishedYN"));
+                task.setDateAdded(resultSet.getTimestamp("dateAdded"));
+                task.setDateAccomplished(resultSet.getTimestamp("dateAccomplished"));
+                tasks.add(task);
             }
         } catch (Throwable e) {
             System.out.println("Exception while getting customer list UserTaskDAOImpl.getList()");
@@ -117,7 +117,7 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
         } finally {
             closeConnection(connection);
         }
-        return userTasks;
+        return tasks;
     }
 
     public void deleteTaskByID(Long id) throws DBException {
@@ -137,8 +137,8 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
         }
     }
 
-    public void editTask(UserTask userTask) throws DBException {
-        if (userTask == null) {
+    public void editTask(Task task) throws DBException {
+        if (task == null) {
             return;
         }
         Connection connection = null;
@@ -146,12 +146,12 @@ public class UserTaskDAOImpl extends DAOImpl implements UserTaskDAO {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement("UPDATE tasks SET statType = ?, statValue = ?, statDescription = ?, repeatableYN = ?, dateAdded = ?" + "WHERE id = ?");
-            preparedStatement.setString(1, userTask.getStatType());
-            preparedStatement.setInt(2, userTask.getStatValue());
-            preparedStatement.setString(3, userTask.getStatDescription());
-            preparedStatement.setString(4, userTask.getRepeatableYN());
-            preparedStatement.setTimestamp(5, new Timestamp(userTask.getDateAdded().getTime()));
-            preparedStatement.setLong(6, userTask.getId());
+            preparedStatement.setString(1, task.getStatType());
+            preparedStatement.setInt(2, task.getStatValue());
+            preparedStatement.setString(3, task.getStatDescription());
+            preparedStatement.setString(4, task.getRepeatableYN());
+            preparedStatement.setTimestamp(5, new Timestamp(task.getDateAdded().getTime()));
+            preparedStatement.setLong(6, task.getId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.updateUserData()");

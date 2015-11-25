@@ -1,4 +1,4 @@
-package lv.javaguru.java2.servlet.controllers;
+package lv.javaguru.java2.servlet.originals;
 
 import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;

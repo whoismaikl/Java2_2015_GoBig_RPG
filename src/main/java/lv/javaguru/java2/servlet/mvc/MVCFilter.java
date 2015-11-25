@@ -3,6 +3,7 @@ package lv.javaguru.java2.servlet.mvc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.servlet.controllers.*;
+import lv.javaguru.java2.servlet.originals.HelloWorldController;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
