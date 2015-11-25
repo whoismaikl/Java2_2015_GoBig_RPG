@@ -137,7 +137,7 @@
 
     <div class="tab_container">
       <div id="tab1" class="tab_content"-->
-          <jsp:include page="tasks_List.jsp" />
+        <jsp:include page="tasks_List.jsp" />
       </div><!-- end of #tab1 -->
     </div><!-- end of #tab -->
   </article><!-- end of messages article -->
@@ -153,21 +153,21 @@
     </div><!-- end of #tab -->
   </article><!-- end of messages article -->
 
-<%--
-  <article class="module width_3_quarter">
-    <header><h3>New Task</h3></header>
-    <div class="module_content">
-      <table class="tablesorter" cellspacing="0">
-          <fieldset>
-              <jsp:include page="tasks_New.jsp" />
-          </fieldset>
-      </table>
-    </div>
-    <footer>
-      <div class="submit_link">
-    </footer>
-  </article><!-- end of post new article -->
-  --%>
+  <%--
+    <article class="module width_3_quarter">
+      <header><h3>New Task</h3></header>
+      <div class="module_content">
+        <table class="tablesorter" cellspacing="0">
+            <fieldset>
+                <jsp:include page="tasks_New.jsp" />
+            </fieldset>
+        </table>
+      </div>
+      <footer>
+        <div class="submit_link">
+      </footer>
+    </article><!-- end of post new article -->
+    --%>
 </section>
 
 
