@@ -3,17 +3,18 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- ---
 -- Globals
-
+CREATE SCHEMA IF NOT EXISTS `projectevolution` DEFAULT CHARACTER SET utf8 ;
+USE `projectevolution` ;
 
 -- ---
 -- Table 'users'
 --
 -- ---
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `my_users`;
 
-CREATE TABLE `users` (
-  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+CREATE TABLE `my_users` (
+  `id` BIGINT NULL AUTO_INCREMENT DEFAULT NULL,
   `email` CHAR(40) NULL DEFAULT NULL,
   `password` CHAR(40) NULL DEFAULT NULL,
   `userName` CHAR(30) NULL DEFAULT NULL,
@@ -25,7 +26,7 @@ CREATE TABLE `users` (
   `dailyTodo` INTEGER NULL DEFAULT NULL,
   `lastLogin` DATETIME NULL DEFAULT NULL,
   `dateRegistered` DATETIME NULL DEFAULT NULL,
-  `accountActivetYN` CHAR NOT NULL DEFAULT 'Y',
+  `accountActivetYN` CHAR  NULL DEFAULT 'Y',
   PRIMARY KEY (`id`)
 );
 
@@ -99,7 +100,7 @@ ALTER TABLE `statHistory` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
 -- Test Data
 -- ---
 
-INSERT INTO `users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`,`accountActivetYN`) VALUES
+INSERT INTO `my_users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`,`accountActivetYN`) VALUES
   ('1001','a','a','My User Name','U','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','N');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
   ('1001','1001','Health','1','Description for health','Y','N','2015-11-17 10:07:46','2015-10-26');

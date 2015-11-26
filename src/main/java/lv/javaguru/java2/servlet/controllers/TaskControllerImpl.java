@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.TaskDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
+import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskController;
 import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,47 +12,41 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by AST on 2015.11.03..
  */
 @Component
-public class TaskNewController implements MVCController {
+public class TaskControllerImpl implements TaskController {
     @Autowired
     private TaskDAOImpl userTaskDAO;
 
-
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
-        String statDescription = request.getParameter("statDescription");
-        int statValue = Integer.parseInt(request.getParameter("statValue"));
-        String statType = request.getParameter("statType");
+        String taskIdString = searchButtonName(request);
+
+        if(!taskIdString.isEmpty()) {
+            Long taskId = Long.valueOf(taskIdString);
+            userTaskDAO.deleteTaskByID(taskId);
+        }
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-
-        Task task = createUserTask(user.getId(),statType,statValue,statDescription,"N","N");
-        userTaskDAO.createTask(task);
-
         List<Task> tasks = userTaskDAO.getAllUserTasks(user);
         session.setAttribute("userTasks", tasks);
 
         return  new MVCModel("Register", "/main.jsp");
     }
-    private Task createUserTask(Long userId, String statType, int statValue, String statDescription,
-                                    String repeatableYN, String accomplishedYN) {
-        Task task = new Task();
-        task.setUserID(userId);
-        task.setStatType(statType);
-        task.setStatValue(statValue);
-        task.setStatDescription(statDescription);
-        task.setRepeatableYN(repeatableYN);
-        task.setAccomplishedYN(accomplishedYN);
-        task.setDateAdded(date);
-        task.setDateAccomplished(date);
-        return task;
+    String searchButtonName(final HttpServletRequest request) {
+        String buttonName = "";
+        Map<String, String[]> paramMap = request.getParameterMap();
+        if (!paramMap.isEmpty()) {
+            for (Map.Entry<String, String[]> entry : paramMap.entrySet()) {
+                    buttonName = entry.getKey();
+            }
+        }
+        return buttonName;
     }
-    Date date = new Date();
 }

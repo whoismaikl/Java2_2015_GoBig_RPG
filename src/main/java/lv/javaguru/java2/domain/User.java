@@ -1,22 +1,41 @@
 package lv.javaguru.java2.domain;
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
+import javax.persistence.*;
 import java.util.Date;
 
-
+@Entity
+@Table(name = "my_users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Transient
     private String email;
+    @Transient
     private String password;
+    @Transient
     private String userName;
+    @Transient
     private String userType;
+    @Transient
     private long health;
+    @Transient
     private long intelligence;
+    @Transient
     private long communication;
+    @Transient
     private long willPower;
+    @Transient
     private long dailyTodo;
+    @Transient
     private Date lastLogin;
+    @Transient
     private Date dateRegistered;
+    @Transient
     private String accountActivetYN;
 
 
@@ -35,6 +54,7 @@ public class User {
         setAccountActivetYN("Y");
     }
 
+    @Transient
     Date date = new Date();
 
     public User() {

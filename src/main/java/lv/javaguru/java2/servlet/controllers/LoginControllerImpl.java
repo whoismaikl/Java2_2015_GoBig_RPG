@@ -1,13 +1,14 @@
 package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
+import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.TaskDAOImpl;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
-import lv.javaguru.java2.servlet.mvc.MVCController;
+import lv.javaguru.java2.servlet.controllers.controllerInterfaces.LoginController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +19,10 @@ import java.util.List;
  * Created by AST on 2015.11.03..
  */
 @Component
-public class LoginController implements MVCController {
+public class LoginControllerImpl implements LoginController {
     @Autowired
-    private UserDAOImpl userDAO;
+    @Qualifier("UserDAO_JDBC")
+    private UserDAO userDAO;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
 

@@ -1,15 +1,32 @@
 package lv.javaguru.java2.domain;
 
-import java.util.Date;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 
+import javax.persistence.Entity;
+import java.util.Date;
+//@Entity
 public class Task {
 
     private Long id;
+    @Ignore
     private Long userID;
+    @Ignore
     private String statType = " ";
+    @Ignore
     private int statValue = 0;
+    @Ignore
     private String statDescription = " ";
+    @Ignore
     private String repeatableYN = "N";
+    @Ignore
+    private int  repeatFrequencyDays;
+    @Ignore
+    private String accomplishedYN = "N";
+    @Ignore
+    private Date dateAdded;
+    @Ignore
+    private Date dateAccomplished;
+    public Task(){}
 
     public int getRepeatFrequencyDays() {
         return repeatFrequencyDays;
@@ -18,13 +35,6 @@ public class Task {
     public void setRepeatFrequencyDays(int repeatFrequencyDays) {
         this.repeatFrequencyDays = repeatFrequencyDays;
     }
-
-    private int  repeatFrequencyDays;
-    private String accomplishedYN = "N";
-    private Date dateAdded;
-    private Date dateAccomplished;
-
-    public Task(){}
 
     public Long getId() {
         return id;

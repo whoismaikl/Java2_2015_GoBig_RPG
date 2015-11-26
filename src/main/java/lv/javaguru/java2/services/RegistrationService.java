@@ -1,9 +1,10 @@
 package lv.javaguru.java2.services;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
+import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -14,7 +15,8 @@ import java.util.Optional;
 @Component
 public class RegistrationService {
     @Autowired
-    private UserDAOImpl userDAO;
+    @Qualifier("UserDAO_JDBC")
+    private UserDAO userDAO;
 
 
     public boolean userExist(String email, String username) {

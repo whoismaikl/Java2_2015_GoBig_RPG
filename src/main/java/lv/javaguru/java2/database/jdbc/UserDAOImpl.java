@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("UserDAO_JDBC")
 public class UserDAOImpl extends DAOImpl implements UserDAO {
 
     public void createUser(User user) throws DBException {
