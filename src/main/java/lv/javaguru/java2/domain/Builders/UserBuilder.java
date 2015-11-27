@@ -15,8 +15,8 @@ public class UserBuilder {
     private long communication;
     private long willPower;
     private long dailyTodo;
-    private Date lastLogin;
-    private Date dateRegistered;
+    private java.sql.Timestamp lastLogin;
+    private java.sql.Timestamp dateRegistered;
     private String accountActiveYN;
 //l;jkkjl
 
@@ -90,12 +90,12 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder applyLastLogin(Date LastLogin) {
+    public UserBuilder applyLastLogin(java.sql.Timestamp LastLogin) {
         this.lastLogin = LastLogin;
         return this;
     }
 
-    public UserBuilder applyDateRegistered(Date dateRegistered) {
+    public UserBuilder applyDateRegistered(java.sql.Timestamp dateRegistered) {
         this.dateRegistered = dateRegistered;
         return this;
     }

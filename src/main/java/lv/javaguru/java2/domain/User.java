@@ -1,43 +1,58 @@
 package lv.javaguru.java2.domain;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "my_users")
+@Table(name = "users")
 public class User {
 
     @Id
+    @Column(name="id",columnDefinition = "BIGINT")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Transient
+    //@Transient
+    @Column(name="email", columnDefinition = "CHAR(40)")
     private String email;
-    @Transient
+    //@Transient
+    @Column(name="password", columnDefinition = "CHAR(40)")
     private String password;
-    @Transient
+    //@Transient
+    @Column(name="userName", columnDefinition = "CHAR(30)")
     private String userName;
-    @Transient
+    //@Transient
+    @Column(name="userType", columnDefinition = "CHAR(1)")
     private String userType;
-    @Transient
+    //@Transient
+    @Column(name="health", columnDefinition = "INTEGER")
     private long health;
-    @Transient
+    //@Transient
+    @Column(name="intelligence", columnDefinition = "INTEGER")
     private long intelligence;
-    @Transient
+    //@Transient
+    @Column(name="communication", columnDefinition = "INTEGER")
     private long communication;
-    @Transient
+    //@Transient
+    @Column(name="willPower", columnDefinition = "INTEGER")
     private long willPower;
-    @Transient
+    //@Transient
+    @Column(name="dailyTodo", columnDefinition = "INTEGER")
     private long dailyTodo;
-    @Transient
-    private Date lastLogin;
-    @Transient
-    private Date dateRegistered;
-    @Transient
+    //@Transient
+    @Column(name="lastLogin", columnDefinition = "DATETIME")
+    private java.sql.Timestamp lastLogin;
+    //@Transient
+    @Column(name="dateRegistered", columnDefinition = "DATETIME")
+    private java.sql.Timestamp dateRegistered;
+    //@Transient
+    @Column(name="accountActivetYN", columnDefinition = "CHAR")
     private String accountActivetYN;
 
+
+
+    public Date getDate() {
+        return new Date();
+    }
 
     public User(String email, String password, String userName, String userType){
         setEmail(email);
@@ -49,31 +64,28 @@ public class User {
         setCommunication(50);
         setWillPower(30);
         setDailyTodo(0);
-        setLastLogin(date);
-        setDateRegistered(date);
+        setLastLogin(getSqlTimestamp());
+        setDateRegistered(getSqlTimestamp());
         setAccountActivetYN("Y");
     }
-
-    @Transient
-    Date date = new Date();
 
     public User() {
 
     }
 
-    public Date getLastLogin() {
+    public java.sql.Timestamp getLastLogin() {
         return lastLogin;
     }
 
-    public void setLastLogin(Date lastLogin) {
+    public void setLastLogin(java.sql.Timestamp lastLogin) {
         this.lastLogin = lastLogin;
     }
 
-    public Date getDateRegistered() {
+    public java.sql.Timestamp getDateRegistered() {
         return dateRegistered;
     }
 
-    public void setDateRegistered(Date dateRegistered) {
+    public void setDateRegistered(java.sql.Timestamp dateRegistered) {
         this.dateRegistered = dateRegistered;
     }
 
@@ -157,10 +169,10 @@ public class User {
         this.willPower = willPower;
     }
 
-    public java.sql.Date getSqlDate(Date date){
+    public java.sql.Timestamp getSqlTimestamp(){
         java.util.Date utilDate = new java.util.Date();
-        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
-        return sqlDate;
+        java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(utilDate.getTime());
+        return sqlTimestamp;
     }
 
     public String getAccountActivetYN() {

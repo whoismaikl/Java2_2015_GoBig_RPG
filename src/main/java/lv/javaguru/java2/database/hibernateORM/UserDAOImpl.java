@@ -1,14 +1,18 @@
 package lv.javaguru.java2.database.hibernateORM;
 
+//import lv.javaguru.java2.database.DBException;
+//import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -16,12 +20,14 @@ import java.util.List;
  */
 
 @Component ("UserDAO_ORM")
+@Transactional
 public class UserDAOImpl implements UserDAO {
 
 
     @Autowired
     private SessionFactory sessionFactory;
 
+    //@Override
     public void createUser(User user) throws DBException {
         sessionFactory.getCurrentSession().persist(user);
     }

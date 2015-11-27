@@ -42,6 +42,17 @@ public class UserDAOImplTest {
         assertEquals(user.getId(), userFromDB.getId());
         assertEquals(user.getEmail(), userFromDB.getEmail());
         assertEquals(user.getPassword(), userFromDB.getPassword());
+        assertEquals(user.getUserName(), userFromDB.getUserName());
+        assertEquals(user.getUserType(), userFromDB.getUserType());
+        assertEquals(user.getHealth(), userFromDB.getHealth());
+        assertEquals(user.getIntelligence(), userFromDB.getIntelligence());
+        assertEquals(user.getCommunication(), userFromDB.getCommunication());
+        assertEquals(user.getWillPower(), userFromDB.getWillPower());
+        assertEquals(user.getDailyTodo(), userFromDB.getDailyTodo());
+        assertEquals(user.getLastLogin(), userFromDB.getLastLogin());
+        assertEquals(user.getDateRegistered(), userFromDB.getDateRegistered());
+        assertEquals(user.getAccountActivetYN(), userFromDB.getAccountActivetYN());
+
     }
 
 }
