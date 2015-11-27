@@ -15,8 +15,8 @@ public class TaskBuilder {
     private String statDescription = " ";
     private String repeatableYN = "N";
     private String accomplishedYN = "N";
-    private Date dateAdded;
-    private Date dateAccomplished;
+    private java.sql.Timestamp dateAdded;
+    private java.sql.Timestamp dateAccomplished;
 
     private TaskBuilder(){}
 
@@ -62,12 +62,12 @@ public class TaskBuilder {
         this.accomplishedYN = accomplishedYN;
         return this;
     }
-    public TaskBuilder withDateAdded(Date dateAdded) {
+    public TaskBuilder withDateAdded(java.sql.Timestamp dateAdded) {
         this.dateAdded = dateAdded;
         return this;
     }
 
-    public TaskBuilder withDateAccomplished(Date dateAccomplished) {
+    public TaskBuilder withDateAccomplished(java.sql.Timestamp dateAccomplished) {
         this.dateAccomplished = dateAccomplished;
         return this;
     }

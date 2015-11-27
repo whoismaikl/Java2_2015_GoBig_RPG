@@ -2,6 +2,7 @@ package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.TaskDAOImpl;
+import lv.javaguru.java2.domain.TimestampSql;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskNewController;
@@ -50,9 +51,9 @@ public class TaskNewControllerImpl implements TaskNewController{
         task.setStatDescription(statDescription);
         task.setRepeatableYN(repeatableYN);
         task.setAccomplishedYN(accomplishedYN);
-        task.setDateAdded(date);
-        task.setDateAccomplished(date);
+        task.setDateAdded(sqlTimestamp);
+        task.setDateAccomplished(sqlTimestamp);
         return task;
     }
-    Date date = new Date();
+    java.sql.Timestamp sqlTimestamp = new TimestampSql().getSqlTimestamp();
 }

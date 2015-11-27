@@ -9,12 +9,14 @@ import org.junit.Test;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.domain.User;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 
 public class UserDAOImplTest {
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
+    @Qualifier("UserDAO_JDBC")
     private UserDAOImpl userDAO = new UserDAOImpl();
 
 

@@ -2,30 +2,44 @@ package lv.javaguru.java2.domain;
 
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Date;
-//@Entity
+@Entity
+@Table(name = "tasks")
 public class Task {
 
+    @Id
+    @Column(name="id",columnDefinition = "BIGINT")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Ignore
+    //@Transient
+    @Column(name="userID", columnDefinition = "BIGINT", nullable = false)
     private Long userID;
-    @Ignore
+    //@Transient
+    @Column(name="statType", columnDefinition = "CHAR(17)")
     private String statType = " ";
-    @Ignore
+    //@Transient
+    @Column(name="statValue", columnDefinition = "INTEGER")
     private int statValue = 0;
-    @Ignore
+    //@Transient
+    @Column(name="statDescription", columnDefinition = "CHAR(255)")
     private String statDescription = " ";
-    @Ignore
+    //@Transient
+    @Column(name="repeatableYN", columnDefinition = "CHAR")
     private String repeatableYN = "N";
-    @Ignore
+    //@Transient
+    @Column(name="repeatFrequencyDays", columnDefinition = "INTEGER")
     private int  repeatFrequencyDays;
-    @Ignore
+    //@Transient
+    @Column(name="accomplishedYN", columnDefinition = "CHAR(1)")
     private String accomplishedYN = "N";
-    @Ignore
-    private Date dateAdded;
-    @Ignore
-    private Date dateAccomplished;
+    //@Transient
+    @Column(name="dateAdded", columnDefinition = "DATETIME(6)")
+    private java.sql.Timestamp dateAdded;
+    //@Transient
+    @Column(name="dateAccomplished", columnDefinition = "CHAR(40)")
+    private java.sql.Timestamp dateAccomplished;
+
     public Task(){}
 
     public int getRepeatFrequencyDays() {
@@ -44,11 +58,11 @@ public class Task {
         this.id = id;
     }
 
-    public Date getDateAccomplished() {
+    public java.sql.Timestamp getDateAccomplished() {
         return dateAccomplished;
     }
 
-    public void setDateAccomplished(Date dateAccomplished) {
+    public void setDateAccomplished(java.sql.Timestamp dateAccomplished) {
         this.dateAccomplished = dateAccomplished;
     }
 
@@ -100,11 +114,11 @@ public class Task {
         this.accomplishedYN = accomplishedYN;
     }
 
-    public Date getDateAdded() {
+    public java.sql.Timestamp getDateAdded() {
         return dateAdded;
     }
 
-    public void setDateAdded(Date dateAdded) {
+    public void setDateAdded(java.sql.Timestamp dateAdded) {
         this.dateAdded = dateAdded;
     }
 }

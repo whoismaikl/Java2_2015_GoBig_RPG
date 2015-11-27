@@ -11,7 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component("TaskDAO_JDBC")
 public class TaskDAOImpl extends DAOImpl implements TaskDAO {
 
     public void createTask(Task task) throws DBException {
