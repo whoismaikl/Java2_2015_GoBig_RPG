@@ -1,11 +1,11 @@
-package lv.javaguru.java2.domain;
+package lv.javaguru.java2.services;
 
 /**
  * Created by AST on 2015.11.27..
  */
-public class TimestampSql {
+public class TimestampService {
     private java.sql.Timestamp timestamp;
-    public TimestampSql(){
+    public TimestampService(){
         timestamp = getSqlTimestamp();
     }
     public java.sql.Timestamp getSqlTimestamp(){

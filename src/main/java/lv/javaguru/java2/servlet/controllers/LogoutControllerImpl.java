@@ -24,6 +24,8 @@ public class LogoutControllerImpl implements LogoutController {
     }
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
-        return null;
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return new MVCModel("Logout", "/index.jsp");
     }
 }

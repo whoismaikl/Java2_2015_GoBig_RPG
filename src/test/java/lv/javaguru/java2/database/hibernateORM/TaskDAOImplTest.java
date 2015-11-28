@@ -1,13 +1,12 @@
 package lv.javaguru.java2.database.hibernateORM;
 
-import jdk.nashorn.internal.ir.annotations.Ignore;
 import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Task;
-import lv.javaguru.java2.domain.TimestampSql;
+import lv.javaguru.java2.services.TimestampService;
 import lv.javaguru.java2.domain.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +34,7 @@ public class TaskDAOImplTest {
     private UserDAO userDAO;
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
-    java.sql.Timestamp sqlTimestamp = new TimestampSql().getSqlTimestamp();
+    java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
 
     @Before
     public void init() throws DBException {
@@ -44,7 +43,7 @@ public class TaskDAOImplTest {
 
     @Test
     public void testCreate() throws DBException {
-        java.sql.Timestamp sqlTimestamp = new TimestampSql().getSqlTimestamp();
+        java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
         Task task = new Task();
         User user1 = new User("2@com", "p2", "n2", "U");
         User user2 = new User("3@com", "p3", "n3", "U");

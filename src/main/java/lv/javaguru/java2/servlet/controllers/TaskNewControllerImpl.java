@@ -2,18 +2,16 @@ package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.TaskDAOImpl;
-import lv.javaguru.java2.domain.TimestampSql;
+import lv.javaguru.java2.services.TimestampService;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskNewController;
-import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,7 +38,7 @@ public class TaskNewControllerImpl implements TaskNewController{
         List<Task> tasks = userTaskDAO.getAllUserTasks(user);
         session.setAttribute("userTasks", tasks);
 
-        return  new MVCModel("Register", "/main.jsp");
+        return  new MVCModel("New Task", "/task_management.jsp");
     }
     private Task createUserTask(Long userId, String statType, int statValue, String statDescription,
                                     String repeatableYN, String accomplishedYN) {
@@ -55,5 +53,5 @@ public class TaskNewControllerImpl implements TaskNewController{
         task.setDateAccomplished(sqlTimestamp);
         return task;
     }
-    java.sql.Timestamp sqlTimestamp = new TimestampSql().getSqlTimestamp();
+    java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
 }

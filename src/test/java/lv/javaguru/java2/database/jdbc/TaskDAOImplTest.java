@@ -1,7 +1,7 @@
 package lv.javaguru.java2.database.jdbc;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.domain.TimestampSql;
+import lv.javaguru.java2.services.TimestampService;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
 import org.junit.Before;
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
 public class TaskDAOImplTest {
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
-    java.sql.Timestamp sqlTimestamp = new TimestampSql().getSqlTimestamp();
+    java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
 
     private TaskDAOImpl userTaskDAO = new TaskDAOImpl();
     private UserDAOImpl userDAO = new UserDAOImpl();

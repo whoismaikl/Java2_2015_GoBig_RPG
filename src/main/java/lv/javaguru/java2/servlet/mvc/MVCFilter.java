@@ -2,6 +2,7 @@ package lv.javaguru.java2.servlet.mvc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.servlet.controllers.*;
+import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskManagementController;
 import lv.javaguru.java2.servlet.originals.HelloWorldController;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,14 @@ public class MVCFilter implements Filter {
         controllers = new HashMap<String, MVCController>();
         controllers.put("/hello", getBean(HelloWorldController.class));
         controllers.put("/login", getBean(LoginControllerImpl.class));
+        controllers.put("/logout", getBean(LogoutControllerImpl.class));
         controllers.put("/register", getBean(RegistrationControllerImpl.class));
         controllers.put("/main", getBean(MainControllerImpl.class));
         controllers.put("/task", getBean(TaskControllerImpl.class));
         controllers.put("/taskNew", getBean(TaskNewControllerImpl.class));
+        controllers.put("/task_management", getBean(TaskManagementControllerImpl.class));
+        controllers.put("/accomplish_task", getBean(AccomplishTaskControllerImpl.class));
+        controllers.put("/task_statistics", getBean(TaskStatisticsControllerImpl.class));
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
