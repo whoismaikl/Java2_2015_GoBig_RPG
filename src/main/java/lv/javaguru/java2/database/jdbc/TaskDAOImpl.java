@@ -7,6 +7,7 @@ import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -27,7 +27,7 @@
 <section id="main" class="column">
 
   <article class="module width_full">
-    <header><h3 class="tabs_involved">Task Management</h3>
+    <header><h3 class="tabs_involved">Accomplish Tasks</h3>
     </header>
     <div class="tab_container">
       <div id="tab1" class="tab_content"-->

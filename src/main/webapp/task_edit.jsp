@@ -22,60 +22,14 @@
 <%@ include file="includes/header.jsp" %>
 <%@ include file="includes/menu.jsp" %>
 <body>
-
 <section id="main" class="column">
+  <jsp:useBean id="userTask" class="lv.javaguru.java2.domain.Task" scope="session"/>
   <article class="module width_full">
-    <header><h3 class="tabs_involved">Task Management</h3>
+    <header><h3 class="tabs_involved">Edit Task</h3>
     </header>
-    <div class="tab_container">
-      <div id="tab1" class="tab_content" -->
-        <html>
-        <jsp:useBean id="userTask" class="lv.javaguru.java2.domain.Task" scope="session"/>
-        <form action="/java2/task_management" method="post">
-          <table class="tablesorter" cellspacing="0">
-            <thead>
-            <tr>
-              <th></th>
-              <th>Task Description</th>
-              <th>Category</th>
-              <th>Value</th>
-              <th>Repeatable</th>
-              <th>Repeat(Days)</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="userTask" items="${userTasks}">
-              <tr>
-                <td></td>
-                <td>${userTask.statDescription}</td>
-                <td>${userTask.statType}</td>
-                <td>${userTask.statValue}</td>
-                <td>${userTask.repeatableYN}</td>
-                <td>${userTask.repeatFrequencyDays}</td>
-                <td><input type="submit" name="edit__+${userTask.id}" class="login login-submit" value="Edit"></td>
-                <td><input type="submit" name="delete+${userTask.id}" class="login login-submit" value="Delete"></td>
-              </tr>
-            </c:forEach>
-            </tbody>
-          </table>
-        </form>
-      </div>
-      <!-- end of #tab1 -->
-    </div>
-    <!-- end of #tab -->
-  </article>
-  <!-- end of messages article -->
-
-
-  <article class="module width_full">
-    <header><h3 class="tabs_involved">New Tasks</h3>
-    </header>
-
     <div class="tab_container">
       <div id="tab4" class="tab_content">
-        <form action="/java2/taskNew" method="post">
+        <form action="/java2/taskEdit" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
@@ -85,7 +39,7 @@
             <tbody>
             <tr>
               <th>
-                <input type="text" name="statDescription" placeholder="Description" value="Description" maxlength="255"
+                <input type="text" name="statDescription" placeholder="${userTask.statDescription}" value="${userTask.statDescription}" maxlength="255"
                        size="124">
                 <!--textarea name="statDescription" style="width:250px;height:150px;" placeholder="Description" value="Description" maxlength="255"></textarea-->
               </th>
@@ -104,18 +58,21 @@
             </thead>
             <tbody>
             <tr>
-              <th><select name="statType" value="Health" style="width:92%;">
+              <th><select name="statType" value="${userTask.statType}" style="width:92%;">
                 <option>Health</option>
                 <option>Intelligence</option>
                 <option>Communication</option>
               </select></th>
-              <th><input type="number" name="statValue" placeholder="1" value="1"></th>
-              <th><select name="repeatableYN" value="No" style="width:92%;">
+              <th><input type="number" name="statValue" placeholder="${userTask.statValue}" value="${userTask.statValue}"></th>
+              <th><select name="repeatableYN" value="${userTask.repeatableYN}" style="width:92%;">
                 <option>Yes</option>
                 <option>No</option>
               </select></th>
-              <th><input type="number" name="repeatFrequencyDays" placeholder="1" value="1"></th>
-              <th><input type="submit" name="newTask" class="login login-submit" value="Add New Task"></th>
+              <th><input type="number" name="repeatFrequencyDays" placeholder="${userTask.repeatFrequencyDays}" value="${userTask.repeatFrequencyDays}"></th>
+              <th><input type="submit" name="save__" class="login login-submit" value="Save"></th>
+            </tr>
+            <tr>
+              <th><input type="submit" name="cancel" class="login login-submit" value="Cancel"></th>
             </tr>
             </tbody>
           </table>

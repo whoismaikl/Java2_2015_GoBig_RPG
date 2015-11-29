@@ -26,7 +26,7 @@ import static org.junit.Assert.assertNotNull;
 public class TaskDAOImplTest {
 
     @Autowired
-    @Qualifier("TaskDAO_ORM1")
+    @Qualifier("TaskDAO_ORM")
     private TaskDAO taskDAO;
 
     @Autowired

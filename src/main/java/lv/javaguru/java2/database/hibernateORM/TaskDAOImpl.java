@@ -16,14 +16,13 @@ import java.util.List;
 /**
  * Created by AST on 2015.11.27..
  */
-@Component("TaskDAO_ORM1")
+@Component("TaskDAO_ORM")
 @Transactional
 public class TaskDAOImpl implements TaskDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    //@Override
     public void createTask(Task task) throws DBException {
         sessionFactory.getCurrentSession().persist(task);
     }
@@ -51,11 +50,12 @@ public class TaskDAOImpl implements TaskDAO {
     }
 
     public void editTask(Task task) throws DBException {
-        if (task == null) {
-            return;
-        }
-
-
+        Long id = task.getId();
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
+        criteria.add(Restrictions.eq("id", id));
+        //Task taskFromDAO = (Task)criteria.uniqueResult();
+        //taskFromDAO = task;
+        sessionFactory.getCurrentSession().update(task);
     }
 
     public void accomplishTask(Long id) throws DBException {

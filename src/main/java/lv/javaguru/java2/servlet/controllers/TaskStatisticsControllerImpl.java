@@ -1,5 +1,4 @@
 package lv.javaguru.java2.servlet.controllers;
-
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.TaskDAOImpl;
 import lv.javaguru.java2.domain.Task;
@@ -8,8 +7,8 @@ import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskManagement
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskStatisticsController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -20,6 +19,7 @@ import java.util.List;
 @Component
 public class TaskStatisticsControllerImpl implements TaskStatisticsController {
     @Autowired
+   // @Qualifier("TaskDAO_ORM")
     private TaskDAOImpl userTaskDAO;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
