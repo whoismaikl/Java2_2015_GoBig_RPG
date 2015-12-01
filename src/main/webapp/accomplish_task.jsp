@@ -32,7 +32,7 @@
     <div class="tab_container">
       <div id="tab1" class="tab_content"-->
         <html>
-        <jsp:useBean id="userTask" class="lv.javaguru.java2.domain.Task" scope="session"/>
+        <jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/>
 
         <form action="/java2/accomplish_task" method="post">
           <table class="tablesorter" cellspacing="0">
@@ -47,16 +47,16 @@
             </thead>
             <tbody>
 
-            <c:forEach var="userTask" items="${userTasks}">
+            <c:forEach var="task" items="${taskList}">
 
               <tr>
 
-                <td>${userTask.statDescription}</td>
-                <td>${userTask.statType}</td>
-                <td>${userTask.statValue}</td>
+                <td>${task.statDescription}</td>
+                <td>${task.statType}</td>
+                <td>${task.statValue}</td>
                 <td>
-                  <input type="submit" value="Yes" name="yes" +${userTask.id}" class="alt_btn">
-                  <input type="submit" value="No" name="no" +${userTask.id}"class="alt_btn">
+                  <input type="submit" value="Yes" name="yes" +${task.id}" class="alt_btn">
+                  <input type="submit" value="No" name="no" +${task.id}"class="alt_btn">
                 </td>
               </tr>
 

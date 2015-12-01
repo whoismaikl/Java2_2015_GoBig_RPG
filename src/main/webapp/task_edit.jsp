@@ -23,13 +23,13 @@
 <%@ include file="includes/menu.jsp" %>
 <body>
 <section id="main" class="column">
-  <jsp:useBean id="userTask" class="lv.javaguru.java2.domain.Task" scope="session"/>
+  <jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/>
   <article class="module width_full">
     <header><h3 class="tabs_involved">Edit Task</h3>
     </header>
     <div class="tab_container">
       <div id="tab4" class="tab_content">
-        <form action="/java2/taskEdit" method="post">
+        <form action="/java2/task_edit" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
@@ -39,7 +39,7 @@
             <tbody>
             <tr>
               <th>
-                <input type="text" name="statDescription" placeholder="${userTask.statDescription}" value="${userTask.statDescription}" maxlength="255"
+                <input type="text" name="statDescription" placeholder="${taskForEdit.statDescription}" value="${taskForEdit.statDescription}" maxlength="255"
                        size="124">
                 <!--textarea name="statDescription" style="width:250px;height:150px;" placeholder="Description" value="Description" maxlength="255"></textarea-->
               </th>
@@ -58,21 +58,18 @@
             </thead>
             <tbody>
             <tr>
-              <th><select name="statType" value="${userTask.statType}" style="width:92%;">
-                <option>Health</option>
-                <option>Intelligence</option>
-                <option>Communication</option>
+              <th><select name="statType" style="width:92%;">
+                <option ${taskForEdit.statType.equals("Health") ? 'selected':''}>Health</option>
+                <option ${taskForEdit.statType.equals("Intelligence") ? 'selected':''}>Intelligence</option>
+                <option ${taskForEdit.statType.equals("Communication") ? 'selected':''}>Communication</option>
               </select></th>
-              <th><input type="number" name="statValue" placeholder="${userTask.statValue}" value="${userTask.statValue}"></th>
-              <th><select name="repeatableYN" value="${userTask.repeatableYN}" style="width:92%;">
-                <option>Yes</option>
-                <option>No</option>
+              <th><input type="number" name="statValue" placeholder="${taskForEdit.statValue}" value="${taskForEdit.statValue}"></th>
+              <th><select name="repeatableYN" style="width:92%;">
+                <option ${taskForEdit.repeatableYN.equals("Yes") ? 'selected':''}>Yes</option>
+                <option ${taskForEdit.repeatableYN.equals("No") ? 'selected':''}>No</option>
               </select></th>
-              <th><input type="number" name="repeatFrequencyDays" placeholder="${userTask.repeatFrequencyDays}" value="${userTask.repeatFrequencyDays}"></th>
+              <th><input type="number" name="repeatFrequencyDays" placeholder="${taskForEdit.repeatFrequencyDays}" value="${taskForEdit.repeatFrequencyDays}"></th>
               <th><input type="submit" name="save__" class="login login-submit" value="Save"></th>
-            </tr>
-            <tr>
-              <th><input type="submit" name="cancel" class="login login-submit" value="Cancel"></th>
             </tr>
             </tbody>
           </table>
@@ -81,6 +78,26 @@
       <!-- end of #tab1 -->
     </div>
     <!-- end of #tab -->
+    <div class="tab_container">
+      <div id="tab5" class="tab_content">
+        <form action="/java2/task_management.jsp" method="post">
+
+          <table class="tablesorter" cellspacing="0">
+            <thead>
+            <tr>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th><input type="submit" name="cancel" class="login login-submit" value="Cancel"></th>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <!-- end of #tab1 -->
+    </div>
   </article>
   <!-- end of messages article -->
 
