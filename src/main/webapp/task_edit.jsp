@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen"/>
 </head>
 <%@ include file="includes/header.jsp" %>
-<%@ include file="includes/Menu.jsp" %>
+<%@ include file="includes/menu.jsp" %>
 <body>
 <section id="main" class="column">
   <jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/>

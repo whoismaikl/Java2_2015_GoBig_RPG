@@ -47,7 +47,7 @@
 
 </head>
 <%@ include file="includes/header.jsp" %>
-<%@ include file="includes/Menu.jsp" %>
+<%@ include file="includes/menu.jsp" %>
 <body>
 <section id="main" class="column">
 
