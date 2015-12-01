@@ -20,7 +20,7 @@
 
 </head>
 <%@ include file="includes/header.jsp" %>
-<%@ include file="includes/menu.jsp" %>
+<%@ include file="includes/Menu.jsp" %>
 <body>
 
 <section id="main" class="column">
