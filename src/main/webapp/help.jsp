@@ -46,8 +46,8 @@
   </style>
 
 </head>
-<%@ include file="dir/header.jsp" %>
-<%@ include file="dir/menu.jsp" %>
+<%@ include file="includes/header.jsp" %>
+<%@ include file="includes/menu.jsp" %>
 <body>
 <section id="main" class="column">
 

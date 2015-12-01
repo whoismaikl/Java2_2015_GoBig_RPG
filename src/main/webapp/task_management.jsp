@@ -19,8 +19,8 @@
   <link rel="stylesheet" href="css/gobig.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen"/>
 </head>
-<%@ include file="dir/header.jsp" %>
-<%@ include file="dir/menu.jsp" %>
+<%@ include file="includes/header.jsp" %>
+<%@ include file="includes/menu.jsp" %>
 <body>
 
 <section id="main" class="column">
