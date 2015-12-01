@@ -41,8 +41,8 @@ public class LoginControllerImpl implements LoginController {
             session.setAttribute("user", user);
 
             TaskDAOImpl userTaskDAO = new TaskDAOImpl();
-            List<Task> tasks = userTaskDAO.getAllUserTasks(user);
-            session.setAttribute("userTasks", tasks);
+            List<Task> taskList = userTaskDAO.getAllUserTasks(user);
+            session.setAttribute("taskList", taskList);
 
         } else {
             model.setData("Name Or Password not found in Our Database");

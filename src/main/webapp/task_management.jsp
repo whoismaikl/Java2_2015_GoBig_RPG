@@ -30,7 +30,7 @@
     <div class="tab_container">
       <div id="tab1" class="tab_content" -->
         <html>
-        <jsp:useBean id="userTask" class="lv.javaguru.java2.domain.Task" scope="session"/>
+        <jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/>
         <form action="/java2/task_management" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
@@ -46,16 +46,16 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="userTask" items="${userTasks}">
+            <c:forEach var="task" items="${taskList}">
               <tr>
                 <td></td>
-                <td>${userTask.statDescription}</td>
-                <td>${userTask.statType}</td>
-                <td>${userTask.statValue}</td>
-                <td>${userTask.repeatableYN}</td>
-                <td>${userTask.repeatFrequencyDays}</td>
-                <td><input type="submit" name="edit__+${userTask.id}" class="login login-submit" value="Edit"></td>
-                <td><input type="submit" name="delete+${userTask.id}" class="login login-submit" value="Delete"></td>
+                <td>${task.statDescription}</td>
+                <td>${task.statType}</td>
+                <td>${task.statValue}</td>
+                <td>${task.repeatableYN}</td>
+                <td>${task.repeatFrequencyDays}</td>
+                <td><input type="submit" name="edit__+${task.id}" class="login login-submit" value="Edit"></td>
+                <td><input type="submit" name="delete${task.id}" class="login login-submit" value="Delete"></td>
               </tr>
             </c:forEach>
             </tbody>
@@ -75,7 +75,7 @@
 
     <div class="tab_container">
       <div id="tab4" class="tab_content">
-        <form action="/java2/taskNew" method="post">
+        <form action="/java2/task_new" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>

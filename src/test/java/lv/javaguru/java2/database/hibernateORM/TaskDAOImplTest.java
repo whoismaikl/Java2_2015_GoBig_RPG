@@ -19,6 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -97,9 +98,29 @@ public class TaskDAOImplTest {
 
         List<Task> tasks = taskDAO.getAllUserTasks(user1);
         assertEquals(4, tasks.size());
-        taskDAO.deleteTaskByID(task2.getId());
+        Long task2Id = task2.getId();
+        taskDAO.deleteTaskByID(task2Id);
         tasks = taskDAO.getAllUserTasks(user1);
         assertEquals(3, tasks.size());
+    }
+    @Test
+    public void testEditTask() throws DBException {
+        User user1 = new User("2@com", "p2", "n2", "U");
+
+        userDAO.createUser(user1);
+
+        Long userId = user1.getId();
+        Task task1 = createUserTask(userId, "Health1", 1, "Description1", "Y", "N");
+        Task task2 = createUserTask(userId, "Health2", 2, "Description2", "N", "Y");
+        taskDAO.createTask(task1);
+        Long task1Id = task1.getId();
+        Task taskBeforeEdit = taskDAO.getTaskById(task1Id);
+        task2.setId(task1Id);
+        taskDAO.editTask(task2);
+        Task taskAfterEdit = taskDAO.getTaskById(task1Id);
+
+        assertNotEquals(taskBeforeEdit.getStatType(), taskAfterEdit.getStatType());
+        assertNotEquals(taskBeforeEdit.getStatValue(), taskAfterEdit.getStatValue());
     }
     private Task createUserTask(Long userId, String statType, int statValue, String statDescription,
                                 String repeatableYN, String accomplishedYN) {

@@ -1,5 +1,6 @@
 package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.jdbc.TaskDAOImpl;
 import lv.javaguru.java2.services.TimestampService;
 import lv.javaguru.java2.domain.User;
@@ -18,10 +19,10 @@ import java.util.List;
  */
 @Component
 public class TaskNewControllerImpl implements TaskNewController{
-    //@Component("TaskDAO_ORM")
+
     @Autowired
-    //@Qualifier("TaskDAO_ORM")
-    private TaskDAOImpl userTaskDAO;
+    @Qualifier("TaskDAO_ORM")
+    private TaskDAO taskDAO;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
@@ -35,10 +36,10 @@ public class TaskNewControllerImpl implements TaskNewController{
         User user = (User) session.getAttribute("user");
 
         Task task = createUserTask(user.getId(),statType,statValue,statDescription,repeatableYN, repeatFrequencyDays, "N");
-        userTaskDAO.createTask(task);
+        taskDAO.createTask(task);
 
-        List<Task> tasks = userTaskDAO.getAllUserTasks(user);
-        session.setAttribute("userTasks", tasks);
+        List<Task> taskList = taskDAO.getAllUserTasks(user);
+        session.setAttribute("taskList", taskList);
 
         return  new MVCModel("New Task", "/task_management.jsp");
     }

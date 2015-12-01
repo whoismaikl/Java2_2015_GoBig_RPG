@@ -40,7 +40,7 @@ public class RegistrationControllerImpl implements RegistrationController {
             return new MVCModel("User Registered", "/index.jsp");
 
         } catch (Exception e) {
-            return new MVCModel("Registration Failed", "/register.jsp.jsp");
+            return new MVCModel("Registration Failed", "/register.jsp");
         }
 
     }

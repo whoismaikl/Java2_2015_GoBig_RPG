@@ -41,13 +41,11 @@ public class MVCFilter implements Filter {
         controllers.put("/login", getBean(LoginControllerImpl.class));
         controllers.put("/logout", getBean(LogoutControllerImpl.class));
         controllers.put("/register", getBean(RegistrationControllerImpl.class));
-        controllers.put("/main", getBean(MainControllerImpl.class));
-        controllers.put("/task", getBean(TaskControllerImpl.class));
-        controllers.put("/taskNew", getBean(TaskNewControllerImpl.class));
+        controllers.put("/task_new", getBean(TaskNewControllerImpl.class));
         controllers.put("/task_management", getBean(TaskManagementControllerImpl.class));
         controllers.put("/accomplish_task", getBean(AccomplishTaskControllerImpl.class));
         controllers.put("/task_statistics", getBean(TaskStatisticsControllerImpl.class));
-        controllers.put("/taskEdit", getBean(TaskEditControllerImpl.class));
+        controllers.put("/task_edit", getBean(TaskEditControllerImpl.class));
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

@@ -137,7 +137,7 @@
 
     <div class="tab_container">
       <div id="tab1" class="tab_content"-->
-        <jsp:include page="tasks_List.jsp" />
+        <jsp:include page="tasks_list.jsp" />
       </div><!-- end of #tab1 -->
     </div><!-- end of #tab -->
   </article><!-- end of messages article -->
@@ -148,7 +148,7 @@
 
     <div class="tab_container">
       <div id="tab3" class="tab_content"-->
-        <jsp:include page="tasks_New.jsp" />
+        <jsp:include page="tasks_new.jsp" />
       </div><!-- end of #tab1 -->
     </div><!-- end of #tab -->
   </article><!-- end of messages article -->
@@ -159,7 +159,7 @@
       <div class="module_content">
         <table class="tablesorter" cellspacing="0">
             <fieldset>
-                <jsp:include page="tasks_New.jsp" />
+                <jsp:include page="tasks_new.jsp" />
             </fieldset>
         </table>
       </div>
