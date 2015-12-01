@@ -11,6 +11,7 @@
     <div class="user">
       <p> Welcome to GoBig_RPG - ${sessionScope.user.userName}</p>
       <!-- <a class="logout_user" href="#" title="Logout">Logout</a> -->
+
     </div>
   </section><!-- end of secondary bar -->
 </head>
