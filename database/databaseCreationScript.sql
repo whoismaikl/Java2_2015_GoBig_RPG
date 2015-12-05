@@ -62,7 +62,7 @@ CREATE TABLE `statHistory` (
   `id` BIGINT NULL AUTO_INCREMENT DEFAULT NULL,
   `userID` BIGINT NULL DEFAULT NULL,
   `health` INTEGER NULL DEFAULT NULL,
-  `intellegence` INTEGER NULL DEFAULT NULL,
+  `intelligence` INTEGER NULL DEFAULT NULL,
   `communication` INTEGER NULL DEFAULT NULL,
   `statValue`INTEGER NULL DEFAULT NULL,
   `willPower` INTEGER NULL DEFAULT NULL,
@@ -109,7 +109,13 @@ INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`rep
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
   ('1003','1001','Communication','1','Description for communication','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 
--- INSERT INTO `statHistory` (`id`,`userID`,`health`,`intellegence`,`communication`,`willPower`,`dailyTodo`,`dateReceived`) VALUES
--- ('','','','','','','','');
+INSERT INTO `statHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+('1001','1001','5','8','10','1','1','1','2015-11-17 10:07:46');
+INSERT INTO `statHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+('1002','1001','7','3','15','1','1','1','2015-11-19 10:07:46');
+INSERT INTO `statHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+('1003','1001','3','12','20','1','1','1','2015-11-24 10:07:46');
+INSERT INTO `statHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+('1004','1001','9','14','17','1','1','1','2015-11-29 10:07:46');
 -- INSERT INTO `customTasks` (`id`,`userID`,`taskDescription`,`taskType`,`taskValue`,`dateCompleted`) VALUES
 -- ('','','','','','');

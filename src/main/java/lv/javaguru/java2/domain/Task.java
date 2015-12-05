@@ -25,22 +25,26 @@ public class Task {
     @Column(name="statDescription", columnDefinition = "CHAR(255)")
     private String statDescription = " ";
     //@Transient
-    @Column(name="repeatableYN", columnDefinition = "CHAR")
+    @Column(name="repeatableYN", columnDefinition = "CHAR(3)")
     private String repeatableYN = "N";
     //@Transient
     @Column(name="repeatFrequencyDays", columnDefinition = "INTEGER")
     private int  repeatFrequencyDays;
     //@Transient
-    @Column(name="accomplishedYN", columnDefinition = "CHAR(1)")
+    @Column(name="accomplishedYN", columnDefinition = "CHAR(3)")
     private String accomplishedYN = "N";
     //@Transient
     @Column(name="dateAdded", columnDefinition = "DATETIME(6)")
     private java.sql.Timestamp dateAdded;
     //@Transient
-    @Column(name="dateAccomplished", columnDefinition = "CHAR(40)")
+    @Column(name="dateAccomplished", columnDefinition = "DATETIME(6)")
     private java.sql.Timestamp dateAccomplished;
 
     public Task(){}
+
+    public void setStatValue(int statValue) {
+        this.statValue = statValue;
+    }
 
     public int getRepeatFrequencyDays() {
         return repeatFrequencyDays;
