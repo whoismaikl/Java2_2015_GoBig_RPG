@@ -14,7 +14,7 @@ USE `projectevolution` ;
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-  `id` BIGINT NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `email` CHAR(40) NULL DEFAULT NULL,
   `password` CHAR(40) NULL DEFAULT NULL,
   `userName` CHAR(30) NULL DEFAULT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE `users` (
 DROP TABLE IF EXISTS `tasks`;
 
 CREATE TABLE `tasks` (
-  `id` BIGINT NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `userID` BIGINT NOT NULL,
   `statType` CHAR(17) NOT NULL,
   `statValue` INTEGER NULL,
@@ -59,7 +59,7 @@ CREATE TABLE `tasks` (
 DROP TABLE IF EXISTS `statHistory`;
 
 CREATE TABLE `statHistory` (
-  `id` BIGINT NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `userID` BIGINT NULL DEFAULT NULL,
   `health` INTEGER NULL DEFAULT NULL,
   `intelligence` INTEGER NULL DEFAULT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE `statHistory` (
 DROP TABLE IF EXISTS `defaultTasks`;
 
 CREATE TABLE `defaultTasks` (
-  `id` BIGINT NULL AUTO_INCREMENT DEFAULT NULL,
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
   `userID` BIGINT NULL DEFAULT NULL,
   `taskDescription` CHAR(255) NULL DEFAULT NULL,
   `taskType` CHAR(25) NULL DEFAULT NULL,
@@ -110,12 +110,12 @@ INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`rep
   ('1003','1001','Communication','1','Description for communication','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 
 INSERT INTO `statHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
-('1001','1001','5','8','10','1','1','1','2015-11-17 10:07:46');
+  ('1001','1001','5','8','10','1','1','1','2015-11-17 10:07:46');
 INSERT INTO `statHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
-('1002','1001','7','3','15','1','1','1','2015-11-19 10:07:46');
+  ('1002','1001','7','3','15','1','1','1','2015-11-19 10:07:46');
 INSERT INTO `statHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
-('1003','1001','3','12','20','1','1','1','2015-11-24 10:07:46');
+  ('1003','1001','3','12','20','1','1','1','2015-11-24 10:07:46');
 INSERT INTO `statHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
-('1004','1001','9','14','17','1','1','1','2015-11-29 10:07:46');
+  ('1004','1001','9','14','17','1','1','1','2015-11-29 10:07:46');
 -- INSERT INTO `customTasks` (`id`,`userID`,`taskDescription`,`taskType`,`taskValue`,`dateCompleted`) VALUES
 -- ('','','','','','');
