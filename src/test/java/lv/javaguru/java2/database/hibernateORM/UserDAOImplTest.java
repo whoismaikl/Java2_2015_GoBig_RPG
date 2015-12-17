@@ -54,5 +54,4 @@ public class UserDAOImplTest {
         assertEquals(user.getAccountActivetYN(), userFromDB.getAccountActivetYN());
 
     }
-
 }

@@ -12,31 +12,31 @@ public class Task {
     @Column(name="id",columnDefinition = "BIGINT")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    //@Transient
+
     @Column(name="userID", columnDefinition = "BIGINT", nullable = false)
     private Long userID;
-    //@Transient
+
     @Column(name="statType", columnDefinition = "CHAR(17)")
     private String statType = " ";
-    //@Transient
+
     @Column(name="statValue", columnDefinition = "INTEGER")
     private int statValue = 0;
-    //@Transient
+
     @Column(name="statDescription", columnDefinition = "CHAR(255)")
     private String statDescription = " ";
-    //@Transient
+
     @Column(name="repeatableYN", columnDefinition = "CHAR(3)")
     private String repeatableYN = "N";
-    //@Transient
+
     @Column(name="repeatFrequencyDays", columnDefinition = "INTEGER")
     private int  repeatFrequencyDays;
-    //@Transient
+
     @Column(name="accomplishedYN", columnDefinition = "CHAR(3)")
     private String accomplishedYN = "N";
-    //@Transient
+
     @Column(name="dateAdded", columnDefinition = "DATETIME(6)")
     private java.sql.Timestamp dateAdded;
-    //@Transient
+
     @Column(name="dateAccomplished", columnDefinition = "DATETIME(6)")
     private java.sql.Timestamp dateAccomplished;
 

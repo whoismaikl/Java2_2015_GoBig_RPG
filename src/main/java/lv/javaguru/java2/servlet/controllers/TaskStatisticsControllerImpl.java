@@ -1,6 +1,6 @@
 package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.RecordDAO;
+import lv.javaguru.java2.database.HistoryDAO;
 import lv.javaguru.java2.domain.Record;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.TimeSeriesChart_image;
@@ -21,7 +21,7 @@ import java.util.List;
 public class TaskStatisticsControllerImpl implements TaskStatisticsController {
     @Autowired
     @Qualifier("RecordDAO_ORM")
-    private RecordDAO recordDAO;
+    private HistoryDAO historyDAO;
     @Autowired
     private TimeSeriesChart_image timeSeriesChart_image;
 
@@ -29,7 +29,7 @@ public class TaskStatisticsControllerImpl implements TaskStatisticsController {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        List<Record> recordList = recordDAO.getAllUserRecords(user);
+        List<Record> recordList = historyDAO.getAllUserRecords(user);
         session.setAttribute("recordList", recordList);
         timeSeriesChart_image.createChart(recordList);
 

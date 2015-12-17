@@ -2,6 +2,7 @@ package lv.javaguru.java2.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -11,42 +12,66 @@ public class User {
     @Column(name="id",columnDefinition = "BIGINT")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    //@Transient
+
     @Column(name="email", columnDefinition = "CHAR(40)")
     private String email;
-    //@Transient
+
     @Column(name="password", columnDefinition = "CHAR(40)")
     private String password;
-    //@Transient
+
     @Column(name="userName", columnDefinition = "CHAR(30)")
     private String userName;
-    //@Transient
+
     @Column(name="userType", columnDefinition = "CHAR(1)")
     private String userType;
-    //@Transient
+
     @Column(name="health", columnDefinition = "INTEGER")
     private long health;
-    //@Transient
+
     @Column(name="intelligence", columnDefinition = "INTEGER")
     private long intelligence;
-    //@Transient
+
     @Column(name="communication", columnDefinition = "INTEGER")
     private long communication;
-    //@Transient
+
     @Column(name="willPower", columnDefinition = "INTEGER")
     private long willPower;
-    //@Transient
+
     @Column(name="dailyTodo", columnDefinition = "INTEGER")
     private long dailyTodo;
-    //@Transient
+
     @Column(name="lastLogin", columnDefinition = "DATETIME")
     private java.sql.Timestamp lastLogin;
-    //@Transient
+
     @Column(name="dateRegistered", columnDefinition = "DATETIME")
     private java.sql.Timestamp dateRegistered;
-    //@Transient
+
     @Column(name="accountActivetYN", columnDefinition = "CHAR")
     private String accountActivetYN;
+
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "userID")
+    //@ManyToOne
+    //@JoinColumn(name = "placeTypeID", referencedColumnName = "PLACE_TYPE_ID", insertable=false, updatable=false)
+    private List<Task> tasks;
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+    /*/@OneToMany(fetch = FetchType.LAZY)
+    //private List<Record> records;
+
+
+
+    public List<Record> getRecords() {
+        return records;
+    }
+
+    public void setRecords(List<Record> records) {
+        this.records = records;
+    }*/
 
 
 

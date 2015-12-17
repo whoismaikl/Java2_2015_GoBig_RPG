@@ -20,9 +20,9 @@ CREATE TABLE `users` (
   `userName` CHAR(30) NULL DEFAULT NULL,
   `userType` CHAR(1) NULL DEFAULT 'U',
   `health` INTEGER NULL DEFAULT NULL,
-  `intelligence` INTEGER NULL DEFAULT NULL,
-  `communication` INTEGER NULL DEFAULT NULL,
-  `willPower` INTEGER NULL DEFAULT NULL,
+  `intelligence` INTEGER NULL DEFAULT 50,
+  `communication` INTEGER NULL DEFAULT 50,
+  `willPower` INTEGER NULL DEFAULT 25,
   `dailyTodo` INTEGER NULL DEFAULT NULL,
   `lastLogin` DATETIME(6) NULL DEFAULT NULL,
   `dateRegistered` DATETIME(6) NULL DEFAULT NULL,
@@ -52,13 +52,13 @@ CREATE TABLE `tasks` (
 );
 
 -- ---
--- Table 'statHistory'
+-- Table 'taskHistory'
 --
 -- ---
 
-DROP TABLE IF EXISTS `statHistory`;
+DROP TABLE IF EXISTS `taskHistory`;
 
-CREATE TABLE `statHistory` (
+CREATE TABLE `taskHistory` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `userID` BIGINT NULL DEFAULT NULL,
   `health` INTEGER NULL DEFAULT NULL,

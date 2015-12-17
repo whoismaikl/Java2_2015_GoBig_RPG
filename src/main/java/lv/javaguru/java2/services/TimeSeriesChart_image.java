@@ -1,24 +1,16 @@
 package lv.javaguru.java2.services;
 
-import javafx.scene.chart.CategoryAxis;
-import lv.javaguru.java2.database.RecordDAO;
+import lv.javaguru.java2.database.HistoryDAO;
 import lv.javaguru.java2.domain.Record;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.*;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.general.SeriesException;
 import org.jfree.data.time.Day;
-import org.jfree.data.time.Second;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -37,7 +29,7 @@ public class TimeSeriesChart_image
 {
     @Autowired
     @Qualifier("RecordDAO_ORM")
-    private RecordDAO recordDAO;
+    private HistoryDAO historyDAO;
     public static void createChart(List<Record> recordList) throws IOException {
     final TimeSeries series1 = new TimeSeries( "Health" );
     final TimeSeries series2 = new TimeSeries( "Intelligence" );

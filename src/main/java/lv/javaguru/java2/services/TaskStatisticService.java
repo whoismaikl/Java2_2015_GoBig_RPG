@@ -1,19 +1,15 @@
 package lv.javaguru.java2.services;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.RecordDAO;
-import lv.javaguru.java2.database.TaskDAO;
+import lv.javaguru.java2.database.HistoryDAO;
 import lv.javaguru.java2.domain.Record;
-import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -27,11 +23,11 @@ public class TaskStatisticService {
     private SessionFactory sessionFactory;
     @Autowired
     @Qualifier("RecordDAO_ORM")
-    private RecordDAO recordDAO;
+    private HistoryDAO historyDAO;
 
 
     public List<Record> getAllUserRecords(User user) throws DBException {
-        return recordDAO.getAllUserRecords(user);
+        return historyDAO.getAllUserRecords(user);
     }
 
     public String searchButtonName(final HttpServletRequest request) {

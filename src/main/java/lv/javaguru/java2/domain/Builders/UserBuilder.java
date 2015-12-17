@@ -5,23 +5,25 @@ import java.util.Date;
 
 public class UserBuilder {
 
+
+//mo\hno propisyvat'defoltnye znachenija
     private Long id;
     private String email;
     private String password;
     private String userName;
-    private String userType;
-    private long health;
-    private long intelligence;
-    private long communication;
-    private long willPower;
+    private String userType ="U";
+    private long health = 50;
+    private long intelligence= 50;
+    private long communication= 50;
+    private long willPower= 25;
     private long dailyTodo;
     private java.sql.Timestamp lastLogin;
     private java.sql.Timestamp dateRegistered;
     private String accountActiveYN;
-//l;jkkjl
 
+// chtoby ne sozdat'ekzempljar
     private UserBuilder() {}
- // blin wtf
+
     public static UserBuilder createUser() {
         return new UserBuilder();
     }
@@ -44,7 +46,10 @@ public class UserBuilder {
         return user;
     }
 
-
+// with metody vozvraschajut builder class nazad
+    // kofda stroim cepochku  withOv, oni vyzuvajutsaj na tom zhe objekte
+    //i oni zaolnajut atributy objekta, i potom vy\zyvetsja metod build,
+// kotoryj sozdaet objekt s zadannymi poljmi
     public UserBuilder applyEmail(String email) {
         this.email = email;
         return this;

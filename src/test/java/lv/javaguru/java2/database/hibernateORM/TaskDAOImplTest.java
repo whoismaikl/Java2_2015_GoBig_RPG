@@ -8,6 +8,8 @@ import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.services.TimestampService;
 import lv.javaguru.java2.domain.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,13 +17,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
-
+//@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringConfig.class)
 public class TaskDAOImplTest {
@@ -135,5 +138,27 @@ public class TaskDAOImplTest {
         task.setDateAdded(sqlTimestamp);
         task.setDateAccomplished(sqlTimestamp);
         return task;
+    }
+
+    @Test
+    public void testOneToMany() throws DBException {
+        User user1 = new User("2@com14", "p14", "n14", "U");
+        User user2 = new User("3@com15", "p15", "n15", "U");
+        userDAO.createUser(user1);
+        userDAO.createUser(user2);
+        Long userId1 = user1.getId();
+        Long userId2 = user2.getId();
+        Task task1 = createUserTask(userId1, "Health", 5, "Description1", "Y", "N");
+        Task task2 = createUserTask(userId1, "Health", 4, "Description2", "Y", "N");
+        Task task3 = createUserTask(userId2, "Health", 6, "Description3", "Y", "N");
+
+        taskDAO.createTask(task1);
+        taskDAO.createTask(task2);
+        taskDAO.createTask(task3);
+        User user3 = userDAO.getUserById(userId1);
+
+        //List<Task> usersTasks = taskDAO.getAllUserTasks(user1);
+        List<Task> usersTasks = user3.getTasks();
+        assertEquals(2, usersTasks.size());
     }
 }
