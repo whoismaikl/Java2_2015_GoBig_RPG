@@ -37,11 +37,11 @@
 <head>
   <div id="menu">
     <ul>
-      <li><a href="/java2/accomplish_task"> Accomplish tasks </a></li>
-      <li><a href="/java2/task_management"> Task management </a></li>
-      <li><a href="/java2/task_statistics"> Task statistics </a></li>
+      <li><a href="/java2/activeTasks"> Active tasks </a></li>
+      <li><a href="/java2/taskManagement"> Task Management </a></li>
+      <li><a href="/java2/taskStatistics"> Task Statistics </a></li>
+      <li><a href="/java2/taskHistory.jsp"> Task History </a></li>
       <li><a href="/java2/help.jsp">Help</a></li>
-      <li><a href="#"></a></li>
       <li><a href="#"></a></li>
       <li><a href="/java2/logout">Logout</a></li>
     </ul>

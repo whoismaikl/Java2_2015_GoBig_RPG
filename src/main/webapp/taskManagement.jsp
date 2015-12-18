@@ -31,7 +31,7 @@
       <div id="tab1" class="tab_content" -->
         <html>
         <jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/>
-        <form action="/java2/task_management" method="post">
+        <form action="/java2/taskManagement" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
@@ -85,9 +85,8 @@
             <tbody>
             <tr>
               <th>
-                <input type="text" name="statDescription" placeholder="Description" value="Description" maxlength="255"
+                <input type="text" name="statDescription" placeholder="Description" value="Enter Task Description Here" maxlength="255"
                        size="124">
-                <!--textarea name="statDescription" style="width:250px;height:150px;" placeholder="Description" value="Description" maxlength="255"></textarea-->
               </th>
             </tr>
             </tbody>

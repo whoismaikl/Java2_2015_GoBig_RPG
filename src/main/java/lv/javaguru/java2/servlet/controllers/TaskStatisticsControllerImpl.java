@@ -1,7 +1,7 @@
 package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.HistoryDAO;
-import lv.javaguru.java2.domain.Record;
+import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.TimeSeriesChart_image;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskStatisticsController;
@@ -29,11 +29,11 @@ public class TaskStatisticsControllerImpl implements TaskStatisticsController {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        List<Record> recordList = historyDAO.getAllUserRecords(user);
-        session.setAttribute("recordList", recordList);
-        timeSeriesChart_image.createChart(recordList);
+        List<History> historyList = historyDAO.getAllUserRecords(user);
+        session.setAttribute("recordList", historyList);
+        timeSeriesChart_image.createChart(historyList);
 
-        return  new MVCModel("Task Statistics", "/task_statistics.jsp");
+        return  new MVCModel("Task Statistics", "/taskStatistics.jsp");
     }
 
 }

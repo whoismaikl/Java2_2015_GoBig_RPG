@@ -29,11 +29,11 @@
     </header>
     <div class="tab_container">
       <div id="tab4" class="tab_content">
-        <form action="/java2/task_edit" method="post">
+        <form action="/java2/editTask" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
-              <th>Task Description</th>
+              <th> Task Description </th>
             </tr>
             </thead>
             <tbody>
@@ -80,7 +80,7 @@
     <!-- end of #tab -->
     <div class="tab_container">
       <div id="tab5" class="tab_content">
-        <form action="/java2/task_management.jsp" method="post">
+        <form action="/java2/taskManagement.jsp" method="post">
 
           <table class="tablesorter" cellspacing="0">
             <thead>

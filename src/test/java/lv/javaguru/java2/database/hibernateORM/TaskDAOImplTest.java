@@ -142,6 +142,7 @@ public class TaskDAOImplTest {
 
     @Test
     public void testOneToMany() throws DBException {
+
         User user1 = new User("2@com14", "p14", "n14", "U");
         User user2 = new User("3@com15", "p15", "n15", "U");
         userDAO.createUser(user1);
@@ -160,5 +161,6 @@ public class TaskDAOImplTest {
         //List<Task> usersTasks = taskDAO.getAllUserTasks(user1);
         List<Task> usersTasks = user3.getTasks();
         assertEquals(2, usersTasks.size());
+
     }
 }

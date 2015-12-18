@@ -21,7 +21,7 @@ public class UserBuilder {
     private java.sql.Timestamp dateRegistered;
     private String accountActiveYN;
 
-// chtoby ne sozdat'ekzempljar
+// chtoby nebylo vozmozhnosti sozdat' eksempljar
     private UserBuilder() {}
 
     public static UserBuilder createUser() {
@@ -46,10 +46,10 @@ public class UserBuilder {
         return user;
     }
 
-// with metody vozvraschajut builder class nazad
-    // kofda stroim cepochku  withOv, oni vyzuvajutsaj na tom zhe objekte
+    // with metody vozvraschajut builder class nazad
+    // kogda stroim cepochku  withOv, oni vyzuvajutsaj na tom zhe objekte
     //i oni zaolnajut atributy objekta, i potom vy\zyvetsja metod build,
-// kotoryj sozdaet objekt s zadannymi poljmi
+    // kotoryj sozdaet objekt s zadannymi poljmi
     public UserBuilder applyEmail(String email) {
         this.email = email;
         return this;

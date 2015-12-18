@@ -41,7 +41,7 @@ public class TaskNewControllerImpl implements TaskNewController{
         List<Task> taskList = taskDAO.getAllUserTasks(user);
         session.setAttribute("taskList", taskList);
 
-        return  new MVCModel("New Task", "/task_management.jsp");
+        return  new MVCModel("New Task", "/taskManagement.jsp");
     }
     private Task createUserTask(Long userId, String statType, int statValue, String statDescription,
                                     String repeatableYN, int repeatFrequencyDays, String accomplishedYN) {

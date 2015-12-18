@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "statHistory")
-public class Record {
+public class History {
 
     @Id
     @Column(name="id",columnDefinition = "BIGINT")
@@ -36,7 +36,7 @@ public class Record {
     @Column(name="dateCompleted", columnDefinition = "DATETIME(6)")
     private java.sql.Timestamp dateCompleted;
 
-    public Record(){}
+    public History(){}
 
     public Long getId() {
         return id;

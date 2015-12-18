@@ -2,13 +2,11 @@ package lv.javaguru.java2.servlet.mvc;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.servlet.controllers.*;
-import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskManagementController;
 import lv.javaguru.java2.servlet.originals.HelloWorldController;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,10 +40,10 @@ public class MVCFilter implements Filter {
         controllers.put("/logout", getBean(LogoutControllerImpl.class));
         controllers.put("/register", getBean(RegistrationControllerImpl.class));
         controllers.put("/task_new", getBean(TaskNewControllerImpl.class));
-        controllers.put("/task_management", getBean(TaskManagementControllerImpl.class));
-        controllers.put("/accomplish_task", getBean(AccomplishTaskControllerImpl.class));
-        controllers.put("/task_statistics", getBean(TaskStatisticsControllerImpl.class));
-        controllers.put("/task_edit", getBean(TaskEditControllerImpl.class));
+        controllers.put("/taskManagement", getBean(TaskManagementControllerImpl.class));
+        controllers.put("/activeTasks", getBean(ActiveTasksControllerImpl.class));
+        controllers.put("/taskStatistics", getBean(TaskStatisticsControllerImpl.class));
+        controllers.put("/editTask", getBean(EditTaskControllerImpl.class));
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

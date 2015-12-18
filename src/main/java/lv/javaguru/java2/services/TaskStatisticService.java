@@ -2,7 +2,7 @@ package lv.javaguru.java2.services;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.HistoryDAO;
-import lv.javaguru.java2.domain.Record;
+import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class TaskStatisticService {
     private HistoryDAO historyDAO;
 
 
-    public List<Record> getAllUserRecords(User user) throws DBException {
+    public List<History> getAllUserRecords(User user) throws DBException {
         return historyDAO.getAllUserRecords(user);
     }
 

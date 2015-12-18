@@ -1,7 +1,7 @@
 package lv.javaguru.java2.services;
 
 import lv.javaguru.java2.database.HistoryDAO;
-import lv.javaguru.java2.domain.Record;
+import lv.javaguru.java2.domain.History;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -30,7 +30,7 @@ public class TimeSeriesChart_image
     @Autowired
     @Qualifier("RecordDAO_ORM")
     private HistoryDAO historyDAO;
-    public static void createChart(List<Record> recordList) throws IOException {
+    public static void createChart(List<History> historyList) throws IOException {
     final TimeSeries series1 = new TimeSeries( "Health" );
     final TimeSeries series2 = new TimeSeries( "Intelligence" );
     final TimeSeries series3 = new TimeSeries( "Communication" );
@@ -38,14 +38,14 @@ public class TimeSeriesChart_image
         long inteligenceVal;
         long communicationVal;
     double value;
-    for ( Record record: recordList )
+    for ( History history : historyList)
     {
         try
         {
-            healthVal = record.getHealth();
-            inteligenceVal = record.getIntelligence();
-            communicationVal = record.getCommunication();
-            Date date = record.getDateCompleted();
+            healthVal = history.getHealth();
+            inteligenceVal = history.getIntelligence();
+            communicationVal = history.getCommunication();
+            Date date = history.getDateCompleted();
             Day day = new Day(date);
             series1.add(day, healthVal);
             series2.add(day, inteligenceVal);

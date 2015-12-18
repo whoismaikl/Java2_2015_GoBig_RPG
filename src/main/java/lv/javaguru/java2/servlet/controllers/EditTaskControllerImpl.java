@@ -19,7 +19,7 @@ import java.util.List;
  * Created by AST on 2015.11.03..
  */
 @Component
-public class TaskEditControllerImpl implements TaskEditController {
+public class EditTaskControllerImpl implements TaskEditController {
     @Autowired
     @Qualifier("TaskDAO_ORM")
     private TaskDAO taskDAO;
@@ -27,6 +27,7 @@ public class TaskEditControllerImpl implements TaskEditController {
     private TaskService taskService;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
+
             String statDescription = request.getParameter("statDescription");
             int statValue = Integer.parseInt(request.getParameter("statValue"));
             String statType = request.getParameter("statType");
@@ -43,7 +44,7 @@ public class TaskEditControllerImpl implements TaskEditController {
             List<Task> taskList = taskDAO.getAllUserTasks(user);
             session.setAttribute("taskList", taskList);
 
-            return new MVCModel("New Task", "/task_management.jsp");
+            return new MVCModel("New Task", "/taskManagement.jsp");
         }
 
     private Task editTask(Task task, Long userId, String statType, int statValue, String statDescription,

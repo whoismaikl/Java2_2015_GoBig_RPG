@@ -34,21 +34,21 @@ public class TaskService {
             Long taskId = getTaskId(taskString);
             if(taskFunction.equals("delete")){
                 taskDAO.deleteTaskByID(taskId);
-                return new MVCModel("Refresh Task List", "/task_management.jsp");
+                return new MVCModel("Refresh Task List", "/taskManagement.jsp");
             }
             else if(taskFunction.equals("edit__")) {
                 HttpSession session = request.getSession();
                 User user = (User) session.getAttribute("user");
                 Task taskForEdit = taskDAO.getTaskById(taskId);
                 session.setAttribute("taskForEdit", taskForEdit);
-                return new MVCModel("Edit Task", "/task_edit.jsp");
+                return new MVCModel("Edit Task", "/editTask.jsp");
             }
             else if(taskFunction.equals("cancel")) {
                 //taskDAO.deleteTaskByID(taskId);
-                return new MVCModel("Cancel Task Edit", "/task_management.jsp");
+                return new MVCModel("Cancel Task Edit", "/taskManagement.jsp");
             }
         }
-        return new MVCModel("Refresh Task List", "/task_management.jsp");
+        return new MVCModel("Refresh Task List", "/taskManagement.jsp");
     }
     public List<Task> getAllUserTasks(User user) throws DBException {
         return taskDAO.getAllUserTasks(user);

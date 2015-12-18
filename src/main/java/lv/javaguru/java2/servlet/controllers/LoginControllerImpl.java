@@ -34,7 +34,7 @@ public class LoginControllerImpl implements LoginController {
         if (userDAO.checkLoginData(email, password)){
 
             model.setData("Login Success");
-            model.setViewName("/accomplish_task.jsp");
+            model.setViewName("/activeTasks.jsp");
 
             HttpSession session = request.getSession();
             User user = userDAO.getUserByLoginData(email, password);

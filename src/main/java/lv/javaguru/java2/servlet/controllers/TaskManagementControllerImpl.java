@@ -19,6 +19,7 @@ import java.util.List;
  */
 @Component
 public class TaskManagementControllerImpl implements TaskManagementController {
+
     @Autowired
     @Qualifier("TaskDAO_ORM")
     private TaskDAO taskDAO;
@@ -30,10 +31,10 @@ public class TaskManagementControllerImpl implements TaskManagementController {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        List<Task> taskList = taskDAO.getAllUserTasks(user);
+        List<Task> taskList = taskDAO.getAllUserTasks(user);  // tut dolzhny byt' tol'ko aktivnye
         session.setAttribute("taskList", taskList);
 
         return  mvcModel;
-        // /new MVCModel("Refresh Task List", "/task_management.jsp");
+        // /new MVCModel("Refresh Task List", "/taskManagement.jsp");
     }
 }
