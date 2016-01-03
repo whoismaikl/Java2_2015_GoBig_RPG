@@ -26,6 +26,11 @@ public class HistoryDAOImpl implements HistoryDAO {
         sessionFactory.getCurrentSession().persist(history);
     }
 
+    @Override
+    public void sendTaskToHistory(History history) throws DBException {
+
+    }
+
     public List<History> getAllUserRecords(User user) throws DBException {
         Long userId  = user.getId();
         List<History> histories;
