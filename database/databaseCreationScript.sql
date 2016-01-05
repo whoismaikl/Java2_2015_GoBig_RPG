@@ -101,13 +101,30 @@ ALTER TABLE `taskHistory` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
 -- ---
 
 INSERT INTO `users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`intelligence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`,`accountActivetYN`) VALUES
-  ('1001','a','a','My User Name','U','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','N');
+  ('1001','a','a','My User Name','A','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
+INSERT INTO `users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`intelligence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`,`accountActivetYN`) VALUES
+  ('1002','b','b','My b','U','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
+INSERT INTO `users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`intelligence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`,`accountActivetYN`) VALUES
+  ('1003','c','c','My c','U','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
+
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
   ('1001','1001','Health','1','Description for health','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1002','1001','Intellegence','1','Description for intellegence','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1002','1001','Intelligence','1','Description for intelligence','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
   ('1003','1001','Communication','1','Description for communication','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1004','1002','Health','1','Description for health','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1005','1002','Intelligence','1','Description for intelligence','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1006','1002','Communication','1','Description for communication','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1007','1003','Health','1','Description for health','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1008','1003','Intelligence','1','Description for intelligence','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1009','1003','Communication','1','Description for communication','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 
 INSERT INTO `taskHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
   ('1001','1001','5','8','10','1','1','1','2015-11-17 10:07:46');

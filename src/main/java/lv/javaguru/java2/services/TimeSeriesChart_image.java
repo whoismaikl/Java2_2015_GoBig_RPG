@@ -28,7 +28,7 @@ import java.util.List;
 public class TimeSeriesChart_image
 {
     @Autowired
-    @Qualifier("RecordDAO_ORM")
+    @Qualifier("HistoryDAO_ORM")
     private HistoryDAO historyDAO;
     public static void createChart(List<History> historyList) throws IOException {
     final TimeSeries series1 = new TimeSeries( "Health" );

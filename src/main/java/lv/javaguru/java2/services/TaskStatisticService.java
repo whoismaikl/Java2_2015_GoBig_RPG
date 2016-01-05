@@ -22,7 +22,7 @@ public class TaskStatisticService {
     @Autowired
     private SessionFactory sessionFactory;
     @Autowired
-    @Qualifier("RecordDAO_ORM")
+    @Qualifier("HistoryDAO_ORM")
     private HistoryDAO historyDAO;
 
 

@@ -20,7 +20,7 @@ import java.util.List;
 @Component
 public class TaskStatisticsControllerImpl implements TaskStatisticsController {
     @Autowired
-    @Qualifier("RecordDAO_ORM")
+    @Qualifier("HistoryDAO_ORM")
     private HistoryDAO historyDAO;
     @Autowired
     private TimeSeriesChart_image timeSeriesChart_image;

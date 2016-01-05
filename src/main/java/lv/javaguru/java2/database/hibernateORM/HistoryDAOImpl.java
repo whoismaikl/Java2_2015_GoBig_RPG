@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by AST on 2015.11.27..
  */
-@Component("RecordDAO_ORM")
+@Component("HistoryDAO_ORM")
 @Transactional
 public class HistoryDAOImpl implements HistoryDAO {
 
@@ -26,7 +26,7 @@ public class HistoryDAOImpl implements HistoryDAO {
         sessionFactory.getCurrentSession().persist(history);
     }
 
-    @Override
+
     public void sendTaskToHistory(History history) throws DBException {
 
     }

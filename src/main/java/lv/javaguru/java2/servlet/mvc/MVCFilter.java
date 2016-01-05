@@ -44,6 +44,7 @@ public class MVCFilter implements Filter {
         controllers.put("/activeTasks", getBean(ActiveTasksControllerImpl.class));
         controllers.put("/taskStatistics", getBean(TaskStatisticsControllerImpl.class));
         controllers.put("/editTask", getBean(EditTaskControllerImpl.class));
+        controllers.put("/admin", getBean(AdminControllerImpl.class));
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
