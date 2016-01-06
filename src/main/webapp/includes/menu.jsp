@@ -36,22 +36,26 @@
   }
 </style>
 <head>
-  <div id="menu">
-    <ul>
-      <li><a href="/java2/activeTasks"> Active tasks </a></li>
-      <li><a href="/java2/taskManagement"> Task Management </a></li>
-      <li><a href="/java2/taskStatistics"> Task Statistics </a></li>
-      <li><a href="/java2/taskHistory.jsp"> Task History </a></li>
-      <li><a href="/java2/help.jsp">Help</a></li>
-      <%User user=(User)session.getAttribute("user");
-        String userType=(String)user.getUserType();
-        if(userType.equals("A")){%>
-      <li><a href="/java2/admin">Admin Users</a></li>
-      <%}%>
-      <li><a href="/java2/logout">Logout</a></li>
-    </ul>
+  <!--section id="main" class="column"-->
+    <article class="module width_full">
+      <div id="menu">
+        <ul>
+          <li><a href="/java2/activeTasks"> Active tasks </a></li>
+          <li><a href="/java2/taskManagement"> Task Management </a></li>
+          <li><a href="/java2/taskStatistics"> Task Statistics </a></li>
+          <li><a href="/java2/taskHistory.jsp"> Task History </a></li>
+          <li><a href="/java2/help.jsp">Help</a></li>
+          <%User user=(User)session.getAttribute("user");
+            String userType=(String)user.getUserType();
+            if(userType.equals("A")){%>
+          <li><a href="/java2/admin">Admin Users</a></li>
+          <%}%>
+          <li><a href="/java2/logout">Logout</a></li>
+        </ul>
 
 
-  </div>
-  </section><!-- end of secondary bar -->
+      </div>
+        <!-- end of #tab -->
+    </article>
+  <!--/section><!-- end of secondary bar -->
 </head>

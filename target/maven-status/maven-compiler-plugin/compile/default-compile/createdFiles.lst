@@ -13,6 +13,7 @@ lv\javaguru\java2\servlet\controllers\controllerInterfaces\RegistrationControlle
 lv\javaguru\java2\servlet\controllers\TaskStatisticsControllerImpl.class
 lv\javaguru\java2\servlet\controllers\TaskNewControllerImpl.class
 lv\javaguru\java2\database\HistoryDAO.class
+lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskHistoryController.class
 lv\javaguru\java2\servlet\controllers\EditTaskControllerImpl.class
 lv\javaguru\java2\services\TaskService.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskNewController.class
@@ -20,6 +21,7 @@ lv\javaguru\java2\config\SpringConfig.class
 lv\javaguru\java2\domain\User.class
 lv\javaguru\java2\servlet\originals\ParameterProcessingServlet.class
 lv\javaguru\java2\servlet\controllers\LoginControllerImpl.class
+lv\javaguru\java2\servlet\controllers\TaskHistoryControllerImpl.class
 lv\javaguru\java2\servlet\originals\HelloWorldServlet.class
 lv\javaguru\java2\services\FilteringService.class
 lv\javaguru\java2\servlet\mvc\MVCModel.class

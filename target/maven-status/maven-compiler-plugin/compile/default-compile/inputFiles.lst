@@ -49,5 +49,7 @@ C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\RegistrationControllerImpl.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\ActiveTasksController.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\database\jdbc\DAOImpl.java
+C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskHistoryController.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\TaskService.java
+C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\TaskHistoryControllerImpl.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\RegistrationService.java

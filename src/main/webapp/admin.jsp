@@ -44,25 +44,22 @@
               <th>Commun.</th>
               <th>Last_Login</th>
               <th>Date_Registered</th>
-              <th>Edit</th>
               <th>Delete</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach var="user" items="${userList}">
               <tr>
-                <td></td>
                 <td>${user.id}</td>
                 <td>${user.email}</td>
-                <td>${user.name}</td>
-                <td>${user.type}</td>
+                <td>${user.userName}</td>
+                <td>${user.userType}</td>
                 <td>${user.health}</td>
                 <td>${user.intelligence}</td>
                 <td>${user.communication}</td>
                 <td>${user.lastLogin}</td>
                 <td>${user.dateRegistered}</td>
-                <td><input type="submit" name="edit__+${task.id}" class="login login-submit" value="Edit"></td>
-                <td><input type="submit" name="delete${task.id}" class="login login-submit" value="Delete"></td>
+                <td><input type="submit" name="delete${user.id}" class="login login-submit" value="Delete"></td>
               </tr>
             </c:forEach>
             </tbody>
@@ -86,22 +83,25 @@
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
-              <th>Category</th>
-              <th>Value</th>
-              <th>Repeatable(Yes/No)</th>
-              <th>Repeat Frequency(Days)</th>
-              <th>Action</th>
+              <th>Username</th>
+              <th>email</th>
+              <th>Password</th>
+              <th>Repeat Password</th>
+              <th>User Type</th>
+              <th>Add New User</th>
             </tr>
             </thead>
             <tbody>
             <tr>
+              <th><input type="text" name="username" placeholder="Username"></th>
+              <th><input type="text" name="email" placeholder="email"></th>
+              <th><input type="password" name="password1" placeholder="Password"></th>
+              <th><input type="password" name="password2" placeholder="Repeat Password"></th>
               <th><select name="userType" value="User" style="width:92%;">
                 <option>User</option>
                 <option>Admin</option>
               </select></th>
-              <th><input type="number" name="statValue" placeholder="1" value="1"></th>
-              <th><input type="number" name="repeatFrequencyDays" placeholder="1" value="1"></th>
-              <th><input type="submit" name="newTask" class="login login-submit" value="Add New Task"></th>
+              <th><input type="submit" name="login" class="login login-submit" value="Add New User"></th>
             </tr>
             </tbody>
           </table>
@@ -112,7 +112,14 @@
     <!-- end of #tab -->
   </article>
   <!-- end of messages article -->
-
+  <article class="module width_full">
+    <header><h3 class="tabs_involved">Response</h3>
+    </header>
+      <div class="tab_container">
+        <br><h3><%= request.getAttribute("model")%></h3>
+      </div>
+    <!-- end of #tab -->
+  </article>
 </section>
 
 

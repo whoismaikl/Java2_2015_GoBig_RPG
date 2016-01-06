@@ -77,20 +77,22 @@
       <div id="tab4" class="tab_content">
         <form action="/java2/task_new" method="post">
           <table class="tablesorter" cellspacing="0">
-            <thead>
-            <tr>
-              <th>Task Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <th>
-                <input type="text" name="statDescription" placeholder="Description" value="Enter Task Description Here" maxlength="255"
-                       size="124">
-              </th>
-            </tr>
-            </tbody>
-          </table>
+          <thead>
+          <tr>
+            <th>Task Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th>
+              <input type="text" name="statDescription" placeholder="Description" value="Enter Task Description Here" maxlength="255"
+                     size="124">
+            </th>
+          </tr>
+          </tbody>
+        </table>
+          <br>
+          <br>
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
