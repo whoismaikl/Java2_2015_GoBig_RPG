@@ -80,11 +80,15 @@ DROP TABLE IF EXISTS `defaultTasks`;
 
 CREATE TABLE `defaultTasks` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `userID` BIGINT NULL DEFAULT NULL,
-  `taskDescription` CHAR(255) NULL DEFAULT NULL,
-  `taskType` CHAR(25) NULL DEFAULT NULL,
-  `taskValue` INTEGER NULL DEFAULT 1,
-  `dateCompleted` DATETIME(6) NULL DEFAULT NULL,
+  `userID` BIGINT NOT NULL,
+  `statType` CHAR(17) NOT NULL,
+  `statValue` INTEGER NULL,
+  `statDescription` CHAR(255) NULL DEFAULT NULL,
+  `repeatableYN` CHAR(3) NOT NULL DEFAULT 'N',
+  `repeatFrequencyDays` INTEGER NOT NULL DEFAULT 1,
+  `accomplishedYN` CHAR(3) NOT NULL DEFAULT 'N',
+  `dateAdded` DATETIME(6) NOT NULL,
+  `dateAccomplished` DATETIME(6) NULL,
   PRIMARY KEY (`id`)
 );
 
@@ -101,11 +105,11 @@ ALTER TABLE `taskHistory` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
 -- ---
 
 INSERT INTO `users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`intelligence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`,`accountActivetYN`) VALUES
-  ('1001','a','a','My User Name','A','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
+  ('1001','a','a','User A','A','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
 INSERT INTO `users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`intelligence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`,`accountActivetYN`) VALUES
-  ('1002','b','b','My b','U','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
+  ('1002','b','b','User B','U','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
 INSERT INTO `users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`intelligence`,`communication`,`willPower`,`dailyTodo`,`lastLogin`,`dateRegistered`,`accountActivetYN`) VALUES
-  ('1003','c','c','My c','U','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
+  ('1003','c','c','User C','U','50','50','50','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
 
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
   ('1001','1001','Health','1','Description for health','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
@@ -134,5 +138,10 @@ INSERT INTO `taskHistory` (`id`,`userID`,`health`,`intelligence`,`communication`
   ('1003','1001','3','12','20','1','1','1','2015-11-24 10:07:46');
 INSERT INTO `taskHistory` (`id`,`userID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
   ('1004','1001','9','14','17','1','1','1','2015-11-29 10:07:46');
--- INSERT INTO `customTasks` (`id`,`userID`,`taskDescription`,`taskType`,`taskValue`,`dateCompleted`) VALUES
--- ('','','','','','');
+
+INSERT INTO `defaultTasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1001','1001','Health','1','Description for health','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+INSERT INTO `defaultTasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1002','1001','Intelligence','1','Description for intelligence','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+INSERT INTO `defaultTasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
+  ('1003','1001','Communication','1','Description for communication','Y','N','2015-11-17 10:07:46','2015-11-17 10:07:46');

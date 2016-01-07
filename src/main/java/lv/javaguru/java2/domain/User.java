@@ -1,5 +1,9 @@
 package lv.javaguru.java2.domain;
 
+import com.sun.prism.impl.Disposer;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -49,31 +53,27 @@ public class User {
     @Column(name="accountActivetYN", columnDefinition = "CHAR")
     private String accountActivetYN;
 
-    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "userID")
     //@ManyToOne
     //@JoinColumn(name = "placeTypeID", referencedColumnName = "PLACE_TYPE_ID", insertable=false, updatable=false)
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "userID")
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Task> tasks;
-
     public List<Task> getTasks() {
         return tasks;
     }
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
     }
-    /*/@OneToMany(fetch = FetchType.LAZY)
-    //private List<Record> records;
 
-
-
-    public List<Record> getRecords() {
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "userID")
+    @Fetch(value = FetchMode.SUBSELECT)
+    private List<History> records;
+    public List<History> getRecords() {
         return records;
     }
-
-    public void setRecords(List<Record> records) {
+    public void setRecords(List<History> records) {
         this.records = records;
-    }*/
-
-
+    }
 
     public Date getDate() {
         return new Date();

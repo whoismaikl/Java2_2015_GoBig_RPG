@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "taskHistory")
 public class History {
-
     @Id
     @Column(name="id",columnDefinition = "BIGINT")
     @GeneratedValue(strategy = GenerationType.AUTO)

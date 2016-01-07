@@ -4,6 +4,7 @@ import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
+import lv.javaguru.java2.domain.Builders.UserBuilder;
 import lv.javaguru.java2.domain.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -33,7 +34,12 @@ public class UserDAOImplTest {
 
     @Test
     public void testCreate() throws DBException {
-        User user = new User("1@com", "p1", "n1", "U");
+        User user = UserBuilder.createUser()
+                .applyUserName("testName")
+                .applyEmail("testEmail")
+                .applyPassword("testPassword")
+                .create();
+        //User user = new User("1@com", "p1", "n1", "U");
 
         userDAO.createUser(user);
 

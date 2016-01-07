@@ -25,7 +25,7 @@
 
 <section id="main" class="column">
   <article class="module width_full">
-    <header><h3 class="tabs_involved">Admin Users</h3>
+    <header><h3 class="tabs_involved">User List</h3>
     </header>
     <div class="tab_container">
       <div id="tab1" class="tab_content" -->
@@ -74,7 +74,7 @@
 
 
   <article class="module width_full">
-    <header><h3 class="tabs_involved">New User</h3>
+    <header><h3 class="tabs_involved">Add New User</h3>
     </header>
 
     <div class="tab_container">

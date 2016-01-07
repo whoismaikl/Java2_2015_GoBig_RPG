@@ -56,7 +56,6 @@
                 <td>${task.statValue}</td>
                 <td>
                   <input type="submit" value="Yes" name="yes" +${task.id}" class="alt_btn">
-                  <input type="submit" value="No" name="no" +${task.id}"class="alt_btn">
                 </td>
               </tr>
 
