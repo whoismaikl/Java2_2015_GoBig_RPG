@@ -1,4 +1,5 @@
 lv\javaguru\java2\database\jdbc\LoginDAOImpl.class
+lv\javaguru\java2\domain\DefaultTask.class
 lv\javaguru\java2\services\TimestampService.class
 lv\javaguru\java2\services\RegistrationService.class
 lv\javaguru\java2\servlet\controllers\AdminControllerImpl.class
@@ -20,6 +21,7 @@ lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskNewController.cla
 lv\javaguru\java2\config\SpringConfig.class
 lv\javaguru\java2\domain\User.class
 lv\javaguru\java2\servlet\originals\ParameterProcessingServlet.class
+lv\javaguru\java2\database\hibernateORM\DefaultTaskDAOImpl.class
 lv\javaguru\java2\servlet\controllers\LoginControllerImpl.class
 lv\javaguru\java2\servlet\controllers\TaskHistoryControllerImpl.class
 lv\javaguru\java2\servlet\originals\HelloWorldServlet.class
@@ -29,6 +31,7 @@ lv\javaguru\java2\database\DBException.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskStatisticsController.class
 lv\javaguru\java2\database\hibernateORM\HistoryDAOImpl.class
 lv\javaguru\java2\database\jdbc\UserDAOImpl.class
+lv\javaguru\java2\database\DefaultTaskDAO.class
 lv\javaguru\java2\database\jdbc\TaskDAOImpl.class
 lv\javaguru\java2\servlet\originals\RedirectToJSPServlet.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskController.class
@@ -42,6 +45,7 @@ lv\javaguru\java2\servlet\controllers\ActiveTasksControllerImpl.class
 lv\javaguru\java2\services\TaskStatisticService.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskEditController.class
 lv\javaguru\java2\servlet\controllers\LogoutControllerImpl.class
+lv\javaguru\java2\domain\History.class
 lv\javaguru\java2\servlet\originals\SessionUsageServlet.class
 lv\javaguru\java2\servlet\originals\HelloWorldController.class
 lv\javaguru\java2\database\hibernateORM\TaskDAOImpl.class
@@ -50,5 +54,6 @@ lv\javaguru\java2\database\hibernateORM\UserDAOImpl.class
 lv\javaguru\java2\database\TaskDAO.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskManagementController.class
 lv\javaguru\java2\database\jdbc\DAOImpl.class
+lv\javaguru\java2\database\jdbc\DefaultTaskDAOImpl.class
 lv\javaguru\java2\database\UserDAO.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\MainController.class

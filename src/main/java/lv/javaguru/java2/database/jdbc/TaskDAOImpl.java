@@ -41,7 +41,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
                 task.setId(rs.getLong(1));
             }
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserTaskDAOImpl.createUser()");
+            System.out.println("Exception while execute TaskDAOImpl.createTask()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -75,7 +75,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             }
             return task;
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserTaskDAOImpl.getUserById()");
+            System.out.println("Exception while execute TaskDAOImpl.getTaskById()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -112,7 +112,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
                 tasks.add(task);
             }
         } catch (Throwable e) {
-            System.out.println("Exception while getting customer list UserTaskDAOImpl.getList()");
+            System.out.println("Exception while getting customer list TaskDAOImpl.getAllUserTasks()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -130,7 +130,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.deleteUser()");
+            System.out.println("Exception while execute TaskDAOImpl.deleteTaskByID()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -155,7 +155,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             preparedStatement.setLong(6, task.getId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.updateUserData()");
+            System.out.println("Exception while execute TaskDAOImpl.editTask()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -173,7 +173,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             preparedStatement.setLong(3, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.updateUserData()");
+            System.out.println("Exception while execute TaskDAOImpl.accomplishTask()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {

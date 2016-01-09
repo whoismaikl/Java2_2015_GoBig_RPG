@@ -5,10 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "defaultTasks")
 public class DefaultTask {
-
     @Id
     @Column(name="id",columnDefinition = "BIGINT")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     @Column(name="userID", columnDefinition = "BIGINT", nullable = false)
@@ -123,6 +123,7 @@ public class DefaultTask {
     public void setDateAdded(java.sql.Timestamp dateAdded) {
         this.dateAdded = dateAdded;
     }
+    //public DefaultTask(){}
 }
 
 

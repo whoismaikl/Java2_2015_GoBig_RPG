@@ -2,6 +2,7 @@ package lv.javaguru.java2.database.hibernateORM;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.DefaultTaskDAO;
 import lv.javaguru.java2.database.TaskDAO;
+import lv.javaguru.java2.domain.DefaultTask;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.Criteria;
@@ -23,42 +24,34 @@ public class DefaultTaskDAOImpl implements DefaultTaskDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void createTask(Task task) throws DBException {
+    public void createDefaultTask(DefaultTask task) throws DBException {
         sessionFactory.getCurrentSession().persist(task);
     }
 
-    public Task getTaskById(Long id) throws DBException {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
+    public DefaultTask getDefaultTaskById(Long id) throws DBException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DefaultTask.class);
         criteria.add(Restrictions.eq("id", id));
-        return  (Task)criteria.uniqueResult();
+        return  (DefaultTask)criteria.uniqueResult();
     }
-    public List<Task> getAllUserTasks(User user) throws DBException {
-        Long userId  = user.getId();
-        List<Task> tasks;
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
-        criteria.add(Restrictions.eq("userID", userId));
-        tasks = (List<Task>)criteria.list();
+    public List<DefaultTask> getDefaultTaskList() throws DBException {
+        List<DefaultTask> tasks;
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DefaultTask.class);
+        tasks = (List<DefaultTask>)criteria.list();
         return tasks;
     }
 
-    public void deleteTaskByID(Long id) throws DBException {
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
+    public void deleteDefaultTaskByID(Long id) throws DBException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DefaultTask.class);
         criteria.add(Restrictions.eq("id", id));
-        Task task = (Task)criteria.uniqueResult();
+        DefaultTask task = (DefaultTask)criteria.uniqueResult();
         sessionFactory.getCurrentSession().delete(task);
 
     }
 
-    public void editTask(Task task) throws DBException {
+    public void editDefaultTask(DefaultTask task) throws DBException {
         Long id = task.getId();
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(DefaultTask.class);
         criteria.add(Restrictions.eq("id", id));
-        //Task taskFromDAO = (Task)criteria.uniqueResult();
-        //taskFromDAO = task;
         sessionFactory.getCurrentSession().update(task);
-    }
-
-    public void accomplishTask(Long id) throws DBException {
-
     }
 }

@@ -1,12 +1,14 @@
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\database\UserDAO.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\AdminController.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\TaskManagementControllerImpl.java
+C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\database\jdbc\DefaultTaskDAOImpl.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\database\jdbc\TaskDAOImpl.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\mvc\MVCFilter.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\domain\Builders\TaskBuilder.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskStatisticsController.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\database\hibernateORM\HistoryDAOImpl.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\TaskStatisticsControllerImpl.java
+C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\CreateTaskService.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\originals\HelloWorldServlet.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\LoginService.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\domain\Task.java
@@ -19,6 +21,7 @@ C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\originals\RedirectToJSPServlet.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\mvc\MVCController.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\AdminControllerImpl.java
+C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\database\hibernateORM\DefaultTaskDAOImpl.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\TaskStatisticService.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\TaskNewControllerImpl.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskEditController.java
@@ -29,6 +32,8 @@ C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\database\DBException.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\originals\RegisterServlet.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\LogoutControllerImpl.java
+C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\database\DefaultTaskDAO.java
+C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\domain\DefaultTask.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\mvc\MVCModel.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\ActiveTasksControllerImpl.java
 C:\Users\Dainis\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\LoginController.java

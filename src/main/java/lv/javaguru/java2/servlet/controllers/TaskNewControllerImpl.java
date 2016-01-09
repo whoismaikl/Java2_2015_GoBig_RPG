@@ -2,6 +2,7 @@ package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.jdbc.TaskDAOImpl;
+import lv.javaguru.java2.services.CreateTaskService;
 import lv.javaguru.java2.services.TimestampService;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
@@ -23,6 +24,8 @@ public class TaskNewControllerImpl implements TaskNewController{
     @Autowired
     @Qualifier("TaskDAO_ORM")
     private TaskDAO taskDAO;
+     @Autowired
+    CreateTaskService createTaskService;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
@@ -35,27 +38,11 @@ public class TaskNewControllerImpl implements TaskNewController{
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        Task task = createUserTask(user.getId(),statType,statValue,statDescription,repeatableYN, repeatFrequencyDays, "N");
-        taskDAO.createTask(task);
+        createTaskService.createUserTask(user.getId(),statType,statValue,statDescription,repeatableYN, repeatFrequencyDays, "N");
 
         List<Task> taskList = taskDAO.getAllUserTasks(user);
         session.setAttribute("taskList", taskList);
 
         return  new MVCModel("New Task", "/taskManagement.jsp");
     }
-    private Task createUserTask(Long userId, String statType, int statValue, String statDescription,
-                                    String repeatableYN, int repeatFrequencyDays, String accomplishedYN) {
-        Task task = new Task();
-        task.setUserID(userId);
-        task.setStatType(statType);
-        task.setStatValue(statValue);
-        task.setStatDescription(statDescription);
-        task.setRepeatableYN(repeatableYN);
-        task.setRepeatFrequencyDays(repeatFrequencyDays);
-        task.setAccomplishedYN(accomplishedYN);
-        task.setDateAdded(sqlTimestamp);
-        task.setDateAccomplished(sqlTimestamp);
-        return task;
-    }
-    java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
 }

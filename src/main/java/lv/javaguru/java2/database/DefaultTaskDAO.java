@@ -1,5 +1,6 @@
 package lv.javaguru.java2.database;
 
+import lv.javaguru.java2.domain.DefaultTask;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 
@@ -10,18 +11,14 @@ import java.util.List;
  */
 public interface DefaultTaskDAO {
 
-    void createTask(Task task) throws DBException;
+    void createDefaultTask(DefaultTask task) throws DBException;
 
-    void deleteTaskByID(Long id) throws DBException;
+    void deleteDefaultTaskByID(Long id) throws DBException;
 
-    //void updateit(Long id) throws DBException;
+    DefaultTask getDefaultTaskById(Long id) throws DBException;
 
-    Task getTaskById(Long id) throws DBException;
+    List<DefaultTask> getDefaultTaskList() throws DBException;
 
-    List<Task> getAllUserTasks(User user) throws DBException;
-
-    void editTask(Task task) throws DBException;
-
-    void accomplishTask(Long id) throws DBException;
+    void editDefaultTask(DefaultTask defaultTask) throws DBException;
 
 }

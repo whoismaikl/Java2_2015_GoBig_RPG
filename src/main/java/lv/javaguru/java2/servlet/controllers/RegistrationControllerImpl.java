@@ -1,7 +1,9 @@
 package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.DefaultTaskDAO;
 import lv.javaguru.java2.domain.Builders.UserBuilder;
+import lv.javaguru.java2.domain.DefaultTask;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.RegistrationService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.RegistrationController;
@@ -11,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by mike on 2015.11.03..
@@ -35,8 +38,8 @@ public class RegistrationControllerImpl implements RegistrationController {
                     .applyPassword(password1)
                     .create();
 
-            registrationService.createUser(email, password1, password2, email);
-            request.getSession().setAttribute("user", user);
+            user = registrationService.createUser(email, password1, password2, email);
+            registrationService.addDefaultTasks(user);
             return new MVCModel("User Registered", "/index.jsp");
 
         } catch (Exception e) {
@@ -44,6 +47,5 @@ public class RegistrationControllerImpl implements RegistrationController {
         }
 
     }
-
 
 }

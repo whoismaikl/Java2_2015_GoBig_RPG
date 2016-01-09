@@ -19,7 +19,6 @@ import java.util.Map;
  * Created by mike on 11/24/2015.
  */
 @Component
-//@Transactional
 public class TaskService {
     @Autowired
     private SessionFactory sessionFactory;
@@ -44,7 +43,6 @@ public class TaskService {
                 return new MVCModel("Edit Task", "/editTask.jsp");
             }
             else if(taskFunction.equals("cancel")) {
-                //taskDAO.deleteTaskByID(taskId);
                 return new MVCModel("Cancel Task Edit", "/taskManagement.jsp");
             }
         }

@@ -6,11 +6,14 @@ import javax.persistence.*;
 import java.util.Date;
 @Entity
 @Table(name = "tasks")
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class Task {
 
     @Id
     @Column(name="id",columnDefinition = "BIGINT")
     @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.TABLE)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="userID", columnDefinition = "BIGINT", nullable = false)
