@@ -32,6 +32,7 @@ lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskStatisticsControl
 lv\javaguru\java2\database\hibernateORM\HistoryDAOImpl.class
 lv\javaguru\java2\database\jdbc\UserDAOImpl.class
 lv\javaguru\java2\database\DefaultTaskDAO.class
+lv\javaguru\java2\services\ButtonFunctionService.class
 lv\javaguru\java2\database\jdbc\TaskDAOImpl.class
 lv\javaguru\java2\servlet\originals\RedirectToJSPServlet.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskController.class
