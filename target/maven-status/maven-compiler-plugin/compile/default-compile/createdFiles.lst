@@ -5,13 +5,12 @@ lv\javaguru\java2\services\RegistrationService.class
 lv\javaguru\java2\servlet\controllers\AdminControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\LogoutController.class
 lv\javaguru\java2\servlet\mvc\MVCController.class
-lv\javaguru\java2\domain\Builders\TaskBuilder.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\ActiveTasksController.class
 lv\javaguru\java2\services\LoginService.class
-lv\javaguru\java2\domain\Builders\UserBuilder.class
 lv\javaguru\java2\servlet\controllers\RegistrationControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\RegistrationController.class
 lv\javaguru\java2\servlet\controllers\TaskStatisticsControllerImpl.class
+lv\javaguru\java2\services\UserRegistrationService.class
 lv\javaguru\java2\servlet\controllers\TaskNewControllerImpl.class
 lv\javaguru\java2\database\HistoryDAO.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskHistoryController.class
@@ -20,6 +19,7 @@ lv\javaguru\java2\services\TaskService.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskNewController.class
 lv\javaguru\java2\config\SpringConfig.class
 lv\javaguru\java2\domain\User.class
+lv\javaguru\java2\domain\builders\UserBuilder.class
 lv\javaguru\java2\servlet\originals\ParameterProcessingServlet.class
 lv\javaguru\java2\database\hibernateORM\DefaultTaskDAOImpl.class
 lv\javaguru\java2\servlet\controllers\LoginControllerImpl.class
@@ -29,6 +29,7 @@ lv\javaguru\java2\services\FilteringService.class
 lv\javaguru\java2\servlet\mvc\MVCModel.class
 lv\javaguru\java2\database\DBException.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskStatisticsController.class
+lv\javaguru\java2\domain\builders\TaskBuilder.class
 lv\javaguru\java2\database\hibernateORM\HistoryDAOImpl.class
 lv\javaguru\java2\database\jdbc\UserDAOImpl.class
 lv\javaguru\java2\database\DefaultTaskDAO.class
@@ -44,7 +45,6 @@ lv\javaguru\java2\servlet\controllers\controllerInterfaces\AdminController.class
 lv\javaguru\java2\domain\Task.class
 lv\javaguru\java2\servlet\controllers\ActiveTasksControllerImpl.class
 lv\javaguru\java2\services\TaskStatisticService.class
-lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskEditController.class
 lv\javaguru\java2\servlet\controllers\LogoutControllerImpl.class
 lv\javaguru\java2\domain\History.class
 lv\javaguru\java2\servlet\originals\SessionUsageServlet.class
@@ -57,4 +57,5 @@ lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskManagementControl
 lv\javaguru\java2\database\jdbc\DAOImpl.class
 lv\javaguru\java2\database\jdbc\DefaultTaskDAOImpl.class
 lv\javaguru\java2\database\UserDAO.class
+lv\javaguru\java2\servlet\controllers\controllerInterfaces\EditTaskController.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\MainController.class

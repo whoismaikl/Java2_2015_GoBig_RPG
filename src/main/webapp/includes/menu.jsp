@@ -18,7 +18,7 @@
 
   a {
     float: left;
-    width: 12em;
+    width: 10em;
     text-decoration: none;
     color: white;
     background-color: purple;
@@ -44,12 +44,12 @@
           <li><a href="/java2/taskManagement"> Task Management </a></li>
           <li><a href="/java2/taskStatistics"> Task Statistics </a></li>
           <li><a href="/java2/taskHistory.jsp"> Task History </a></li>
-          <li><a href="/java2/help.jsp">Help</a></li>
           <%User user=(User)session.getAttribute("user");
             String userType=(String)user.getUserType();
             if(userType.equals("A")){%>
           <li><a href="/java2/admin">Admin Users</a></li>
           <%}%>
+          <li><a href="/java2/help.jsp">Help</a></li>
           <li><a href="/java2/logout">Logout</a></li>
         </ul>
 

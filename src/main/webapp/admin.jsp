@@ -79,7 +79,7 @@
 
     <div class="tab_container">
       <div id="tab4" class="tab_content">
-        <form action="/java2/user_new" method="post">
+        <form action="/java2/newUser" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>

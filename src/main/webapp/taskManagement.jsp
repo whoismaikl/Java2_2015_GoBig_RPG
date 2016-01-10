@@ -54,7 +54,7 @@
                 <td>${task.statValue}</td>
                 <td>${task.repeatableYN}</td>
                 <td>${task.repeatFrequencyDays}</td>
-                <td><input type="submit" name="edit__+${task.id}" class="login login-submit" value="Edit"></td>
+                <td><input type="submit" name="edit__${task.id}" class="login login-submit" value="Edit"></td>
                 <td><input type="submit" name="delete${task.id}" class="login login-submit" value="Delete"></td>
               </tr>
             </c:forEach>
