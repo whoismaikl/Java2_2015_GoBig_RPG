@@ -36,7 +36,7 @@
   }
 </style>
 <head>
-  <!--section id="main" class="column"-->
+  <!--section id="main" class="column menu"-->
     <article class="module width_full">
       <div id="menu">
         <ul>
@@ -57,5 +57,5 @@
       </div>
         <!-- end of #tab -->
     </article>
-  <!--/section><!-- end of secondary bar -->
+  <!--/section--><!-- end of secondary bar -->
 </head>

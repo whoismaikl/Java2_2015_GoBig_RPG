@@ -23,54 +23,72 @@
 <%@ include file="includes/header.jsp" %>
 <%@ include file="includes/menu.jsp" %>
 <body>
+  <section id="main" class="column">
+    <article class="module width_full">
+      <header><h3 class="tabs_involved">To Do - Task List</h3>
+      </header>
+      <div class="tab_container">
+        <div id="tab1" class="tab_content">
 
-<section id="main" class="column">
-
-  <article class="module width_full">
-    <header><h3 class="tabs_involved">Accomplish Tasks</h3>
-    </header>
-    <div class="tab_container">
-      <div id="tab1" class="tab_content"-->
-        <html>
-        <jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/>
-
-        <form action="/java2/accomplish_task" method="post">
-          <table class="tablesorter" cellspacing="0">
-            <thead>
-            <tr>
-
-              <th>Task Description</th>
-              <th>Category</th>
-              <th>Value</th>
-              <th>Is Task Accomplished ?</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <c:forEach var="task" items="${taskList}">
-
+          <!--jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/-->
+          <form action="/java2/accomplish_task" method="post">
+            <table class="tablesorter" cellspacing="0">
+              <thead>
               <tr>
-
-                <td>${task.statDescription}</td>
-                <td>${task.statType}</td>
-                <td>${task.statValue}</td>
-                <td>
-                  <input type="submit" value="Yes" name="yes" +${task.id}" class="alt_btn">
-                </td>
+                <th>Task Description</th>
+                <th>Category</th>
+                <th>Value</th>
+                <th>Is Task Accomplished ?</th>
               </tr>
+              </thead>
+              <tbody>
+              <c:forEach var="task" items="${taskList}">
+                <tr>
+                  <td>${task.statDescription}</td>
+                  <td>${task.statType}</td>
+                  <td>${task.statValue}</td>
+                  <td>
+                    <input type="submit" value="Yes" name="accompl${task.id}" class="alt_btn">
+                  </td>
+                </tr>
+              </c:forEach>
+              </tbody>
+            </table>
+          </form>
+        </div><!-- end of #tab1 -->
+      </div><!-- end of #tab -->
+    </article><!-- end of messages article -->
+    <article class="module width_full">
+      <header><h3 class="tabs_involved">Accomplished Task List</h3>
+      </header>
+      <div class="tab_container">
+        <div id="tab2" class="tab_content">
+            <table class="tablesorter" cellspacing="0">
+              <thead>
+              <tr>
+                <th>Task Description</th>
+                <th>Category</th>
+                <th>Value</th>
+                <th>Task Accomplished</th>
+                <th>Date Accomplished</th>
+              </tr>
+              </thead>
+              <tbody>
+              <c:forEach var="accomplishedTask" items="${accomplishedTaskList}">
+                <tr>
+                  <td>${accomplishedTask.statDescription}</td>
+                  <td>${accomplishedTask.statType}</td>
+                  <td>${accomplishedTask.statValue}</td>
+                  <td>${accomplishedTask.accomplishedYN}</td>
+                  <td>${accomplishedTask.dateAccomplished}</td>
+                </tr>
+              </c:forEach>
+              </tbody>
+            </table>
 
-            </c:forEach>
-
-            </tbody>
-          </table>
-        </form>
-      </div><!-- end of #tab1 -->
-    </div><!-- end of #tab -->
-  </article><!-- end of messages article -->
-
-</section>
-
-
+        </div><!-- end of #tab1 -->
+      </div><!-- end of #tab -->
+    </article><!-- end of messages article -->
+  </section>
 </body>
-
 </html>

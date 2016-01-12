@@ -28,9 +28,8 @@
     <header><h3 class="tabs_involved">Task Management</h3>
     </header>
     <div class="tab_container">
-      <div id="tab1" class="tab_content" -->
-        <html>
-        <jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/>
+      <div id="tab1" class="tab_content">
+        <!--jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/-->
         <form action="/java2/taskManagement" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
@@ -77,47 +76,51 @@
       <div id="tab4" class="tab_content">
         <form action="/java2/task_new" method="post">
           <table class="tablesorter" cellspacing="0">
-          <thead>
-          <tr>
-            <th>Task Description</th>
-          </tr>
-          </thead>
+            <thead>
+              <tr>
+                <th>Task Description</th>
+              </tr>
+            </thead>
           <tbody>
-          <tr>
-            <th>
-              <input type="text" name="statDescription" placeholder="Description" value="Enter Task Description Here" maxlength="255"
-                     size="124">
-            </th>
-          </tr>
+            <tr>
+              <th>
+                <input type="text"
+                       name="statDescription"
+                       placeholder="Description"
+                       value="Enter Task Description Here"
+                       maxlength="255"
+                       size="124">
+              </th>
+            </tr>
           </tbody>
         </table>
           <br>
           <br>
           <table class="tablesorter" cellspacing="0">
             <thead>
-            <tr>
-              <th>Category</th>
-              <th>Value</th>
-              <th>Repeatable(Yes/No)</th>
-              <th>Repeat Frequency(Days)</th>
-              <th>Action</th>
-            </tr>
+              <tr>
+                <th>Category</th>
+                <th>Value</th>
+                <th>Repeatable(Yes/No)</th>
+                <th>Repeat Frequency(Days)</th>
+                <th>Action</th>
+              </tr>
             </thead>
             <tbody>
-            <tr>
-              <th><select name="statType" value="Health" style="width:92%;">
-                <option>Health</option>
-                <option>Intelligence</option>
-                <option>Communication</option>
-              </select></th>
-              <th><input type="number" name="statValue" placeholder="1" value="1"></th>
-              <th><select name="repeatableYN" value="No" style="width:92%;">
-                <option>Yes</option>
-                <option>No</option>
-              </select></th>
-              <th><input type="number" name="repeatFrequencyDays" placeholder="1" value="1"></th>
-              <th><input type="submit" name="newTask" class="login login-submit" value="Add New Task"></th>
-            </tr>
+              <tr>
+                <th><select name="statType" value="Health" style="width:92%;">
+                  <option>Health</option>
+                  <option>Intelligence</option>
+                  <option>Communication</option>
+                </select></th>
+                <th><input type="number" name="statValue" placeholder="1" value="1"></th>
+                <th><select name="repeatableYN" value="No" style="width:92%;">
+                  <option>Yes</option>
+                  <option>No</option>
+                </select></th>
+                <th><input type="number" name="repeatFrequencyDays" placeholder="1" value="1"></th>
+                <th><input type="submit" name="newTask" class="login login-submit" value="Add New Task"></th>
+              </tr>
             </tbody>
           </table>
         </form>
@@ -127,10 +130,7 @@
     <!-- end of #tab -->
   </article>
   <!-- end of messages article -->
-
 </section>
-
-
 </body>
 
 </html>

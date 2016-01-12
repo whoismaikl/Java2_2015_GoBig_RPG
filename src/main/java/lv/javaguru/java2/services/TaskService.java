@@ -39,6 +39,12 @@ public class TaskService {
             else if(taskFunction.equals("cancel")) {
                 return new MVCModel("Cancel Task Edit", "/taskManagement.jsp");
             }
+            else if(taskFunction.equals("accompl")) {
+                HttpSession session = request.getSession();
+                Task taskForEdit = taskDAO.getTaskById(taskId);
+                session.setAttribute("taskForEdit", taskForEdit);
+                return new MVCModel("Accomplish Task", "/activeTask.jsp");
+            }
         }
         return new MVCModel("Refresh Task List", "/taskManagement.jsp");
     }

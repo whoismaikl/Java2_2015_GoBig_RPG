@@ -15,6 +15,7 @@ public class ActiveTasksControllerImpl implements ActiveTasksController {
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
+
         return new MVCModel("Accomplish Task", "/activeTasks.jsp");
     }
 
