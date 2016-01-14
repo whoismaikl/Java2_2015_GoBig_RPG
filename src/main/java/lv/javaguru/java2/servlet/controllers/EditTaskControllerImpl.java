@@ -37,7 +37,7 @@ public class EditTaskControllerImpl implements EditTaskController {
             User user = (User) session.getAttribute("user");
 
             Task task = (Task) session.getAttribute("taskForEdit");
-            task = editTask(task, user.getId(), statType, statValue, statDescription, repeatableYN, repeatFrequencyDays, "N");
+            task = taskService.editTask(task, user.getId(), statType, statValue, statDescription, repeatableYN, repeatFrequencyDays, "N");
             taskDAO.editTask(task);
 
             List<Task> taskList = taskDAO.getAllUserTasks(user);
@@ -46,17 +46,7 @@ public class EditTaskControllerImpl implements EditTaskController {
             return new MVCModel("New Task", "/taskManagement.jsp");
         }
 
-    private Task editTask(Task task, Long userId, String statType, int statValue, String statDescription,
-                                String repeatableYN, int repeatFrequencyDays, String accomplishedYN) {
-        task.setUserID(userId);
-        task.setStatType(statType);
-        task.setStatValue(statValue);
-        task.setStatDescription(statDescription);
-        task.setRepeatableYN(repeatableYN);
-        task.setRepeatFrequencyDays(repeatFrequencyDays);
-        task.setAccomplishedYN(accomplishedYN);
-        return task;
-    }
 
-    java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
+
+
 }

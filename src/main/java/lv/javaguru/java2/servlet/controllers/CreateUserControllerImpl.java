@@ -1,26 +1,28 @@
 package lv.javaguru.java2.servlet.controllers;
 
-import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.DefaultTaskDAO;
+import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.Builders.UserBuilder;
-import lv.javaguru.java2.domain.DefaultTask;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.RegistrationService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.RegistrationController;
-import lv.javaguru.java2.servlet.mvc.MVCController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  * Created by mike on 2015.11.03..
  */
 @Component
-public class RegistrationControllerImpl implements RegistrationController {
+public class CreateUserControllerImpl implements RegistrationController {
 
+    @Autowired
+    @Qualifier("UserDAO_JDBC")
+    private UserDAO userDAO;
     @Autowired
     private RegistrationService registrationService;
 
@@ -32,17 +34,21 @@ public class RegistrationControllerImpl implements RegistrationController {
         String password2 = request.getParameter("password2");
 
         try {
-           // User user = UserBuilder.createUser()
-                 //  .applyUserName(username).applyEmail(email)
-                 //   .applyPassword(password1)
-                 // .create();
+            User user = UserBuilder.createUser()
+                    .applyUserName(username)
+                    .applyEmail(email)
+                    .applyPassword(password1)
+                    .create();
 
-            User user = registrationService.createUser(email, password1, password2, email);
+            user = registrationService.createUser(email, password1, password2, email);
             registrationService.addDefaultTasks(user);
-            return new MVCModel("User Registered", "/index.jsp");
+            List<User> userList = userDAO.getAllUsers();
+            HttpSession session = request.getSession();
+            session.setAttribute("userList", userList);
+            return new MVCModel("User Registered", "/admin.jsp");
 
         } catch (Exception e) {
-            return new MVCModel("Registration Failed", "/register.jsp");
+            return new MVCModel("Create User - Failed !", "/admin.jsp");
         }
 
     }

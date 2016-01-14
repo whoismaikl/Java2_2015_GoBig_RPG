@@ -21,6 +21,8 @@ public class TaskService {
     @Qualifier("TaskDAO_ORM")
     private TaskDAO taskDAO;
 
+
+
     public MVCModel executeRequest(HttpServletRequest request) throws DBException {
         String taskString = buttonFunctionService.searchButtonName(request);
         if (!taskString.isEmpty()){
@@ -43,9 +45,23 @@ public class TaskService {
                 HttpSession session = request.getSession();
                 Task taskForEdit = taskDAO.getTaskById(taskId);
                 session.setAttribute("taskForEdit", taskForEdit);
+
                 return new MVCModel("Accomplish Task", "/activeTask.jsp");
             }
         }
         return new MVCModel("Refresh Task List", "/taskManagement.jsp");
     }
+    public Task editTask(Task task, Long userId, String statType, int statValue, String statDescription,
+                          String repeatableYN, int repeatFrequencyDays, String accomplishedYN) {
+        task.setUserID(userId);
+        task.setStatType(statType);
+        task.setStatValue(statValue);
+        task.setStatDescription(statDescription);
+        task.setRepeatableYN(repeatableYN);
+        task.setRepeatFrequencyDays(repeatFrequencyDays);
+        task.setAccomplishedYN(accomplishedYN);
+        task.setDateAccomplished(sqlTimestamp);
+        return task;
+    }
+    java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
 }

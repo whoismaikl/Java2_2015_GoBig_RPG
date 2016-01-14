@@ -3,6 +3,7 @@ package lv.javaguru.java2.domain;
 import com.sun.prism.impl.Disposer;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.Date;

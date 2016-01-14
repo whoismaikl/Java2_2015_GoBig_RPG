@@ -1,9 +1,11 @@
 lv\javaguru\java2\database\jdbc\LoginDAOImpl.class
 lv\javaguru\java2\domain\DefaultTask.class
 lv\javaguru\java2\services\TimestampService.class
+lv\javaguru\java2\servlet\controllers\controllerInterfaces\CreateUserController.class
 lv\javaguru\java2\services\RegistrationService.class
 lv\javaguru\java2\servlet\controllers\AdminControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\LogoutController.class
+lv\javaguru\java2\servlet\controllers\controllerInterfaces\DeleteUserController.class
 lv\javaguru\java2\servlet\mvc\MVCController.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\ActiveTasksController.class
 lv\javaguru\java2\services\LoginService.class
@@ -33,6 +35,7 @@ lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskStatisticsControl
 lv\javaguru\java2\domain\builders\TaskBuilder.class
 lv\javaguru\java2\servlet\controllers\AccomplishTaskControllerImpl.class
 lv\javaguru\java2\database\hibernateORM\HistoryDAOImpl.class
+lv\javaguru\java2\servlet\controllers\CreateUserControllerImpl.class
 lv\javaguru\java2\database\jdbc\UserDAOImpl.class
 lv\javaguru\java2\database\DefaultTaskDAO.class
 lv\javaguru\java2\services\ButtonFunctionService.class
@@ -46,6 +49,7 @@ lv\javaguru\java2\servlet\controllers\controllerInterfaces\AdminController.class
 lv\javaguru\java2\domain\Task.class
 lv\javaguru\java2\servlet\controllers\ActiveTasksControllerImpl.class
 lv\javaguru\java2\services\TaskStatisticService.class
+lv\javaguru\java2\servlet\controllers\DeleteUserControllerImpl.class
 lv\javaguru\java2\servlet\controllers\LogoutControllerImpl.class
 lv\javaguru\java2\domain\History.class
 lv\javaguru\java2\servlet\originals\SessionUsageServlet.class

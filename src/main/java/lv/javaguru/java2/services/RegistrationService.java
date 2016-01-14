@@ -32,6 +32,8 @@ public class RegistrationService {
     private DefaultTaskDAO defaultTaskDAO;
 
     public User createUser(String email, String password1, String password2, String userName) {
+
+
         if (!userExist(email, userName) && passwordsMatch(password1, password2) && correctEmailSyntax(email)) {
             User user = new User(email, password1, userName, "U");
             try {

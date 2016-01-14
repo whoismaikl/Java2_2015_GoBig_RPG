@@ -2,6 +2,7 @@ package lv.javaguru.java2.database.hibernateORM;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.HistoryDAO;
 import lv.javaguru.java2.domain.History;
+import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -39,5 +40,16 @@ public class HistoryDAOImpl implements HistoryDAO {
         histories = (List<History>)criteria.list();
         return histories;
     }
+
+    public void accomplishTask(Task task) throws DBException {
+        Long id = task.getId();
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
+        criteria.add(Restrictions.eq("id", id));
+        //Task taskFromDAO = (Task)criteria.uniqueResult();
+        //taskFromDAO = task;
+        sessionFactory.getCurrentSession().update(task);
+    }
+
+
 
 }

@@ -31,7 +31,7 @@
       <div id="tab1" class="tab_content" -->
         <html>
         <jsp:useBean id="user1" class="lv.javaguru.java2.domain.User" scope="session"/>
-        <form action="/java2/admin" method="post">
+        <form action="/java2/deUser" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
@@ -79,7 +79,7 @@
 
     <div class="tab_container">
       <div id="tab4" class="tab_content">
-        <form action="/java2/newUser" method="post">
+        <form action="/java2/crUser" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
