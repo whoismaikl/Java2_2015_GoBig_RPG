@@ -39,6 +39,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public void deleteUser(Long id) throws DBException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("id", id));
+        User user = (User)criteria.uniqueResult();
+        sessionFactory.getCurrentSession().delete(user);
 
     }
 

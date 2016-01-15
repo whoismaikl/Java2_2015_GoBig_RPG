@@ -96,8 +96,8 @@ CREATE TABLE `defaultTasks` (
 -- Foreign Keys
 -- ---
 
-ALTER TABLE `tasks` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
-ALTER TABLE `taskHistory` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`);
+ALTER TABLE `tasks` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`) ON DELETE CASCADE;
+ALTER TABLE `taskHistory` ADD FOREIGN KEY (userID) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- ---

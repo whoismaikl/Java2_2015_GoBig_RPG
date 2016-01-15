@@ -23,7 +23,7 @@ public class HistoryDAOImpl implements HistoryDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void createRecord(History history) throws DBException {
+    public void createHistory(History history) throws DBException {
         sessionFactory.getCurrentSession().persist(history);
     }
 

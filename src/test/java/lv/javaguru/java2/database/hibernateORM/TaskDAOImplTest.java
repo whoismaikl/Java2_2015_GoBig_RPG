@@ -2,9 +2,13 @@ package lv.javaguru.java2.database.hibernateORM;
 
 import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.HistoryDAO;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
+import lv.javaguru.java2.domain.Builders.HistoryBuilder;
+import lv.javaguru.java2.domain.Builders.UserBuilder;
+import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.services.TimestampService;
 import lv.javaguru.java2.domain.User;
@@ -34,8 +38,17 @@ public class TaskDAOImplTest {
     private TaskDAO taskDAO;
 
     @Autowired
+    @Qualifier("HistoryDAO_ORM")
+    private HistoryDAO historyDAO;
+
+    @Autowired
     @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
+
+    @Autowired
+    private UserBuilder userBuilder;
+    @Autowired
+    private HistoryBuilder historyBuilder;
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
     java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
@@ -159,8 +172,62 @@ public class TaskDAOImplTest {
         User user3 = userDAO.getUserById(userId1);
 
         //List<Task> usersTasks = taskDAO.getAllUserTasks(user1);
-        List<Task> usersTasks = user3.getTasks();
-        assertEquals(2, usersTasks.size());
+        List<Task> taskList = user3.getTaskList();
+        assertEquals(2, taskList.size());
+
+    }
+    @Test
+    public void testDeleteUserTasksHistory() throws DBException {
+
+        User user = userBuilder.buildUser()
+                .withEmail("e")
+                .withUserName("user101")
+                .withPassword("p")
+                .withUserType("U")
+                .build();
+        User user1 = new User("2@com14", "p14", "n14", "U");
+        User user2 = new User("3@com15", "p15", "n15", "U");
+        userDAO.createUser(user);
+        userDAO.createUser(user1);
+        userDAO.createUser(user2);
+        Long userId1 = user1.getId();
+        Long userId2 = user2.getId();
+        Task task1 = createUserTask(userId1, "Health", 5, "Description1", "Y", "N");
+        Task task2 = createUserTask(userId1, "Health", 4, "Description2", "Y", "N");
+        Task task3 = createUserTask(userId2, "Health", 6, "Description3", "Y", "N");
+        Task task4 = createUserTask(userId2, "Health", 7, "Description4", "Y", "N");
+        History history1 = historyBuilder.buildHistory()
+                .withUserID(userId1)
+                .build();
+        History history2 = historyBuilder.buildHistory()
+                .withUserID(userId1)
+                .build();
+        History history3 = historyBuilder.buildHistory()
+                .withUserID(userId2)
+                .build();
+        historyDAO.createHistory(history1);
+        historyDAO.createHistory(history2);
+        historyDAO.createHistory(history3);
+        taskDAO.createTask(task1);
+        taskDAO.createTask(task2);
+        taskDAO.createTask(task3);
+        taskDAO.createTask(task4);
+        userDAO.deleteUser(userId2);
+        User user3 = userDAO.getUserById(userId1);
+
+
+        List<History> historyList = user3.getHistoryList();
+        for(History history : historyList) {
+            historyList.remove(history);
+        }
+
+        List<Task> taskList = user3.getTaskList();
+        //for(Task task: taskList) {
+         //   taskList.remove(task);
+        //}
+        assertEquals(2, taskList.size());
+
+
 
     }
 }

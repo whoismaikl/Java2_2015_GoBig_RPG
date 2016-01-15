@@ -1,9 +1,11 @@
 package lv.javaguru.java2.domain;
 
 import com.sun.prism.impl.Disposer;
+import lv.javaguru.java2.services.TimestampService;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Where;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -54,30 +56,26 @@ public class User {
     @Column(name="accountActivetYN", columnDefinition = "CHAR")
     private String accountActivetYN;
 
-    //@ManyToOne
-    //@JoinColumn(name = "placeTypeID", referencedColumnName = "PLACE_TYPE_ID", insertable=false, updatable=false)
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "userID")
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<Task> tasks;
-    public List<Task> getTasks() {
-        return tasks;
+    private List<Task> taskList;
+
+    public List<Task> getTaskList() {
+        return taskList;
     }
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setTaskList(List<Task> taskList) {
+        this.taskList = taskList;
     }
 
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "userID")
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<History> records;
-    public List<History> getRecords() {
-        return records;
-    }
-    public void setRecords(List<History> records) {
-        this.records = records;
-    }
+    private List<History> historyList;
 
-    public Date getDate() {
-        return new Date();
+    public List<History> getHistoryList() {
+        return historyList;
+    }
+    public void setHistoryList(List<History> historyList) {
+        this.historyList = historyList;
     }
 
     public User(String email, String password, String userName, String userType){
@@ -195,12 +193,6 @@ public class User {
         this.willPower = willPower;
     }
 
-    public java.sql.Timestamp getSqlTimestamp(){
-        java.util.Date utilDate = new java.util.Date();
-        java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(utilDate.getTime());
-        return sqlTimestamp;
-    }
-
     public String getAccountActivetYN() {
         return accountActivetYN;
     }
@@ -209,7 +201,11 @@ public class User {
         this.accountActivetYN = accountActivetYN;
     }
 
-
+    public java.sql.Timestamp getSqlTimestamp(){
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(utilDate.getTime());
+        return sqlTimestamp;
+    }
 }
 
 

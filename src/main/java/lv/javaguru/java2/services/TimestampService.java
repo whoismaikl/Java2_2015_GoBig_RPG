@@ -1,8 +1,11 @@
 package lv.javaguru.java2.services;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by AST on 2015.11.27..
  */
+@Component
 public class TimestampService {
     private java.sql.Timestamp timestamp;
     public TimestampService(){

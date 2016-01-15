@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.Builders.UserBuilder;
+import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -34,11 +38,11 @@ public class UserDAOImplTest {
 
     @Test
     public void testCreate() throws DBException {
-        User user = UserBuilder.createUser()
-                .applyUserName("testName")
-                .applyEmail("testEmail")
-                .applyPassword("testPassword")
-                .create();
+        User user = UserBuilder.buildUser()
+                .withUserName("testName")
+                .withEmail("testEmail")
+                .withPassword("testPassword")
+                .build();
         //User user = new User("1@com", "p1", "n1", "U");
 
         userDAO.createUser(user);

@@ -35,6 +35,18 @@ public class History {
     @Column(name="dateCompleted", columnDefinition = "DATETIME(6)")
     private java.sql.Timestamp dateCompleted;
 
+    /*@ManyToOne
+    //@JoinColumn(name = "id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }*/
+
     public History(){}
 
     public Long getId() {

@@ -41,6 +41,7 @@ C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\s
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\RegistrationController.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\TimestampService.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskManagementController.java
+C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\domain\Builders\HistoryBuilder.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\LoginService.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\domain\Builders\UserBuilder.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\LogoutControllerImpl.java

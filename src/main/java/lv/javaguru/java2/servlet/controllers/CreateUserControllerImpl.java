@@ -34,11 +34,11 @@ public class CreateUserControllerImpl implements RegistrationController {
         String password2 = request.getParameter("password2");
 
         try {
-            User user = UserBuilder.createUser()
-                    .applyUserName(username)
-                    .applyEmail(email)
-                    .applyPassword(password1)
-                    .create();
+            User user = UserBuilder.buildUser()
+                    .withUserName(username)
+                    .withEmail(email)
+                    .withPassword(password1)
+                    .build();
 
             user = registrationService.createUser(email, password1, password2, email);
             registrationService.addDefaultTasks(user);

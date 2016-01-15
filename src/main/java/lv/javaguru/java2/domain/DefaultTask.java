@@ -8,7 +8,6 @@ public class DefaultTask {
     @Id
     @Column(name="id",columnDefinition = "BIGINT")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    //@GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
 
     @Column(name="userID", columnDefinition = "BIGINT", nullable = false)

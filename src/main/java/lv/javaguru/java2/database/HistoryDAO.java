@@ -1,6 +1,7 @@
 package lv.javaguru.java2.database;
 
 import lv.javaguru.java2.domain.History;
+import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 
 import java.util.List;
@@ -9,6 +10,8 @@ import java.util.List;
  * Created by Mike on 01/07/2014.
  */
 public interface HistoryDAO {
+
+    void createHistory(History history) throws DBException;
 
     void sendTaskToHistory(History history) throws DBException;
 

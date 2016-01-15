@@ -1,8 +1,11 @@
 package lv.javaguru.java2.domain.Builders;
+import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.User;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
-
+import java.util.List;
+@Component
 public class UserBuilder {
 
 
@@ -20,15 +23,16 @@ public class UserBuilder {
     private java.sql.Timestamp lastLogin;
     private java.sql.Timestamp dateRegistered;
     private String accountActiveYN;
+    private List<History> historyList;
 
 // chtoby nebylo vozmozhnosti sozdat' eksempljar
     private UserBuilder() {}
 
-    public static UserBuilder createUser() {
+    public static UserBuilder buildUser() {
         return new UserBuilder();
     }
 
-    public User create()
+    public User build()
     {
         User user = new User();
         user.setEmail(email);
@@ -50,67 +54,69 @@ public class UserBuilder {
     // kogda stroim cepochku  withOv, oni vyzuvajutsaj na tom zhe objekte
     //i oni zaolnajut atributy objekta, i potom vy\zyvetsja metod build,
     // kotoryj sozdaet objekt s zadannymi poljmi
-    public UserBuilder applyEmail(String email) {
+    public UserBuilder withEmail(String email) {
         this.email = email;
         return this;
     }
 
-    public UserBuilder applyPassword(String password) {
+    public UserBuilder withPassword(String password) {
         this.password = password;
         return this;
     }
 
-    public UserBuilder applyUserName(String userName) {
+    public UserBuilder withUserName(String userName) {
         this.userName = userName;
         return this;
     }
 
-    public UserBuilder applyUserType(String userType) {
+    public UserBuilder withUserType(String userType) {
         this.userName = userName;
         return this;
     }
 
-    public UserBuilder applyHealth(Long health) {
+    public UserBuilder withHealth(Long health) {
         this.health = health;
         return this;
     }
 
-    public UserBuilder applyIntellegence(Long intelligence) {
+    public UserBuilder withIntellegence(Long intelligence) {
         this.intelligence = intelligence;
         return this;
     }
 
-    public UserBuilder applyCommunication(Long communication) {
+    public UserBuilder withCommunication(Long communication) {
         this.communication = communication;
         return this;
     }
 
-    public UserBuilder applyWillPower(Long willPower) {
+    public UserBuilder withWillPower(Long willPower) {
         this.willPower = willPower;
         return this;
     }
 
-    public UserBuilder applyDailyToDo(Long dailyTodo) {
+    public UserBuilder withDailyToDo(Long dailyTodo) {
         this.dailyTodo = dailyTodo;
         return this;
     }
 
-    public UserBuilder applyLastLogin(java.sql.Timestamp LastLogin) {
+    public UserBuilder withLastLogin(java.sql.Timestamp LastLogin) {
         this.lastLogin = LastLogin;
         return this;
     }
 
-    public UserBuilder applyDateRegistered(java.sql.Timestamp dateRegistered) {
+    public UserBuilder withDateRegistered(java.sql.Timestamp dateRegistered) {
         this.dateRegistered = dateRegistered;
         return this;
     }
 
-    public UserBuilder applyAccountActiveYN(String AccountActiveYN) {
+    public UserBuilder withAccountActiveYN(String AccountActiveYN) {
         this.accountActiveYN = AccountActiveYN;
         return this;
     }
-
-
+    public UserBuilder withHistoryList(List<History> historyList) {
+        this.historyList = historyList;
+        return this;
+    }
 }
 
 

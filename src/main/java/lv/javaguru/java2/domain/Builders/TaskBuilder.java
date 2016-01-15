@@ -1,24 +1,29 @@
 package lv.javaguru.java2.domain.builders;
 import lv.javaguru.java2.domain.Task;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
 
 /**
  * Created by mike on 11/24/2015.
  */
+@Component
 public class TaskBuilder {
-
     //  private Long id;
     private Long userID;
-    private String statType = " ";
-    private int statValue = 0;
-    private String statDescription = " ";
-    private String repeatableYN = "N";
-    private String accomplishedYN = "N";
+    private String statType = "Health";
+    private int statValue = 1;
+    private String statDescription = "Default";
+    private String repeatableYN = "Yes";
+    private int repeatFrequencyDays = 1;
+    private String accomplishedYN = "No";
     private java.sql.Timestamp dateAdded;
     private java.sql.Timestamp dateAccomplished;
 
     private TaskBuilder(){}
+
+    public static TaskBuilder buildTask(){return new TaskBuilder();}
 
     public Task build()
     {
@@ -28,13 +33,14 @@ public class TaskBuilder {
         task.setStatValue(statValue);
         task.setStatDescription(statDescription);
         task.setRepeatableYN(repeatableYN);
+        task.setRepeatFrequencyDays(repeatFrequencyDays);
         task.setAccomplishedYN(accomplishedYN);
         task.setDateAdded(dateAdded);
         task.setDateAccomplished(dateAccomplished);
         return task;
     }
 
-    public TaskBuilder withtUserID(Long userID) {
+    public TaskBuilder withUserID(Long userID) {
         this.userID = userID;
         return this;
     }
@@ -56,6 +62,10 @@ public class TaskBuilder {
 
     public TaskBuilder withRepeatableYN(String repeatableYN) {
         this.repeatableYN = repeatableYN;
+        return this;
+    }
+    public TaskBuilder withRepeatFrequencyDays(int repeatFrequencyDays) {
+        this.repeatFrequencyDays = repeatFrequencyDays;
         return this;
     }
     public TaskBuilder withAccomplishedYN(String accomplishedYN) {
