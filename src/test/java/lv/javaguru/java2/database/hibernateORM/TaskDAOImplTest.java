@@ -212,7 +212,7 @@ public class TaskDAOImplTest {
         taskDAO.createTask(task2);
         taskDAO.createTask(task3);
         taskDAO.createTask(task4);
-        userDAO.deleteUser(userId2);
+        //userDAO.deleteUser(userId2);
         User user3 = userDAO.getUserById(userId1);
 
 

@@ -29,7 +29,7 @@ public class AdminControllerImpl implements AdminController {
     @Autowired
     private TaskService taskService;
     @Autowired
-    @Qualifier("UserDAO_JDBC")
+    @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {

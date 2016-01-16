@@ -18,7 +18,7 @@ import java.util.List;
 @Component
 public class UserRegistrationService {
     @Autowired
-    @Qualifier("UserDAO_JDBC")
+    @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
 
     @Autowired

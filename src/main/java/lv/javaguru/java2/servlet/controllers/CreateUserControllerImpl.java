@@ -21,7 +21,7 @@ import java.util.List;
 public class CreateUserControllerImpl implements RegistrationController {
 
     @Autowired
-    @Qualifier("UserDAO_JDBC")
+    @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
     @Autowired
     private RegistrationService registrationService;

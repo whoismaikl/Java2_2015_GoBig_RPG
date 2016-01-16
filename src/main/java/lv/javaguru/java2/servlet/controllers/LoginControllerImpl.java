@@ -21,7 +21,7 @@ import java.util.List;
 @Component
 public class LoginControllerImpl implements LoginController {
     @Autowired
-    @Qualifier("UserDAO_JDBC")
+    @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
@@ -30,18 +30,19 @@ public class LoginControllerImpl implements LoginController {
         String password = request.getParameter("password");
 
         MVCModel model = new MVCModel("Blank","/noPage.jsp");
+        User user = userDAO.getUserByLoginData(email, password);
 
-        if (userDAO.checkLoginData(email, password)){
+        if (user!=null){
 
             model.setData("Login Success");
             model.setViewName("/activeTasks.jsp");
 
             HttpSession session = request.getSession();
-            User user = userDAO.getUserByLoginData(email, password);
+            //User user = userDAO.getUserByLoginData(email, password);
             session.setAttribute("user", user);
 
-            TaskDAOImpl userTaskDAO = new TaskDAOImpl();
-            List<Task> taskList = userTaskDAO.getAllUserTasks(user);
+            //TaskDAOImpl userTaskDAO = new TaskDAOImpl();
+            List<Task> taskList = user.getTaskList();
             session.setAttribute("taskList", taskList);
 
         } else {

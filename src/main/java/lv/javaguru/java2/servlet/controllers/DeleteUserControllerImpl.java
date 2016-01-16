@@ -24,7 +24,7 @@ import java.util.List;
 public class DeleteUserControllerImpl implements RegistrationController {
 
     @Autowired
-    @Qualifier("UserDAO_JDBC")
+    @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
     @Autowired
     ButtonFunctionService buttonFunctionService;

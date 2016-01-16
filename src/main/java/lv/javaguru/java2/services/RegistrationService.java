@@ -21,7 +21,7 @@ import java.util.Optional;
 @Component
 public class RegistrationService {
     @Autowired
-    @Qualifier("UserDAO_JDBC")
+    @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
 
     @Autowired

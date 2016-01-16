@@ -68,7 +68,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public User getUserByLoginData(String email, String password) throws DBException {
-        return null;
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("email", email));
+        criteria.add(Restrictions.eq("password", password));
+        return  (User) criteria.uniqueResult();
     }
 
 
