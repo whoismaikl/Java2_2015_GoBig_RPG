@@ -4,7 +4,7 @@ import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.domain.uilders.UserBuilder;
+import lv.javaguru.java2.domain.builders.UserBuilder;
 import lv.javaguru.java2.domain.User;
 import org.junit.Before;
 import org.junit.Test;
