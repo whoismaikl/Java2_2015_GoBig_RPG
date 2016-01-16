@@ -6,6 +6,7 @@ import lv.javaguru.java2.services.CreateTaskService;
 import lv.javaguru.java2.services.TimestampService;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
+import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskNewController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class TaskNewControllerImpl implements TaskNewController{
      @Autowired
     CreateTaskService createTaskService;
 
+    @Autowired
+    lv.javaguru.java2.domain.builders.TaskBuilder taskBuilder;
+
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
         String statDescription = request.getParameter("statDescription");
@@ -37,6 +41,13 @@ public class TaskNewControllerImpl implements TaskNewController{
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+
+        Task task = taskBuilder.bu()
+                .withEmail("e")
+                .withUserName("user101")
+                .withPassword("p")
+                .withUserType("U")
+                .build();
 
         createTaskService.createUserTask(user.getId(),statType,statValue,statDescription,repeatableYN, repeatFrequencyDays, "N");
 

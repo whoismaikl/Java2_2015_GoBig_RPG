@@ -1,9 +1,8 @@
-package lv.javaguru.java2.domain.Builders;
+package lv.javaguru.java2.domain.uilders;
 import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.User;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 @Component
 public class UserBuilder {

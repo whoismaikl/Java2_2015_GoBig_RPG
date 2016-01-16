@@ -3,8 +3,10 @@ package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.TaskDAOImpl;
+import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
+import lv.javaguru.java2.services.SessionUpdateService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.LoginController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class LoginControllerImpl implements LoginController {
     @Autowired
     @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
+    @Autowired
+    private SessionUpdateService sessionUpdateService;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
@@ -38,15 +42,18 @@ public class LoginControllerImpl implements LoginController {
             model.setViewName("/activeTasks.jsp");
 
             HttpSession session = request.getSession();
-            //User user = userDAO.getUserByLoginData(email, password);
             session.setAttribute("user", user);
 
-            //TaskDAOImpl userTaskDAO = new TaskDAOImpl();
-            List<Task> taskList = user.getTaskList();
+            sessionUpdateService.updateSession(request);
+
+            /*List<Task> taskList = user.getTaskList();
             session.setAttribute("taskList", taskList);
 
+            List<History> historyList = user.getHistoryList();
+            session.setAttribute("historyList", historyList);*/
+
         } else {
-            model.setData("Name Or Password not found in Our Database");
+            model.setData("Name Or Password not correct!");
             model.setViewName("/index.jsp");
         }
 

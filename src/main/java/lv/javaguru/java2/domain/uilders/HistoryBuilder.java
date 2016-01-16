@@ -1,4 +1,4 @@
-package lv.javaguru.java2.domain.Builders;
+package lv.javaguru.java2.domain.uilders;
 import lv.javaguru.java2.domain.History;
 import org.springframework.stereotype.Component;
 

@@ -53,8 +53,6 @@ public class TaskDAOImpl implements TaskDAO {
         Long id = task.getId();
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
         criteria.add(Restrictions.eq("id", id));
-        //Task taskFromDAO = (Task)criteria.uniqueResult();
-        //taskFromDAO = task;
         sessionFactory.getCurrentSession().update(task);
     }
 

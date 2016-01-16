@@ -6,6 +6,7 @@ import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.SessionUpdateService;
 import lv.javaguru.java2.services.TaskService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.AdminController;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskHistoryController;
@@ -35,14 +36,18 @@ public class TaskHistoryControllerImpl implements TaskHistoryController {
     @Autowired
     @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
+    @Autowired
+    private SessionUpdateService sessionUpdateService;
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        List<History> recordList = historyDAO.getAllUserRecords(user);
-        session.setAttribute("recordList", recordList);
+        sessionUpdateService.updateSession(request);
 
-        return  new MVCModel("Accomplished Task List", "/taskHistory.jsp");
+       /* HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        List<History> historyList = user.getHistoryList();
+        session.setAttribute("historyList", historyList);*/
+
+        return  new MVCModel("Accomplished Task History", "/taskHistory.jsp");
     }
 }

@@ -31,7 +31,7 @@
       <div id="tab1" class="tab_content">
         <html>
         <jsp:useBean id="record" class="lv.javaguru.java2.domain.History" scope="session"/>
-        <form action="/java2/admin" method="post">
+        <form action="/java2/taskHistory" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
@@ -45,14 +45,14 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="record" items="${recordList}">
+            <c:forEach var="history" items="${historyList}">
               <tr>
-                <td>${record.id}</td>
-                <td>${record.health}</td>
-                <td>${record.intelligence}</td>
-                <td>${record.communication}</td>
-                <td>${record.statValue}</td>
-                <td>${record.dateCompleted}</td>
+                <td>${history.id}</td>
+                <td>${history.health}</td>
+                <td>${history.intelligence}</td>
+                <td>${history.communication}</td>
+                <td>${history.statValue}</td>
+                <td>${history.dateCompleted}</td>
                 <td><input type="submit" name="delete${record.id}" class="login login-submit" value="Delete"></td>
               </tr>
             </c:forEach>
@@ -73,7 +73,7 @@
 
     <div class="tab_container">
       <div id="tab4" class="tab_content">
-        <form action="/java2/user_new" method="post">
+        <form action="/java2/taskHistory" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>

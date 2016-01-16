@@ -1,12 +1,8 @@
 package lv.javaguru.java2.servlet.controllers;
 
-import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.domain.Builders.UserBuilder;
-import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.ButtonFunctionService;
-import lv.javaguru.java2.services.RegistrationService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.RegistrationController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;

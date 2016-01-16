@@ -52,7 +52,10 @@ public class UserDAOImpl implements UserDAO {
 
 
     public List<User> getAllUsers() throws DBException {
-        return null;
+        List<User> users;
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        users = (List<User>)criteria.list();
+        return users;
     }
 
     public boolean getUserByMail(String mail) throws DBException {
