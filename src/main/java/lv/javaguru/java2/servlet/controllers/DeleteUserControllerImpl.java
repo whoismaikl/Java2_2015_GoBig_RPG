@@ -23,20 +23,21 @@ public class DeleteUserControllerImpl implements RegistrationController {
     @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
     @Autowired
-    ButtonFunctionService buttonFunctionService;
+    private ButtonFunctionService buttonFunctionService;
 
     public MVCModel execute(HttpServletRequest request) {
         try {
-            String taskString = buttonFunctionService.searchButtonName(request);
+            String taskString = buttonFunctionService.getButtonName(request);
             MVCModel mvcModel = null;
+
             if (!taskString.isEmpty()) {
-                String taskFunction = buttonFunctionService.getTaskFunction(taskString);
+                String taskFunction = buttonFunctionService.getButtonFunction(taskString);
                 Long userId = buttonFunctionService.getId(taskString);
                 if (taskFunction.equals("delete")) {
                     userDAO.deleteUser(userId);
-                    mvcModel = new MVCModel("User Deleted", "/admin.jsp");
+                    mvcModel = new MVCModel("User Deleted", "/userAdmin.jsp");
                 } else
-                    mvcModel = new MVCModel("Delete User - Failed !", "/admin.jsp");
+                    mvcModel = new MVCModel("Delete User - Failed !", "/userAdmin.jsp");
             }
             List<User> userList = userDAO.getAllUsers();
             HttpSession session = request.getSession();
@@ -44,7 +45,7 @@ public class DeleteUserControllerImpl implements RegistrationController {
             return mvcModel;
 
         } catch (Exception e) {
-            return new MVCModel("Delete User - Failed !", "/admin.jsp");
+            return new MVCModel("Delete User - Failed !", "/userAdmin.jsp");
         }
     }
 }

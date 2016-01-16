@@ -3,8 +3,7 @@ import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
-import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -49,11 +48,12 @@ public class TaskDAOImpl implements TaskDAO {
 
     }
 
-    public void editTask(Task task) throws DBException {
-        Long id = task.getId();
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
-        criteria.add(Restrictions.eq("id", id));
-        sessionFactory.getCurrentSession().update(task);
+    public void editTask(Long id, Task task) throws DBException {
+        //Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
+        //criteria.add(Restrictions.eq("id", id));
+        //sessionFactory.getCurrentSession().update(task);
+
+
     }
 
     public void accomplishTask(Long id) throws DBException {

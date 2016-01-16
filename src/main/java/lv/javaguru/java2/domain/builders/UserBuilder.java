@@ -14,11 +14,11 @@ public class UserBuilder {
     private String password;
     private String userName;
     private String userType ="U";
-    private long health = 50;
-    private long intelligence= 50;
-    private long communication= 50;
-    private long willPower= 25;
-    private long dailyTodo;
+    private int health = 50;
+    private int intelligence= 50;
+    private int communication= 50;
+    private int willPower= 25;
+    private int dailyTodo;
     private java.sql.Timestamp lastLogin;
     private java.sql.Timestamp dateRegistered;
     private String accountActiveYN;
@@ -73,27 +73,27 @@ public class UserBuilder {
         return this;
     }
 
-    public UserBuilder withHealth(Long health) {
+    public UserBuilder withHealth(int health) {
         this.health = health;
         return this;
     }
 
-    public UserBuilder withIntellegence(Long intelligence) {
+    public UserBuilder withIntellegence(int intelligence) {
         this.intelligence = intelligence;
         return this;
     }
 
-    public UserBuilder withCommunication(Long communication) {
+    public UserBuilder withCommunication(int communication) {
         this.communication = communication;
         return this;
     }
 
-    public UserBuilder withWillPower(Long willPower) {
+    public UserBuilder withWillPower(int willPower) {
         this.willPower = willPower;
         return this;
     }
 
-    public UserBuilder withDailyToDo(Long dailyTodo) {
+    public UserBuilder withDailyToDo(int dailyTodo) {
         this.dailyTodo = dailyTodo;
         return this;
     }

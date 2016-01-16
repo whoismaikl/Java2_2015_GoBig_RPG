@@ -18,19 +18,19 @@ public class History {
     private int statValue = 0;
     //@Transient
     @Column(name="health", columnDefinition = "INTEGER")
-    private long health;
+    private int health;
     //@Transient
     @Column(name="intelligence", columnDefinition = "INTEGER")
-    private long intelligence;
+    private int intelligence;
     //@Transient
     @Column(name="communication", columnDefinition = "INTEGER")
-    private long communication;
+    private int communication;
     //@Transient
     @Column(name="willPower", columnDefinition = "INTEGER")
-    private long willPower;
+    private int willPower;
     //@Transient
     @Column(name="dailyTodo", columnDefinition = "INTEGER")
-    private long dailyTodo;
+    private int dailyTodo;
     //@Transient
     @Column(name="dateCompleted", columnDefinition = "DATETIME(6)")
     private java.sql.Timestamp dateCompleted;
@@ -73,43 +73,43 @@ public class History {
         this.statValue = statValue;
     }
 
-    public long getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(long health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
-    public long getIntelligence() {
+    public int getIntelligence() {
         return intelligence;
     }
 
-    public void setIntelligence(long intelligence) {
+    public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
 
-    public long getCommunication() {
+    public int getCommunication() {
         return communication;
     }
 
-    public void setCommunication(long communication) {
+    public void setCommunication(int communication) {
         this.communication = communication;
     }
 
-    public long getWillPower() {
+    public int getWillPower() {
         return willPower;
     }
 
-    public void setWillPower(long willPower) {
+    public void setWillPower(int willPower) {
         this.willPower = willPower;
     }
 
-    public long getDailyTodo() {
+    public int getDailyTodo() {
         return dailyTodo;
     }
 
-    public void setDailyTodo(long dailyTodo) {
+    public void setDailyTodo(int dailyTodo) {
         this.dailyTodo = dailyTodo;
     }
 

@@ -31,7 +31,7 @@
       <div id="tab1" class="tab_content">
         <html>
         <jsp:useBean id="record" class="lv.javaguru.java2.domain.History" scope="session"/>
-        <form action="/java2/taskHistory" method="post">
+        <form action="/java2/deleteHistory" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
@@ -73,29 +73,30 @@
 
     <div class="tab_container">
       <div id="tab4" class="tab_content">
-        <form action="/java2/taskHistory" method="post">
+        <form action="/java2/createHistory" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
             <tr>
-              <th>Username</th>
-              <th>email</th>
-              <th>Password</th>
-              <th>Repeat Password</th>
-              <th>User Type</th>
-              <th>Add New User</th>
+              <th>health</th>
+              <th>intelligence</th>
+              <th>communication</th>
+              <th>statValue</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-              <th><input type="text" name="username" placeholder="Username"></th>
-              <th><input type="text" name="email" placeholder="email"></th>
-              <th><input type="password" name="password1" placeholder="Password"></th>
-              <th><input type="password" name="password2" placeholder="Repeat Password"></th>
-              <th><select name="userType" value="User" style="width:92%;">
-                <option>User</option>
-                <option>Admin</option>
-              </select></th>
-              <th><input type="submit" name="login" class="login login-submit" value="Add New User"></th>
+              <th><input type="text" name="health" placeholder="1"></th>
+              <th><input type="text" name="intelligence" placeholder="2"></th>
+              <th><input type="text" name="communication" placeholder="3"></th>
+              <th><input type="text" name="statValue" placeholder="6"></th>
+            </tr>
+            <tr>
+              <th>dateCompleted</th>
+              <th>New History Record</th>
+            </tr>
+            <tr>
+              <th><input type="text" name="dateCompleted" placeholder="2015-11-17 10:07:46"></th>
+              <th><input type="submit" name="New History" class="login login-submit" value="Add New History"></th>
             </tr>
             </tbody>
           </table>

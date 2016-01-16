@@ -29,7 +29,7 @@ public class Task {
     private String statDescription = " ";
 
     @Column(name="repeatableYN", columnDefinition = "CHAR(3)")
-    private String repeatableYN = "N";
+    private String repeatableYN = "No";
 
     @Column(name="repeatFrequencyDays", columnDefinition = "INTEGER")
     private int  repeatFrequencyDays;
@@ -42,18 +42,6 @@ public class Task {
 
     @Column(name="dateAccomplished", columnDefinition = "DATETIME(6)")
     private java.sql.Timestamp dateAccomplished;
-
-    /*/@ManyToOne
-    //@JoinColumn(name = "id")
-    private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }*/
 
     public Task(){}
 

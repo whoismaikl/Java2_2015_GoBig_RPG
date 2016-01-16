@@ -138,7 +138,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         }
     }
 
-    public void editTask(Task task) throws DBException {
+    public void editTask(Long id, Task task) throws DBException {
         if (task == null) {
             return;
         }

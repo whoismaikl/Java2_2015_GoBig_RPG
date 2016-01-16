@@ -45,10 +45,10 @@ public class CreateUserControllerImpl implements RegistrationController {
             List<User> userList = userDAO.getAllUsers();
             HttpSession session = request.getSession();
             session.setAttribute("userList", userList);
-            return new MVCModel("User Registered", "/admin.jsp");
+            return new MVCModel("User Registered", "/userAdmin.jsp");
 
         } catch (Exception e) {
-            return new MVCModel("Create User - Failed !", "/admin.jsp");
+            return new MVCModel("Create User - Failed !", "/userAdmin.jsp");
         }
 
     }

@@ -1,6 +1,7 @@
 package lv.javaguru.java2.services;
 
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.HistoryDAO;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.History;
@@ -24,15 +25,21 @@ public class SessionUpdateService {
     @Autowired
     @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
+    @Autowired
+    @Qualifier("TaskDAO_ORM")
+    private TaskDAO taskDAO;
+    @Autowired
+    @Qualifier("HistoryDAO_ORM")
+    private HistoryDAO historyDAO;
 
-    public void updateSession(HttpServletRequest request) {
+    public void updateSession(HttpServletRequest request) throws DBException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        List<Task> taskList = user.getTaskList();
+        List<Task> taskList = taskDAO.getAllUserTasks(user);
         session.setAttribute("taskList", taskList);
 
-        List<History> historyList = user.getHistoryList();
+        List<History> historyList = historyDAO.getAllUserRecords(user);
         session.setAttribute("historyList", historyList);
 
         List<Task> activeTaskList= new ArrayList<Task>();

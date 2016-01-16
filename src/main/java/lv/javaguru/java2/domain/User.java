@@ -33,19 +33,19 @@ public class User {
     private String userType;
 
     @Column(name="health", columnDefinition = "INTEGER")
-    private long health;
+    private int health;
 
     @Column(name="intelligence", columnDefinition = "INTEGER")
-    private long intelligence;
+    private int intelligence;
 
     @Column(name="communication", columnDefinition = "INTEGER")
-    private long communication;
+    private int communication;
 
     @Column(name="willPower", columnDefinition = "INTEGER")
-    private long willPower;
+    private int willPower;
 
     @Column(name="dailyTodo", columnDefinition = "INTEGER")
-    private long dailyTodo;
+    private int dailyTodo;
 
     @Column(name="lastLogin", columnDefinition = "DATETIME")
     private java.sql.Timestamp lastLogin;
@@ -137,11 +137,11 @@ public class User {
         this.password = password;
     }
 
-    public long getDailyTodo() {
+    public int getDailyTodo() {
         return dailyTodo;
     }
 
-    public void setDailyTodo(long dailyTodo) {
+    public void setDailyTodo(int dailyTodo) {
         this.dailyTodo = dailyTodo;
     }
 
@@ -153,11 +153,11 @@ public class User {
         this.userName = userName;
     }
 
-    public long getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(long health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
@@ -169,27 +169,27 @@ public class User {
         this.userType = userType;
     }
 
-    public long getIntelligence() {
+    public int getIntelligence() {
         return intelligence;
     }
 
-    public void setIntelligence(long intelligence) {
+    public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
     }
 
-    public long getCommunication() {
+    public int getCommunication() {
         return communication;
     }
 
-    public void setCommunication(long communication) {
+    public void setCommunication(int communication) {
         this.communication = communication;
     }
 
-    public long getWillPower() {
+    public int getWillPower() {
         return willPower;
     }
 
-    public void setWillPower(long willPower) {
+    public void setWillPower(int willPower) {
         this.willPower = willPower;
     }
 

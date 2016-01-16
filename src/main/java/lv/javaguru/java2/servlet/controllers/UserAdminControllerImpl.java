@@ -3,11 +3,8 @@ package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.services.TaskService;
-import lv.javaguru.java2.servlet.controllers.controllerInterfaces.AdminController;
-import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskManagementController;
+import lv.javaguru.java2.servlet.controllers.controllerInterfaces.UserAdminController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,13 +18,8 @@ import java.util.List;
  * Created by AST on 2015.11.03..
  */
 @Component
-public class AdminControllerImpl implements AdminController {
+public class UserAdminControllerImpl implements UserAdminController {
 
-    @Autowired
-    @Qualifier("TaskDAO_ORM")
-    private TaskDAO taskDAO;
-    @Autowired
-    private TaskService taskService;
     @Autowired
     @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
@@ -35,10 +27,10 @@ public class AdminControllerImpl implements AdminController {
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
         HttpSession session = request.getSession();
-        //User user = (User) session.getAttribute("user");
+
         List<User> userList = userDAO.getAllUsers();
         session.setAttribute("userList", userList);
 
-        return  new MVCModel("Refresh UserList", "/admin.jsp");
+        return  new MVCModel("Refresh UserList", "/userAdmin.jsp");
     }
 }

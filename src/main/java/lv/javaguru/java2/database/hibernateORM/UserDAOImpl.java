@@ -4,6 +4,7 @@ package lv.javaguru.java2.database.hibernateORM;
 //import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
+import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -46,7 +47,10 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
-    public void updateUserData(User user) throws DBException {
+    public void updateUserData(Long id, User user) throws DBException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("id", id));
+        sessionFactory.getCurrentSession().update(user);
 
     }
 

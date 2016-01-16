@@ -31,55 +31,51 @@ public class TimeSeriesChart_image
     @Qualifier("HistoryDAO_ORM")
     private HistoryDAO historyDAO;
     public static void createChart(List<History> historyList) throws IOException {
-    final TimeSeries series1 = new TimeSeries( "Health" );
-    final TimeSeries series2 = new TimeSeries( "Intelligence" );
-    final TimeSeries series3 = new TimeSeries( "Communication" );
+        final TimeSeries series1 = new TimeSeries("Health");
+        final TimeSeries series2 = new TimeSeries("Intelligence");
+        final TimeSeries series3 = new TimeSeries("Communication");
         long healthVal;
         long inteligenceVal;
         long communicationVal;
-    double value;
-    for ( History history : historyList)
-    {
-        try
-        {
-            healthVal = history.getHealth();
-            inteligenceVal = history.getIntelligence();
-            communicationVal = history.getCommunication();
-            Date date = history.getDateCompleted();
-            Day day = new Day(date);
-            series1.add(day, healthVal);
-            series2.add(day, inteligenceVal);
-            series3.add(day, communicationVal);
+        double value;
+        for (History history : historyList) {
+            try {
+                healthVal = history.getHealth();
+                inteligenceVal = history.getIntelligence();
+                communicationVal = history.getCommunication();
+                Date date = history.getDateCompleted();
+                Day day = new Day(date);
+                series1.add(day, healthVal);
+                series2.add(day, inteligenceVal);
+                series3.add(day, communicationVal);
+            } catch (SeriesException e) {
+                System.err.println("Error adding to series");
+            }
         }
-        catch ( SeriesException e )
-        {
-            System.err.println( "Error adding to series" );
-        }
-    }
         final TimeSeriesCollection timeSeriesCollection = new TimeSeriesCollection();
         timeSeriesCollection.addSeries(series1);
         timeSeriesCollection.addSeries(series2);
         timeSeriesCollection.addSeries(series3);
 
-    JFreeChart timechart = ChartFactory.createTimeSeriesChart(
-            "Task Statistic",
-            "Date",
-            "Scores",
-            timeSeriesCollection,
-            true,
-            true,
-            false);
+        JFreeChart timechart = ChartFactory.createTimeSeriesChart(
+                "Task Statistic",
+                "Date",
+                "Scores",
+                timeSeriesCollection,
+                true,
+                true,
+                false);
 
         XYPlot plot = (XYPlot) timechart.getPlot();
         DateAxis axis = (DateAxis) plot.getDomainAxis();
         axis.setDateFormatOverride(new SimpleDateFormat("dd-MMM-yyyy"));
         axis.setVerticalTickLabels(true);
-        axis.setTickUnit(new DateTickUnit(DateTickUnitType.DAY,1));
+        axis.setTickUnit(new DateTickUnit(DateTickUnitType.DAY, 1));
 
         int width = 640; /* Width of the image */
         int height = 480; /* Height of the image */
-        File timeChart = new File( "./src/main/webapp/includes/LineChart.jpeg" );
-        ChartUtilities.saveChartAsJPEG(timeChart, timechart, width, height );
-}
+        File timeChart = new File("./src/main/webapp/includes/LineChart.jpeg");
+        ChartUtilities.saveChartAsJPEG(timeChart, timechart, width, height);
+    }
 
 }

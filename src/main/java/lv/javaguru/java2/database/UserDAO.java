@@ -13,7 +13,7 @@ public interface UserDAO {
 
     void deleteUser(Long id) throws DBException;
 
-    void updateUserData(User user) throws DBException;
+    void updateUserData(Long id, User user) throws DBException;
 
     User getUserById(Long id) throws DBException;
 

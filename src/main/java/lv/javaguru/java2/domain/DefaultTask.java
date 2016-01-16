@@ -122,7 +122,6 @@ public class DefaultTask {
     public void setDateAdded(java.sql.Timestamp dateAdded) {
         this.dateAdded = dateAdded;
     }
-    //public DefaultTask(){}
 }
 
 

@@ -21,7 +21,7 @@ import java.util.Map;
 @Component
 public class ButtonFunctionService {
     private final int BUTTON_FUNCTION_NAME_LENGTH = 6;
-    public String searchButtonName(final HttpServletRequest request) {
+    public String getButtonName(final HttpServletRequest request) {
         String buttonName = "";
         Map<String, String[]> paramMap = request.getParameterMap();
         if (!paramMap.isEmpty()) {
@@ -35,7 +35,7 @@ public class ButtonFunctionService {
         String id = buttonName.substring(BUTTON_FUNCTION_NAME_LENGTH);
         return Long.valueOf(id);
     }
-    public String getTaskFunction(String buttonName){
+    public String getButtonFunction(String buttonName){
         return buttonName.substring(0,BUTTON_FUNCTION_NAME_LENGTH);
     }
 }

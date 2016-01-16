@@ -30,7 +30,7 @@ public class TaskStatisticsControllerImpl implements TaskStatisticsController {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         List<History> historyList = user.getHistoryList();
-        session.setAttribute("recordList", historyList);
+
         timeSeriesChart_image.createChart(historyList);
 
         return  new MVCModel("Task Statistics", "/taskStatistics.jsp");

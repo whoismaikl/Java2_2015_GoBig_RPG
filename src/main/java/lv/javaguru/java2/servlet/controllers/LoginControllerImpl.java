@@ -46,12 +46,6 @@ public class LoginControllerImpl implements LoginController {
 
             sessionUpdateService.updateSession(request);
 
-            /*List<Task> taskList = user.getTaskList();
-            session.setAttribute("taskList", taskList);
-
-            List<History> historyList = user.getHistoryList();
-            session.setAttribute("historyList", historyList);*/
-
         } else {
             model.setData("Name Or Password not correct!");
             model.setViewName("/index.jsp");

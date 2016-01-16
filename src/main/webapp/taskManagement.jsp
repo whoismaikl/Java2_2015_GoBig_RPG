@@ -69,12 +69,12 @@
 
 
   <article class="module width_full">
-    <header><h3 class="tabs_involved">New Tasks</h3>
+    <header><h3 class="tabs_involved">Create New Task</h3>
     </header>
 
     <div class="tab_container">
       <div id="tab4" class="tab_content">
-        <form action="/java2/task_new" method="post">
+        <form action="/java2/createTask" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
               <tr>
@@ -119,7 +119,7 @@
                   <option>No</option>
                 </select></th>
                 <th><input type="number" name="repeatFrequencyDays" placeholder="1" value="1"></th>
-                <th><input type="submit" name="newTask" class="login login-submit" value="Add New Task"></th>
+                <th><input type="submit" name="newTask" class="login login-submit" value="Create New Task"></th>
               </tr>
             </tbody>
           </table>

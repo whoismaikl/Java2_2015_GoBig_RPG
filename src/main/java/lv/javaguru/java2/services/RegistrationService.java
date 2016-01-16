@@ -2,18 +2,14 @@ package lv.javaguru.java2.services;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.DefaultTaskDAO;
-import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.DefaultTask;
-import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by JavaCourses on 2015.11.19..
@@ -34,7 +30,7 @@ public class RegistrationService {
     public User createUser(String email, String password1, String password2, String userName) {
 
 
-        if (!userExist(email, userName) && passwordsMatch(password1, password2) && correctEmailSyntax(email)) {
+        if (!userExist(email, userName) && passwordsMatches(password1, password2) && correctEmailSyntax(email)) {
             User user = new User(email, password1, userName, "U");
             try {
                 userDAO.createUser(user);
@@ -60,7 +56,7 @@ public class RegistrationService {
         }
     }
 
-    public boolean passwordsMatch(String password1, String password2) {
+    public boolean passwordsMatches(String password1, String password2) {
         if (password1.equals(password2) && !password1.equals(null) && !password1.equals("")) {
             return true;
         } else {

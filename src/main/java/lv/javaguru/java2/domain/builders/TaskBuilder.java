@@ -17,7 +17,7 @@ public class TaskBuilder {
     private String statDescription = "Default";
     private String repeatableYN = "Yes";
     private int repeatFrequencyDays = 1;
-    private String accomplishedYN = "No";
+    private String accomplishedYN = "N";
     private java.sql.Timestamp dateAdded;
     private java.sql.Timestamp dateAccomplished;
 
