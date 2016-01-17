@@ -35,6 +35,9 @@ public class SessionUpdateService {
     public void updateSession(HttpServletRequest request) throws DBException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
+        Long userId = user.getId();
+        User updatedUser = userDAO.getUserById(userId);
+        session.setAttribute("user", updatedUser);
 
         List<Task> taskList = taskDAO.getAllUserTasks(user);
         session.setAttribute("taskList", taskList);

@@ -47,9 +47,9 @@ public class UserDAOImpl implements UserDAO {
 
     }
 
-    public void updateUserData(Long id, User user) throws DBException {
+    public void updateUserData(User user) throws DBException {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
-        criteria.add(Restrictions.eq("id", id));
+        criteria.add(Restrictions.eq("id", user.getId()));
         sessionFactory.getCurrentSession().update(user);
 
     }

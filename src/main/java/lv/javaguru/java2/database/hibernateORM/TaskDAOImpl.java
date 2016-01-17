@@ -48,10 +48,11 @@ public class TaskDAOImpl implements TaskDAO {
 
     }
 
-    public void editTask(Long id, Task task) throws DBException {
-        //Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
-        //criteria.add(Restrictions.eq("id", id));
-        //sessionFactory.getCurrentSession().update(task);
+    public void editTask(Task task) throws DBException {
+
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
+        criteria.add(Restrictions.eq("id", task.getId()));
+        sessionFactory.getCurrentSession().update(task);
 
 
     }

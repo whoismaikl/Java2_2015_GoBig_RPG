@@ -58,7 +58,7 @@ public class EditTaskControllerImpl implements EditTaskController {
                     .build();
 
             if (buttonFunction.equals("save__")) {
-                taskDAO.editTask(taskId, task);
+                taskDAO.editTask(task);
                 sessionUpdateService.updateSession(request);
                 return new MVCModel("Edit Task", "/taskManagement.jsp");
             } else if (buttonFunction.equals("cancel")) {

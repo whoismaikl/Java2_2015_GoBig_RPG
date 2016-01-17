@@ -32,47 +32,51 @@
         <form action="/java2/editTask" method="post">
           <table class="tablesorter" cellspacing="0">
             <thead>
-            <tr>
-              <th> Task Description </th>
-            </tr>
+              <tr>
+                <th> Task Description </th>
+              </tr>
             </thead>
             <tbody>
-            <tr>
-              <th>
-                <input type="text" name="statDescription" placeholder="${taskForEdit.statDescription}" value="${taskForEdit.statDescription}" maxlength="255"
-                       size="124">
-                <!--textarea name="statDescription" style="width:250px;height:150px;" placeholder="Description" value="Description" maxlength="255"></textarea-->
-              </th>
-            </tr>
+              <tr>
+                <th>
+                  <input type="text" name="statDescription" placeholder="${taskForEdit.statDescription}" value="${taskForEdit.statDescription}" maxlength="255"
+                         size="124">
+                  <!--textarea name="statDescription" style="width:250px;height:150px;" placeholder="Description" value="Description" maxlength="255"></textarea-->
+                </th>
+              </tr>
             </tbody>
           </table>
+          <br>
+          <br>
           <table class="tablesorter" cellspacing="0">
             <thead>
-            <tr>
-              <th>Category</th>
-              <th>Value</th>
-              <th>Repeatable(Yes/No)</th>
-              <th>Repeat Frequency(Days)</th>
-              <th>Action</th>
-            </tr>
+              <tr>
+                <th>Category</th>
+                <th>Value</th>
+                <th>Repeatable(Yes/No)</th>
+                <th>Repeat Frequency(Days)</th>
+                <th>Action</th>
+              </tr>
             </thead>
             <tbody>
-            <tr>
-              <th><select name="statType" style="width:92%;">
-                <option ${taskForEdit.statType.equals("Health") ? 'selected':''}>Health</option>
-                <option ${taskForEdit.statType.equals("Intelligence") ? 'selected':''}>Intelligence</option>
-                <option ${taskForEdit.statType.equals("Communication") ? 'selected':''}>Communication</option>
-              </select></th>
-              <th><input type="number" name="statValue" placeholder="${taskForEdit.statValue}" value="${taskForEdit.statValue}"></th>
-              <th><select name="repeatableYN" style="width:92%;">
-                <option ${taskForEdit.repeatableYN.equals("Yes") ? 'selected':''}>Yes</option>
-                <option ${taskForEdit.repeatableYN.equals("No") ? 'selected':''}>No</option>
-              </select></th>
-              <th><input type="number" name="repeatFrequencyDays" placeholder="${taskForEdit.repeatFrequencyDays}" value="${taskForEdit.repeatFrequencyDays}"></th>
-              <th><input type="submit" name="save__" class="login login-submit" value="Save"></th>
-            </tr>
+              <tr>
+                <th><select name="statType" style="width:92%;">
+                  <option ${taskForEdit.statType.equals("Health") ? 'selected':''}>Health</option>
+                  <option ${taskForEdit.statType.equals("Intelligence") ? 'selected':''}>Intelligence</option>
+                  <option ${taskForEdit.statType.equals("Communication") ? 'selected':''}>Communication</option>
+                </select></th>
+                <th><input type="number" name="statValue" placeholder="${taskForEdit.statValue}" value="${taskForEdit.statValue}"></th>
+                <th><select name="repeatableYN" style="width:92%;">
+                  <option ${taskForEdit.repeatableYN.equals("Yes") ? 'selected':''}>Yes</option>
+                  <option ${taskForEdit.repeatableYN.equals("No") ? 'selected':''}>No</option>
+                </select></th>
+                <th><input type="number" name="repeatFrequencyDays" placeholder="${taskForEdit.repeatFrequencyDays}" value="${taskForEdit.repeatFrequencyDays}"></th>
+                <th><input type="submit" name="save__" class="login login-submit" value="Save"></th>
+              </tr>
             </tbody>
           </table>
+          <br>
+          <br>
         </form>
       </div>
       <!-- end of #tab1 -->
@@ -84,9 +88,9 @@
 
           <table class="tablesorter" cellspacing="0">
             <thead>
-            <tr>
-              <th>Action</th>
-            </tr>
+              <tr>
+                <th>Action</th>
+              </tr>
             </thead>
             <tbody>
               <tr>

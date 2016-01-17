@@ -168,7 +168,6 @@ public class TaskDAOImplTest {
         taskDAO.createTask(task3);
         User user3 = userDAO.getUserById(userId1);
 
-        //List<Task> usersTasks = taskDAO.getAllUserTasks(user1);
         List<Task> taskList = user3.getTaskList();
         assertEquals(2, taskList.size());
 
@@ -219,12 +218,28 @@ public class TaskDAOImplTest {
         }
 
         List<Task> taskList = user3.getTaskList();
-        //for(Task task: taskList) {
-         //   taskList.remove(task);
-        //}
         assertEquals(2, taskList.size());
+    }
+    @Test
+    public void testUpdateTasks() throws DBException {
 
-
+        User user = userBuilder.buildUser()
+                .withEmail("e")
+                .withUserName("user101")
+                .withPassword("p")
+                .withUserType("U")
+                .build();
+        User user1 = new User("2@com14", "p14", "n14", "U");
+        userDAO.createUser(user);
+        userDAO.createUser(user1);
+        Long userId1 = user1.getId();
+        Task task1 = createUserTask(userId1, "Health", 5, "Description1", "Y", "N");
+        Task task2 = createUserTask(userId1, "Health", 4, "Description2", "Y", "N");
+        taskDAO.createTask(task1);
+        taskDAO.createTask(task2);
+        Long taskId1 = task1.getId();
+        task1.setAccomplishedYN("Y");
+        taskDAO.editTask(task1);
 
     }
 }

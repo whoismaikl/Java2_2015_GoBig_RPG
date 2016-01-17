@@ -27,9 +27,9 @@ import javax.servlet.http.HttpSession;
  */
 @Component
 public class AccomplishTaskControllerImpl implements AccomplishTaskController {
-    private final String TASK_STATUS_TYPE_HEALTH  = "health";
-    private final String TASK_STATUS_TYPE_INTELLIGENCE  = "intelligence";
-    private final String TASK_STATUS_TYPE_COMMUNICATION  = "communication";
+    private final String TASK_STATUS_TYPE_HEALTH  = "Health";
+    private final String TASK_STATUS_TYPE_INTELLIGENCE  = "Intelligence";
+    private final String TASK_STATUS_TYPE_COMMUNICATION  = "Communication";
     @Autowired
     @Qualifier("TaskDAO_ORM")
     private TaskDAO taskDAO;
@@ -69,10 +69,6 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
             int taskValue = task.getStatValue();
             String taskDescription = task.getStatDescription();
 
-            //Update Task
-            task.setAccomplishedYN("Y");
-            taskDAO.editTask(taskId, task);
-
             //Update User
             if (taskType.equals(TASK_STATUS_TYPE_HEALTH)) {
                 Integer newValue = user.getHealth() + taskValue;
@@ -84,7 +80,12 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
                 Integer newValue = user.getCommunication() + taskValue;
                 user.setCommunication(newValue);
             }
-            userDAO.updateUserData(userID, user);
+            userDAO.updateUserData(user);
+
+            //Update Task
+            task.setAccomplishedYN("Y");
+            task.setDateAccomplished(timestampService.getSqlTimestamp());
+            taskDAO.editTask(task);
 
             //Create Record in History
             History history = historyBuilder.buildHistory()

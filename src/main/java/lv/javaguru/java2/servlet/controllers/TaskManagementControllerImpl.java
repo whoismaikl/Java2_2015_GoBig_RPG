@@ -1,6 +1,7 @@
 package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskDAO;
+import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.services.ButtonFunctionService;
 import lv.javaguru.java2.services.SessionUpdateService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskManagementController;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by AST on 2015.11.03..
@@ -37,7 +39,9 @@ public class TaskManagementControllerImpl implements TaskManagementController {
                 sessionUpdateService.updateSession(request);
                 return new MVCModel("Refresh Task List", "/taskManagement.jsp");
             } else if (buttonFunction.equals("edit__")) {
-                sessionUpdateService.updateSession(request);
+                Task taskForEdit = taskDAO.getTaskById(taskId);
+                HttpSession session = request.getSession();
+                session.setAttribute("taskForEdit", taskForEdit);
                 return new MVCModel("Edit Task", "/editTask.jsp");
             }
 

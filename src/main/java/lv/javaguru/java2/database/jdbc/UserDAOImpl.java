@@ -126,7 +126,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         }
     }
 
-    public void updateUserData(Long id, User user) throws DBException {
+    public void updateUserData(User user) throws DBException {
         if (user == null) {
             return;
         }
@@ -140,7 +140,7 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getUserName());
             preparedStatement.setString(4, user.getUserType());
-            preparedStatement.setLong(5, id);
+            preparedStatement.setLong(5, user.getId());
 
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
