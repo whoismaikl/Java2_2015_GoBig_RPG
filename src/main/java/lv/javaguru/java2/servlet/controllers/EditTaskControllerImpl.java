@@ -23,49 +23,27 @@ public class EditTaskControllerImpl implements EditTaskController {
     @Qualifier("TaskDAO_ORM")
     private TaskDAO taskDAO;
     @Autowired
-    private TaskBuilder taskBuilder;
-    @Autowired
     private SessionUpdateService sessionUpdateService;
-    @Autowired
-    private ButtonFunctionService buttonFunctionService;
-
 
     public MVCModel execute(HttpServletRequest request) throws DBException {
 
-        String buttonName = buttonFunctionService.getButtonName(request);
+        String statType = request.getParameter("statType");
+        int statValue = Integer.parseInt(request.getParameter("statValue"));
+        String statDescription = request.getParameter("statDescription");
+        String repeatableYN = request.getParameter("repeatableYN");
+        int repeatFrequencyDays = Integer.parseInt(request.getParameter("repeatFrequencyDays"));
 
-        if (!buttonName.isEmpty()) {
+        HttpSession session = request.getSession();
+        Task taskForEdit =(Task) session.getAttribute("taskForEdit");
 
-            String buttonFunction = buttonFunctionService.getButtonFunction(buttonName);
-            Long taskId = buttonFunctionService.getId(buttonName);
+        taskForEdit.setStatType(statType);
+        taskForEdit.setStatValue(statValue);
+        taskForEdit.setStatDescription(statDescription);
+        taskForEdit.setRepeatableYN(repeatableYN);
+        taskForEdit.setRepeatFrequencyDays(repeatFrequencyDays);
 
-            String statType = request.getParameter("statType");
-            int statValue = Integer.parseInt(request.getParameter("statValue"));
-            String statDescription = request.getParameter("statDescription");
-            String repeatableYN = request.getParameter("repeatableYN");
-            int repeatFrequencyDays = Integer.parseInt(request.getParameter("repeatFrequencyDays"));
-
-            HttpSession session = request.getSession();
-            User user = (User) session.getAttribute("user");
-
-            Task task = taskBuilder.buildTask()
-                    .withUserID(user.getId())
-                    .withStatType(statType)
-                    .withStatValue(statValue)
-                    .withStatDescription(statDescription)
-                    .withRepeatableYN(repeatableYN)
-                    .withRepeatFrequencyDays(repeatFrequencyDays)
-                    .build();
-
-            if (buttonFunction.equals("save__")) {
-                taskDAO.editTask(task);
-                sessionUpdateService.updateSession(request);
-                return new MVCModel("Edit Task", "/taskManagement.jsp");
-            } else if (buttonFunction.equals("cancel")) {
-                sessionUpdateService.updateSession(request);
-                return new MVCModel("Cancel Task Edit", "/taskManagement.jsp");
-            }
-        }
-        return new MVCModel("Button not active", "/taskManagement.jsp");
+        taskDAO.editTask(taskForEdit);
+        sessionUpdateService.updateSession(request);
+        return new MVCModel("Edit Task", "/taskManagement.jsp");
     }
 }

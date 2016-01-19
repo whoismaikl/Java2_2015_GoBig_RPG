@@ -52,8 +52,6 @@
           <li><a href="/java2/help.jsp">Help</a></li>
           <li><a href="/java2/logout">Logout</a></li>
         </ul>
-
-
       </div>
         <!-- end of #tab -->
     </article>
