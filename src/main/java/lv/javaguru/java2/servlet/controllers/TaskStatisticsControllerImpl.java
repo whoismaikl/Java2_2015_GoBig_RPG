@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.HistoryDAO;
 import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.TimeSeriesChart_image;
+import lv.javaguru.java2.services.TimeService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskStatisticsController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,10 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by AST on 2015.11.03..
@@ -21,14 +25,20 @@ import java.util.List;
 public class TaskStatisticsControllerImpl implements TaskStatisticsController {
     @Autowired
     private TimeSeriesChart_image timeSeriesChart_image;
+    @Autowired
+    HistoryDAO historyDAO;
+    @Autowired
+    TimeService timeService;
 
     public MVCModel execute(HttpServletRequest request) throws DBException, IOException {
 
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        List<History> historyList = user.getHistoryList();
+        final User user = (User) session.getAttribute("user");
+        Date stopDate = timeService.getSqlTimestamp();
+        Date startDate = timeService.getChangedDate(stopDate, -30);
+        List<History> historyListInRange = historyDAO.getHistoryRecordsInRange(user, startDate, stopDate);
 
-        timeSeriesChart_image.createChart(historyList);
+        timeSeriesChart_image.createChart(historyListInRange);
 
         return  new MVCModel("Task Statistics", "/taskStatistics.jsp");
     }

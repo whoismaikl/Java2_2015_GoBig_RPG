@@ -6,13 +6,11 @@ import lv.javaguru.java2.database.HistoryDAO;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
-import lv.javaguru.java2.domain.History;
-import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.builders.HistoryBuilder;
 import lv.javaguru.java2.domain.builders.UserBuilder;
 import lv.javaguru.java2.services.BarChart_image;
-import lv.javaguru.java2.services.TimestampService;
+import lv.javaguru.java2.services.TimeService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +20,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -52,7 +49,7 @@ public class ServiceTest {
     BarChart_image barChart_image;
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
-    java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
+    java.sql.Timestamp sqlTimestamp = new TimeService().getSqlTimestamp();
 
     @Before
     public void init() throws DBException {

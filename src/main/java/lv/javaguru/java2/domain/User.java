@@ -1,14 +1,9 @@
 package lv.javaguru.java2.domain;
 
-import com.sun.prism.impl.Disposer;
-import lv.javaguru.java2.services.TimestampService;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Where;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity

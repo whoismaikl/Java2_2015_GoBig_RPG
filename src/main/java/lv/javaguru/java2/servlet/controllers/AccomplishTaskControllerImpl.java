@@ -9,10 +9,9 @@ import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.builders.HistoryBuilder;
 import lv.javaguru.java2.domain.builders.TaskBuilder;
-import lv.javaguru.java2.domain.builders.UserBuilder;
 import lv.javaguru.java2.services.ButtonFunctionService;
 import lv.javaguru.java2.services.SessionUpdateService;
-import lv.javaguru.java2.services.TimestampService;
+import lv.javaguru.java2.services.TimeService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.AccomplishTaskController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
     @Autowired
     private ButtonFunctionService buttonFunctionService;
     @Autowired
-    private TimestampService timestampService;
+    private TimeService timeService;
     @Autowired
     private HistoryBuilder historyBuilder;
     @Autowired
@@ -85,7 +84,7 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
 
             //Update Task
             task.setAccomplishedYN("Y");
-            task.setDateAccomplished(timestampService.getSqlTimestamp());
+            task.setDateAccomplished(timeService.getSqlTimestamp());
             taskDAO.editTask(task);
 
             //Create Record in History
@@ -96,7 +95,7 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
                     .withCommunication(user.getCommunication())
                     .withWillPower(user.getWillPower())
                     .withStatValue(taskValue)
-                    .withDateCompleted(timestampService.getSqlTimestamp())
+                    .withDateCompleted(timeService.getSqlTimestamp())
                     .build();
             historyDAO.createHistory(history);
 

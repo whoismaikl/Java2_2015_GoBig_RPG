@@ -7,7 +7,6 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
@@ -62,5 +61,5 @@ public class SessionUpdateService {
         barChart_image.createBarChart(user);
 
     }
-    java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();
+    java.sql.Timestamp sqlTimestamp = new TimeService().getSqlTimestamp();
 }

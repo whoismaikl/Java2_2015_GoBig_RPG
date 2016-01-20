@@ -2,14 +2,10 @@ package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.HistoryDAO;
-import lv.javaguru.java2.database.TaskDAO;
-import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.History;
-import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.builders.HistoryBuilder;
-import lv.javaguru.java2.services.CreateTaskService;
 import lv.javaguru.java2.services.SessionUpdateService;
-import lv.javaguru.java2.services.TimestampService;
+import lv.javaguru.java2.services.TimeService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskHistoryController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +28,7 @@ public class TaskHistoryControllerImpl implements TaskHistoryController {
     @Autowired
     private SessionUpdateService sessionUpdateService;
     @Autowired
-    private TimestampService timestampService;
+    private TimeService timeService;
 
     public MVCModel execute(HttpServletRequest request) throws DBException, IOException {
 
@@ -47,7 +43,7 @@ public class TaskHistoryControllerImpl implements TaskHistoryController {
                 .withIntelligence(intelligence)
                 .withCommunication(communication)
                 .withStatValue(statValue)
-                .withDateCompleted(timestampService.getSqlTimestamp())
+                .withDateCompleted(timeService.getSqlTimestamp())
                 .build();
 
         historyDAO.createHistory(history);

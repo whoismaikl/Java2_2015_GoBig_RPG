@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,11 +34,11 @@ public class HistoryDAOImpl implements HistoryDAO {
     }
 
     public List<History> getAllUserRecords(User user) throws DBException {
-        Long userId  = user.getId();
+        Long userId = user.getId();
         List<History> histories;
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(History.class);
         criteria.add(Restrictions.eq("userID", userId));
-        histories = (List<History>)criteria.list();
+        histories = (List<History>) criteria.list();
         return histories;
     }
 
@@ -50,6 +51,13 @@ public class HistoryDAOImpl implements HistoryDAO {
         sessionFactory.getCurrentSession().update(task);
     }
 
-
-
+    public List<History> getHistoryRecordsInRange(User user, Date startDate, Date stopDate) throws DBException{
+        Long userId = user.getId();
+        List<History> histories;
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(History.class);
+        criteria.add(Restrictions.eq("userID", userId));
+        criteria.add(Restrictions.between("dateCompleted", startDate, stopDate));
+        histories = (List<History>) criteria.list();
+        return histories;
+    }
 }
