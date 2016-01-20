@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class LoginControllerImpl implements LoginController {
     @Autowired
     private SessionUpdateService sessionUpdateService;
 
-    public MVCModel execute(HttpServletRequest request) throws DBException {
+    public MVCModel execute(HttpServletRequest request) throws DBException, IOException {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");

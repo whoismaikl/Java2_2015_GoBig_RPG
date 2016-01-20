@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,13 +32,15 @@ public class SessionUpdateService {
     @Autowired
     @Qualifier("HistoryDAO_ORM")
     private HistoryDAO historyDAO;
+    @Autowired
+    BarChart_image barChart_image;
 
-    public void updateSession(HttpServletRequest request) throws DBException {
+    public void updateSession(HttpServletRequest request) throws DBException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        Long userId = user.getId();
-        User updatedUser = userDAO.getUserById(userId);
-        session.setAttribute("user", updatedUser);
+        User userFromSession = (User) session.getAttribute("user");
+        Long userId = userFromSession.getId();
+        User user = userDAO.getUserById(userId);
+        session.setAttribute("user", user);
 
         List<Task> taskList = taskDAO.getAllUserTasks(user);
         session.setAttribute("taskList", taskList);
@@ -55,6 +58,8 @@ public class SessionUpdateService {
         }
         session.setAttribute("activeTaskList", activeTaskList);
         session.setAttribute("accomplishedTaskList", accomplishedTaskList);
+
+        barChart_image.createBarChart(user);
 
     }
     java.sql.Timestamp sqlTimestamp = new TimestampService().getSqlTimestamp();

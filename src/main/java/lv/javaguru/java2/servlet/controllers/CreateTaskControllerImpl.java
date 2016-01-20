@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class CreateTaskControllerImpl implements TaskNewController{
     @Autowired
     private TimestampService timestampService;
 
-    public MVCModel execute(HttpServletRequest request) throws DBException {
+    public MVCModel execute(HttpServletRequest request) throws DBException, IOException {
 
         String statType = request.getParameter("statType");
         int statValue = Integer.parseInt(request.getParameter("statValue"));

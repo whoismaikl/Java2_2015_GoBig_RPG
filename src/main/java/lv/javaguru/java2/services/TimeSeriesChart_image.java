@@ -1,6 +1,4 @@
 package lv.javaguru.java2.services;
-
-import lv.javaguru.java2.database.HistoryDAO;
 import lv.javaguru.java2.domain.History;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -11,10 +9,7 @@ import org.jfree.data.general.SeriesException;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -27,9 +22,6 @@ import java.util.List;
 @Component
 public class TimeSeriesChart_image
 {
-    @Autowired
-    @Qualifier("HistoryDAO_ORM")
-    private HistoryDAO historyDAO;
     public static void createChart(List<History> historyList) throws IOException {
         final TimeSeries series1 = new TimeSeries("Health");
         final TimeSeries series2 = new TimeSeries("Intelligence");

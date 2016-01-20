@@ -25,6 +25,13 @@
   <body>
     <section id="main" class="column">
       <article class="module width_full">
+        <div class="tab_container">
+          <div id="tab" class="tab_content">
+            <img src="includes/BarChart.jpeg" width="920" height="100" alt="" />
+          </div><!-- end of #tab1 -->
+        </div><!-- end of #tab -->
+      </article><!-- end of messages article -->
+      <article class="module width_full">
         <header><h3 class="tabs_involved">Daily To Do Task List</h3>
         </header>
         <div class="tab_container">

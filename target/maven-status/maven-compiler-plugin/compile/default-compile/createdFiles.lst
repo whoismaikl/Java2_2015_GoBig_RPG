@@ -43,6 +43,7 @@ lv\javaguru\java2\database\jdbc\UserDAOImpl.class
 lv\javaguru\java2\database\DefaultTaskDAO.class
 lv\javaguru\java2\services\ButtonFunctionService.class
 lv\javaguru\java2\database\jdbc\TaskDAOImpl.class
+lv\javaguru\java2\services\BarChart_image.class
 lv\javaguru\java2\servlet\originals\RedirectToJSPServlet.class
 lv\javaguru\java2\servlet\controllers\TaskManagementControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\LoginController.class

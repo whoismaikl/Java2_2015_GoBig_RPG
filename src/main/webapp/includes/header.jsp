@@ -14,7 +14,7 @@
     <div class="tab_container">
       <%DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         String formattedDate = df.format(new Date());%>
-      <pre><h4>   Date: <%=formattedDate%>      Welcome to GoBig_RPG  -  ${sessionScope.user.userName}</h4></pre>
+      <pre><h4 class="tabs_involved">   Date: <%=formattedDate%>      Welcome to GoBig_RPG  -  ${sessionScope.user.userName}</h4></pre>
     </div>
   </section><!-- end of secondary bar -->
 </head>

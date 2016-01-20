@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * Created by AST on 2015.11.03..
@@ -50,7 +51,7 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
     @Autowired
     private SessionUpdateService sessionUpdateService;
 
-    public MVCModel execute(HttpServletRequest request) throws DBException {
+    public MVCModel execute(HttpServletRequest request) throws DBException, IOException {
 
         String buttonName = buttonFunctionService.getButtonName(request);
 

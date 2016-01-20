@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * Created by AST on 2015.11.03..
@@ -33,7 +34,7 @@ public class TaskHistoryControllerImpl implements TaskHistoryController {
     @Autowired
     private TimestampService timestampService;
 
-    public MVCModel execute(HttpServletRequest request) throws DBException {
+    public MVCModel execute(HttpServletRequest request) throws DBException, IOException {
 
         int health = Integer.parseInt(request.getParameter("health"));
         int intelligence = Integer.parseInt(request.getParameter("intelligence"));

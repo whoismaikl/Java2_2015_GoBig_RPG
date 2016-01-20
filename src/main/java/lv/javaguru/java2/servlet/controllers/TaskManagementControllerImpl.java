@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * Created by AST on 2015.11.03..
@@ -25,7 +26,7 @@ public class TaskManagementControllerImpl implements TaskManagementController {
     @Autowired
     private ButtonFunctionService buttonFunctionService;
 
-    public MVCModel execute(HttpServletRequest request) throws DBException {
+    public MVCModel execute(HttpServletRequest request) throws DBException, IOException {
 
         String buttonName = buttonFunctionService.getButtonName(request);
 
