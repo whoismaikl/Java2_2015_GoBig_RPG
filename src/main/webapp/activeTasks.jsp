@@ -15,8 +15,8 @@
 
     <meta charset="utf-8"/>
     <title>Active Task Panel</title>
-    <link rel="stylesheet" href="css/layout.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="css/gobig.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/layout.css" type="text/css" media="screen"/>
+    <link rel="stylesheet" href="css/gobig.css" type="text/css" media="screen"/>
     <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen"/>
 
   </head>
@@ -47,7 +47,7 @@
                     <td>${activeTask.statType}</td>
                     <td>${activeTask.statValue}</td>
                     <td>
-                      <input type="submit" value="Yes" name="accomp${activeTask.id}" class="alt_btn">
+                      <input type="submit" value="Yes" name=" ${activeTask.id}" class="alt_btn">
                     </td>
                   </tr>
                 </c:forEach>
@@ -68,7 +68,7 @@
                   <th>Task Description</th>
                   <th>Category</th>
                   <th>Value</th>
-                  <th>Task Accomplished</th>
+                <!--  <th>Task Accomplished</th> -->
                   <th>Date Accomplished</th>
                 </tr>
                 </thead>
@@ -78,8 +78,11 @@
                     <td>${accomplishedTask.statDescription}</td>
                     <td>${accomplishedTask.statType}</td>
                     <td>${accomplishedTask.statValue}</td>
-                    <td>${accomplishedTask.accomplishedYN}</td>
+
                     <td>${accomplishedTask.dateAccomplished}</td>
+                    <td>
+                      <input type="submit" value="Undo" name="undoAccomplish${accomplishedTask.id}" class="alt_btn">
+                    </td>
                   </tr>
                 </c:forEach>
                 </tbody>

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.util.List;
 
 /**
@@ -65,9 +67,16 @@ public class RegistrationService {
     }
 
     public boolean correctEmailSyntax(String email) {
-        // add string check for xxx@ccc.zz
-        return true;
+        boolean result = true;
+        try {
+            InternetAddress emailAddress = new InternetAddress(email);
+            emailAddress.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
     }
+
     public void createDefaultTasks(){
 
     }
