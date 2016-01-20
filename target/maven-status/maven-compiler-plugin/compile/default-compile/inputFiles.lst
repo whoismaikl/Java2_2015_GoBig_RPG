@@ -31,13 +31,13 @@ C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\s
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\DeleteUserController.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\LoginController.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\database\hibernateORM\UserDAOImpl.java
+C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\TimeService.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\mvc\MVCFilter.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\originals\SessionUsageServlet.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\DeleteUserControllerImpl.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\SessionUpdateService.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\UserAdminControllerImpl.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\RegistrationController.java
-C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\TimestampService.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskManagementController.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\domain\builders\HistoryBuilder.java
 C:\Users\AST\IdeaProjects\Java2_2015_GoBig_RPG\src\main\java\lv\javaguru\java2\services\LoginService.java

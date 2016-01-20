@@ -40,7 +40,7 @@ public class TaskStatisticsControllerImpl implements TaskStatisticsController {
 
         timeSeriesChart_image.createChart(historyListInRange);
 
-        return  new MVCModel("Task Statistics", "/taskStatistics.jsp");
+        return  new MVCModel("Task Statistics", "/taskStatisticChart.jsp");
     }
 
 }

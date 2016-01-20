@@ -64,7 +64,7 @@ public class TimeSeriesChart_image
         axis.setVerticalTickLabels(true);
         axis.setTickUnit(new DateTickUnit(DateTickUnitType.DAY, 1));
 
-        int width = 640; /* Width of the image */
+        int width = 920; /* Width of the image */
         int height = 480; /* Height of the image */
         File timeChart = new File("./src/main/webapp/includes/LineChart.jpeg");
         ChartUtilities.saveChartAsJPEG(timeChart, timechart, width, height);
