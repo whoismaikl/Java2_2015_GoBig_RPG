@@ -2,7 +2,7 @@ package lv.javaguru.java2.database.hibernateORM;
 
 import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.HistoryDAO;
+import lv.javaguru.java2.database.HistoryRecordDAO;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
@@ -34,7 +34,7 @@ public class ServiceTest {
 
     @Autowired
     @Qualifier("HistoryDAO_ORM")
-    private HistoryDAO historyDAO;
+    private HistoryRecordDAO historyRecordDAO;
 
     @Autowired
     @Qualifier("UserDAO_ORM")

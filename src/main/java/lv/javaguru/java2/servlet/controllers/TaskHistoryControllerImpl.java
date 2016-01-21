@@ -1,8 +1,8 @@
 package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.HistoryDAO;
-import lv.javaguru.java2.domain.History;
+import lv.javaguru.java2.database.HistoryRecordDAO;
+import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.builders.HistoryBuilder;
 import lv.javaguru.java2.services.SessionUpdateService;
 import lv.javaguru.java2.services.TimeService;
@@ -24,7 +24,7 @@ public class TaskHistoryControllerImpl implements TaskHistoryController {
     private HistoryBuilder historyBuilder;
     @Autowired
     @Qualifier("HistoryDAO_ORM")
-    private HistoryDAO historyDAO;
+    private HistoryRecordDAO historyRecordDAO;
     @Autowired
     private SessionUpdateService sessionUpdateService;
     @Autowired
@@ -38,7 +38,7 @@ public class TaskHistoryControllerImpl implements TaskHistoryController {
         int statValue = Integer.parseInt(request.getParameter("statValue"));
         //String dateCompleted = java.sql.Timestamp.parseTimestamp(request.getParameter("dateCompleted"));
 
-        History history = historyBuilder.buildHistory()
+        HistoryRecord historyRecord = historyBuilder.buildHistory()
                 .withHealth(health)
                 .withIntelligence(intelligence)
                 .withCommunication(communication)
@@ -46,7 +46,7 @@ public class TaskHistoryControllerImpl implements TaskHistoryController {
                 .withDateCompleted(timeService.getSqlTimestamp())
                 .build();
 
-        historyDAO.createHistory(history);
+        historyRecordDAO.createHistoryRecord(historyRecord);
 
         sessionUpdateService.updateSession(request);
 

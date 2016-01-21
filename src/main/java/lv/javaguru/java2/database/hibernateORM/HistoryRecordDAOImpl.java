@@ -1,7 +1,7 @@
 package lv.javaguru.java2.database.hibernateORM;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.HistoryDAO;
-import lv.javaguru.java2.domain.History;
+import lv.javaguru.java2.database.HistoryRecordDAO;
+import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.Criteria;
@@ -19,26 +19,26 @@ import java.util.List;
  */
 @Component("HistoryDAO_ORM")
 @Transactional
-public class HistoryDAOImpl implements HistoryDAO {
+public class HistoryRecordDAOImpl implements HistoryRecordDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void createHistory(History history) throws DBException {
-        sessionFactory.getCurrentSession().persist(history);
+    public void createHistoryRecord(HistoryRecord historyRecord) throws DBException {
+        sessionFactory.getCurrentSession().persist(historyRecord);
     }
 
 
-    public void sendTaskToHistory(History history) throws DBException {
+    public void sendTaskToHistory(HistoryRecord historyRecord) throws DBException {
 
     }
 
-    public List<History> getAllUserRecords(User user) throws DBException {
+    public List<HistoryRecord> getAllHistoryRecords(User user) throws DBException {
         Long userId = user.getId();
-        List<History> histories;
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(History.class);
+        List<HistoryRecord> histories;
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(HistoryRecord.class);
         criteria.add(Restrictions.eq("userID", userId));
-        histories = (List<History>) criteria.list();
+        histories = (List<HistoryRecord>) criteria.list();
         return histories;
     }
 
@@ -51,13 +51,13 @@ public class HistoryDAOImpl implements HistoryDAO {
         sessionFactory.getCurrentSession().update(task);
     }
 
-    public List<History> getHistoryRecordsInRange(User user, Date startDate, Date stopDate) throws DBException{
+    public List<HistoryRecord> getHistoryRecordsInRange(User user, Date startDate, Date stopDate) throws DBException{
         Long userId = user.getId();
-        List<History> histories;
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(History.class);
+        List<HistoryRecord> histories;
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(HistoryRecord.class);
         criteria.add(Restrictions.eq("userID", userId));
         criteria.add(Restrictions.between("dateCompleted", startDate, stopDate));
-        histories = (List<History>) criteria.list();
+        histories = (List<HistoryRecord>) criteria.list();
         return histories;
     }
 }

@@ -1,10 +1,10 @@
 package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.HistoryDAO;
+import lv.javaguru.java2.database.HistoryRecordDAO;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.domain.History;
+import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.builders.HistoryBuilder;
@@ -38,7 +38,7 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
     private UserDAO userDAO;
     @Autowired
     @Qualifier("HistoryDAO_ORM")
-    private HistoryDAO historyDAO;
+    private HistoryRecordDAO historyRecordDAO;
     @Autowired
     private ButtonFunctionService buttonFunctionService;
     @Autowired
@@ -87,8 +87,8 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
             task.setDateAccomplished(timeService.getSqlTimestamp());
             taskDAO.editTask(task);
 
-            //Create Record in History
-            History history = historyBuilder.buildHistory()
+            //Create Record in HistoryRecord
+            HistoryRecord historyRecord = historyBuilder.buildHistory()
                     .withUserID(user.getId())
                     .withHealth(user.getHealth())
                     .withIntelligence(user.getIntelligence())
@@ -97,7 +97,7 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
                     .withStatValue(taskValue)
                     .withDateCompleted(timeService.getSqlTimestamp())
                     .build();
-            historyDAO.createHistory(history);
+            historyRecordDAO.createHistoryRecord(historyRecord);
 
             //Update Session
             sessionUpdateService.updateSession(request);

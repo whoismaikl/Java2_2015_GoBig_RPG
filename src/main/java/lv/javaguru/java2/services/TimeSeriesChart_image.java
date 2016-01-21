@@ -1,5 +1,5 @@
 package lv.javaguru.java2.services;
-import lv.javaguru.java2.domain.History;
+import lv.javaguru.java2.domain.HistoryRecord;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -22,7 +22,7 @@ import java.util.List;
 @Component
 public class TimeSeriesChart_image
 {
-    public static void createChart(List<History> historyList) throws IOException {
+    public static void createChart(List<HistoryRecord> historyRecordList) throws IOException {
         final TimeSeries series1 = new TimeSeries("Health");
         final TimeSeries series2 = new TimeSeries("Intelligence");
         final TimeSeries series3 = new TimeSeries("Communication");
@@ -30,12 +30,12 @@ public class TimeSeriesChart_image
         long inteligenceVal;
         long communicationVal;
         double value;
-        for (History history : historyList) {
+        for (HistoryRecord historyRecord : historyRecordList) {
             try {
-                healthVal = history.getHealth();
-                inteligenceVal = history.getIntelligence();
-                communicationVal = history.getCommunication();
-                Date date = history.getDateCompleted();
+                healthVal = historyRecord.getHealth();
+                inteligenceVal = historyRecord.getIntelligence();
+                communicationVal = historyRecord.getCommunication();
+                Date date = historyRecord.getDateCompleted();
                 Day day = new Day(date);
                 series1.add(day, healthVal);
                 series2.add(day, inteligenceVal);

@@ -1,10 +1,10 @@
 package lv.javaguru.java2.services;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.HistoryDAO;
+import lv.javaguru.java2.database.HistoryRecordDAO;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.domain.History;
+import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class SessionUpdateService {
     private TaskDAO taskDAO;
     @Autowired
     @Qualifier("HistoryDAO_ORM")
-    private HistoryDAO historyDAO;
+    private HistoryRecordDAO historyRecordDAO;
     @Autowired
     BarChart_image barChart_image;
 
@@ -44,8 +44,8 @@ public class SessionUpdateService {
         List<Task> taskList = taskDAO.getAllUserTasks(user);
         session.setAttribute("taskList", taskList);
 
-        List<History> historyList = historyDAO.getAllUserRecords(user);
-        session.setAttribute("historyList", historyList);
+        List<HistoryRecord> historyRecordList = historyRecordDAO.getAllHistoryRecords(user);
+        session.setAttribute("historyList", historyRecordList);
 
         List<Task> activeTaskList= new ArrayList<Task>();
         List<Task> accomplishedTaskList= new ArrayList<Task>();

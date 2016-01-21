@@ -64,13 +64,13 @@ public class User {
 
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy = "userID")
     @Fetch(value = FetchMode.SUBSELECT)
-    private List<History> historyList;
+    private List<HistoryRecord> historyRecordList;
 
-    public List<History> getHistoryList() {
-        return historyList;
+    public List<HistoryRecord> getHistoryRecordList() {
+        return historyRecordList;
     }
-    public void setHistoryList(List<History> historyList) {
-        this.historyList = historyList;
+    public void setHistoryRecordList(List<HistoryRecord> historyRecordList) {
+        this.historyRecordList = historyRecordList;
     }
 
     public User(String email, String password, String userName, String userType){

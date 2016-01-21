@@ -1,5 +1,5 @@
 package lv.javaguru.java2.domain.builders;
-import lv.javaguru.java2.domain.History;
+import lv.javaguru.java2.domain.HistoryRecord;
 import org.springframework.stereotype.Component;
 
 
@@ -22,18 +22,18 @@ public class HistoryBuilder {
 
     public  static HistoryBuilder buildHistory(){return new HistoryBuilder();}
 
-    public History build()
+    public HistoryRecord build()
     {
-        History history= new History();
-        history.setUserID(userID);
-        history.setHealth(health);
-        history.setIntelligence(intelligence);
-        history.setCommunication(communication);
-        history.setStatValue(statValue);
-        history.setWillPower(willPower);
-        history.setDailyTodo(dailyTodo);
-        history.setDateCompleted(dateCompleted);
-        return history;
+        HistoryRecord historyRecord = new HistoryRecord();
+        historyRecord.setUserID(userID);
+        historyRecord.setHealth(health);
+        historyRecord.setIntelligence(intelligence);
+        historyRecord.setCommunication(communication);
+        historyRecord.setStatValue(statValue);
+        historyRecord.setWillPower(willPower);
+        historyRecord.setDailyTodo(dailyTodo);
+        historyRecord.setDateCompleted(dateCompleted);
+        return historyRecord;
     }
 
     public HistoryBuilder withUserID(Long userID) {

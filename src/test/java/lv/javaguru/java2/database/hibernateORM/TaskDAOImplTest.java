@@ -2,13 +2,13 @@ package lv.javaguru.java2.database.hibernateORM;
 
 import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.HistoryDAO;
+import lv.javaguru.java2.database.HistoryRecordDAO;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
+import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.builders.HistoryBuilder;
 import lv.javaguru.java2.domain.builders.UserBuilder;
-import lv.javaguru.java2.domain.History;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.services.TimeService;
 import lv.javaguru.java2.domain.User;
@@ -36,7 +36,7 @@ public class TaskDAOImplTest {
 
     @Autowired
     @Qualifier("HistoryDAO_ORM")
-    private HistoryDAO historyDAO;
+    private HistoryRecordDAO historyRecordDAO;
 
     @Autowired
     @Qualifier("UserDAO_ORM")
@@ -192,18 +192,18 @@ public class TaskDAOImplTest {
         Task task2 = createUserTask(userId1, "Health", 4, "Description2", "Y", "N");
         Task task3 = createUserTask(userId2, "Health", 6, "Description3", "Y", "N");
         Task task4 = createUserTask(userId2, "Health", 7, "Description4", "Y", "N");
-        History history1 = historyBuilder.buildHistory()
+        HistoryRecord historyRecord1 = historyBuilder.buildHistory()
                 .withUserID(userId1)
                 .build();
-        History history2 = historyBuilder.buildHistory()
+        HistoryRecord historyRecord2 = historyBuilder.buildHistory()
                 .withUserID(userId1)
                 .build();
-        History history3 = historyBuilder.buildHistory()
+        HistoryRecord historyRecord3 = historyBuilder.buildHistory()
                 .withUserID(userId2)
                 .build();
-        historyDAO.createHistory(history1);
-        historyDAO.createHistory(history2);
-        historyDAO.createHistory(history3);
+        historyRecordDAO.createHistoryRecord(historyRecord1);
+        historyRecordDAO.createHistoryRecord(historyRecord2);
+        historyRecordDAO.createHistoryRecord(historyRecord3);
         taskDAO.createTask(task1);
         taskDAO.createTask(task2);
         taskDAO.createTask(task3);
@@ -212,9 +212,9 @@ public class TaskDAOImplTest {
         User user3 = userDAO.getUserById(userId1);
 
 
-        List<History> historyList = user3.getHistoryList();
-        for(History history : historyList) {
-            historyList.remove(history);
+        List<HistoryRecord> historyRecordList = user3.getHistoryRecordList();
+        for(HistoryRecord historyRecord : historyRecordList) {
+            historyRecordList.remove(historyRecord);
         }
 
         List<Task> taskList = user3.getTaskList();

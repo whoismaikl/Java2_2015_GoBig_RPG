@@ -2,6 +2,7 @@ lv\javaguru\java2\database\jdbc\LoginDAOImpl.class
 lv\javaguru\java2\domain\DefaultTask.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\UserAdminController.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\CreateUserController.class
+lv\javaguru\java2\domain\HistoryRecord.class
 lv\javaguru\java2\services\RegistrationService.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\LogoutController.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\DeleteUserController.class
@@ -14,7 +15,6 @@ lv\javaguru\java2\servlet\controllers\TaskStatisticsControllerImpl.class
 lv\javaguru\java2\services\UserRegistrationService.class
 lv\javaguru\java2\services\AccomplishTaskService.class
 lv\javaguru\java2\services\SessionUpdateService.class
-lv\javaguru\java2\database\HistoryDAO.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskHistoryController.class
 lv\javaguru\java2\servlet\controllers\EditTaskControllerImpl.class
 lv\javaguru\java2\domain\builders\HistoryBuilder.class
@@ -37,12 +37,12 @@ lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskStatisticsControl
 lv\javaguru\java2\domain\builders\TaskBuilder.class
 lv\javaguru\java2\servlet\controllers\CreateTaskControllerImpl.class
 lv\javaguru\java2\servlet\controllers\AccomplishTaskControllerImpl.class
-lv\javaguru\java2\database\hibernateORM\HistoryDAOImpl.class
 lv\javaguru\java2\servlet\controllers\CreateUserControllerImpl.class
 lv\javaguru\java2\database\jdbc\UserDAOImpl.class
 lv\javaguru\java2\database\DefaultTaskDAO.class
 lv\javaguru\java2\services\ButtonFunctionService.class
 lv\javaguru\java2\database\jdbc\TaskDAOImpl.class
+lv\javaguru\java2\database\HistoryRecordDAO.class
 lv\javaguru\java2\services\BarChart_image.class
 lv\javaguru\java2\servlet\originals\RedirectToJSPServlet.class
 lv\javaguru\java2\servlet\controllers\TaskManagementControllerImpl.class
@@ -53,7 +53,6 @@ lv\javaguru\java2\domain\Task.class
 lv\javaguru\java2\servlet\controllers\ActiveTasksControllerImpl.class
 lv\javaguru\java2\servlet\controllers\DeleteUserControllerImpl.class
 lv\javaguru\java2\servlet\controllers\LogoutControllerImpl.class
-lv\javaguru\java2\domain\History.class
 lv\javaguru\java2\servlet\originals\SessionUsageServlet.class
 lv\javaguru\java2\servlet\originals\HelloWorldController.class
 lv\javaguru\java2\database\hibernateORM\TaskDAOImpl.class
@@ -66,3 +65,4 @@ lv\javaguru\java2\database\jdbc\DefaultTaskDAOImpl.class
 lv\javaguru\java2\database\UserDAO.class
 lv\javaguru\java2\servlet\controllers\UserAdminControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\EditTaskController.class
+lv\javaguru\java2\database\hibernateORM\HistoryRecordDAOImpl.class

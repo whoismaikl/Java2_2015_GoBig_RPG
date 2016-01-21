@@ -1,5 +1,5 @@
 package lv.javaguru.java2.domain.builders;
-import lv.javaguru.java2.domain.History;
+import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.User;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class UserBuilder {
     private java.sql.Timestamp lastLogin;
     private java.sql.Timestamp dateRegistered;
     private String accountActiveYN;
-    private List<History> historyList;
+    private List<HistoryRecord> historyRecordList;
 
 // chtoby nebylo vozmozhnosti sozdat' eksempljar
     private UserBuilder() {}
@@ -112,8 +112,8 @@ public class UserBuilder {
         this.accountActiveYN = AccountActiveYN;
         return this;
     }
-    public UserBuilder withHistoryList(List<History> historyList) {
-        this.historyList = historyList;
+    public UserBuilder withHistoryList(List<HistoryRecord> historyRecordList) {
+        this.historyRecordList = historyRecordList;
         return this;
     }
 }

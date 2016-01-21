@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "taskHistory")
-public class History {
+public class HistoryRecord {
     @Id
     @Column(name="id",columnDefinition = "BIGINT")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,7 +47,7 @@ public class History {
         this.user = user;
     }*/
 
-    public History(){}
+    public HistoryRecord(){}
 
     public Long getId() {
         return id;

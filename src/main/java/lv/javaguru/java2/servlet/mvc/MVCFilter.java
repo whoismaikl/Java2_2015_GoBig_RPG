@@ -47,7 +47,7 @@ public class MVCFilter implements Filter {
         controllers.put("/admin", getBean(UserAdminControllerImpl.class));
         controllers.put("/createUser", getBean(CreateUserControllerImpl.class));
         controllers.put("/deleteUser", getBean(DeleteUserControllerImpl.class));
-        controllers.put("/createHistory", getBean(TaskHistoryControllerImpl.class));
+        controllers.put("/createHistoryRecord", getBean(TaskHistoryControllerImpl.class));
         controllers.put("/accomplishTask", getBean(AccomplishTaskControllerImpl.class));
     }
 
