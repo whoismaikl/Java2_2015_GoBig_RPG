@@ -7,7 +7,7 @@ import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.domain.builders.HistoryBuilder;
+import lv.javaguru.java2.domain.builders.HistoryRecordBuilder;
 import lv.javaguru.java2.domain.builders.UserBuilder;
 import lv.javaguru.java2.services.BarChart_image;
 import lv.javaguru.java2.services.TimeService;
@@ -43,7 +43,7 @@ public class ServiceTest {
     @Autowired
     private UserBuilder userBuilder;
     @Autowired
-    private HistoryBuilder historyBuilder;
+    private HistoryRecordBuilder historyRecordBuilder;
 
     @Autowired
     BarChart_image barChart_image;

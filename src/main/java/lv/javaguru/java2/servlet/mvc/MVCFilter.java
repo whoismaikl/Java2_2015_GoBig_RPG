@@ -11,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -49,6 +50,7 @@ public class MVCFilter implements Filter {
         controllers.put("/deleteUser", getBean(DeleteUserControllerImpl.class));
         controllers.put("/createHistoryRecord", getBean(TaskHistoryControllerImpl.class));
         controllers.put("/accomplishTask", getBean(AccomplishTaskControllerImpl.class));
+        controllers.put("/historyRecordFilter", getBean(HistoriRecordFilterControllerImpl.class));
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -64,6 +66,8 @@ public class MVCFilter implements Filter {
             try {
                 model = controller.execute(req);
             } catch (DBException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
 

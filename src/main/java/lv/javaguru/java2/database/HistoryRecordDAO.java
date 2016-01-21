@@ -15,7 +15,7 @@ public interface HistoryRecordDAO {
 
     void sendTaskToHistory(HistoryRecord historyRecord) throws DBException;
 
-    List<HistoryRecord> getAllHistoryRecords(User user) throws DBException; // Po usery i iz HistoryRecord
+    List<HistoryRecord> getAllHistoryRecords(User user) throws DBException;
 
     List<HistoryRecord> getHistoryRecordsInRange(User user, Date startDate, Date stopDate) throws DBException;
 

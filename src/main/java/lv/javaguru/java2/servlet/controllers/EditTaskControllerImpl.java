@@ -2,9 +2,6 @@ package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.Task;
-import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.domain.builders.TaskBuilder;
-import lv.javaguru.java2.services.ButtonFunctionService;
 import lv.javaguru.java2.services.SessionUpdateService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.EditTaskController;
 import lv.javaguru.java2.servlet.mvc.MVCModel;
@@ -44,7 +41,7 @@ public class EditTaskControllerImpl implements EditTaskController {
         taskForEdit.setRepeatFrequencyDays(repeatFrequencyDays);
 
         taskDAO.editTask(taskForEdit);
-        sessionUpdateService.updateSession(request);
+        sessionUpdateService.updateSessionVariables(request);
         return new MVCModel("Edit Task", "/taskManagement.jsp");
     }
 }

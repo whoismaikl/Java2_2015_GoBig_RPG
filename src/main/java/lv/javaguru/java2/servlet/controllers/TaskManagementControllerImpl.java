@@ -37,7 +37,7 @@ public class TaskManagementControllerImpl implements TaskManagementController {
 
             if (buttonFunction.equals("delete")) {
                 taskDAO.deleteTaskByID(taskId);
-                sessionUpdateService.updateSession(request);
+                sessionUpdateService.updateSessionVariables(request);
                 return new MVCModel("Refresh Task List", "/taskManagement.jsp");
             } else if (buttonFunction.equals("edit__")) {
                 Task taskForEdit = taskDAO.getTaskById(taskId);

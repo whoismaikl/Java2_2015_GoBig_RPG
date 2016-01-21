@@ -7,7 +7,7 @@ import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.HistoryRecord;
-import lv.javaguru.java2.domain.builders.HistoryBuilder;
+import lv.javaguru.java2.domain.builders.HistoryRecordBuilder;
 import lv.javaguru.java2.domain.builders.UserBuilder;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.services.TimeService;
@@ -45,7 +45,7 @@ public class TaskDAOImplTest {
     @Autowired
     private UserBuilder userBuilder;
     @Autowired
-    private HistoryBuilder historyBuilder;
+    private HistoryRecordBuilder historyRecordBuilder;
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
     java.sql.Timestamp sqlTimestamp = new TimeService().getSqlTimestamp();
@@ -192,13 +192,13 @@ public class TaskDAOImplTest {
         Task task2 = createUserTask(userId1, "Health", 4, "Description2", "Y", "N");
         Task task3 = createUserTask(userId2, "Health", 6, "Description3", "Y", "N");
         Task task4 = createUserTask(userId2, "Health", 7, "Description4", "Y", "N");
-        HistoryRecord historyRecord1 = historyBuilder.buildHistory()
+        HistoryRecord historyRecord1 = historyRecordBuilder.buildHistoryRecord()
                 .withUserID(userId1)
                 .build();
-        HistoryRecord historyRecord2 = historyBuilder.buildHistory()
+        HistoryRecord historyRecord2 = historyRecordBuilder.buildHistoryRecord()
                 .withUserID(userId1)
                 .build();
-        HistoryRecord historyRecord3 = historyBuilder.buildHistory()
+        HistoryRecord historyRecord3 = historyRecordBuilder.buildHistoryRecord()
                 .withUserID(userId2)
                 .build();
         historyRecordDAO.createHistoryRecord(historyRecord1);

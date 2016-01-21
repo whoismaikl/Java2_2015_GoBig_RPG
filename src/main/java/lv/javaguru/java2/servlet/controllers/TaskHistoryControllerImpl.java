@@ -3,7 +3,7 @@ package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.HistoryRecordDAO;
 import lv.javaguru.java2.domain.HistoryRecord;
-import lv.javaguru.java2.domain.builders.HistoryBuilder;
+import lv.javaguru.java2.domain.builders.HistoryRecordBuilder;
 import lv.javaguru.java2.services.SessionUpdateService;
 import lv.javaguru.java2.services.TimeService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskHistoryController;
@@ -21,7 +21,7 @@ import java.io.IOException;
 @Component
 public class TaskHistoryControllerImpl implements TaskHistoryController {
     @Autowired
-    private HistoryBuilder historyBuilder;
+    private HistoryRecordBuilder historyRecordBuilder;
     @Autowired
     @Qualifier("HistoryDAO_ORM")
     private HistoryRecordDAO historyRecordDAO;
@@ -38,7 +38,7 @@ public class TaskHistoryControllerImpl implements TaskHistoryController {
         int statValue = Integer.parseInt(request.getParameter("statValue"));
         //String dateCompleted = java.sql.Timestamp.parseTimestamp(request.getParameter("dateCompleted"));
 
-        HistoryRecord historyRecord = historyBuilder.buildHistory()
+        HistoryRecord historyRecord = historyRecordBuilder.buildHistoryRecord()
                 .withHealth(health)
                 .withIntelligence(intelligence)
                 .withCommunication(communication)
@@ -48,7 +48,7 @@ public class TaskHistoryControllerImpl implements TaskHistoryController {
 
         historyRecordDAO.createHistoryRecord(historyRecord);
 
-        sessionUpdateService.updateSession(request);
+        sessionUpdateService.updateSessionVariables(request);
 
         return  new MVCModel("New Task", "/taskManagement.jsp");
     }

@@ -53,7 +53,7 @@ public class CreateTaskControllerImpl implements TaskNewController{
 
         taskDAO.createTask(task);
 
-        sessionUpdateService.updateSession(request);
+        sessionUpdateService.updateSessionVariables(request);
 
         return  new MVCModel("New Task", "/taskManagement.jsp");
     }

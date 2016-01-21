@@ -7,7 +7,7 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.domain.builders.HistoryBuilder;
+import lv.javaguru.java2.domain.builders.HistoryRecordBuilder;
 import lv.javaguru.java2.domain.builders.TaskBuilder;
 import lv.javaguru.java2.services.ButtonFunctionService;
 import lv.javaguru.java2.services.SessionUpdateService;
@@ -44,7 +44,7 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
     @Autowired
     private TimeService timeService;
     @Autowired
-    private HistoryBuilder historyBuilder;
+    private HistoryRecordBuilder historyRecordBuilder;
     @Autowired
     private TaskBuilder taskBuilder;
     @Autowired
@@ -88,7 +88,7 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
             taskDAO.editTask(task);
 
             //Create Record in HistoryRecord
-            HistoryRecord historyRecord = historyBuilder.buildHistory()
+            HistoryRecord historyRecord = historyRecordBuilder.buildHistoryRecord()
                     .withUserID(user.getId())
                     .withHealth(user.getHealth())
                     .withIntelligence(user.getIntelligence())
@@ -100,7 +100,7 @@ public class AccomplishTaskControllerImpl implements AccomplishTaskController {
             historyRecordDAO.createHistoryRecord(historyRecord);
 
             //Update Session
-            sessionUpdateService.updateSession(request);
+            sessionUpdateService.updateSessionVariables(request);
             return new MVCModel("Task Accomplished", "/activeTasks.jsp");
         }
         return new MVCModel("Button not active", "/activeTasks.jsp");

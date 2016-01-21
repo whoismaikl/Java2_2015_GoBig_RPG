@@ -2,6 +2,9 @@ package lv.javaguru.java2.services;
 
 import org.springframework.stereotype.Component;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,5 +27,12 @@ public class TimeService {
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_YEAR, day);
         return calendar.getTime();
+    }
+
+    public Date getFormatedDate() throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = df.format(new Date());
+        Date date = df.parse(formattedDate);
+        return date;
     }
 }

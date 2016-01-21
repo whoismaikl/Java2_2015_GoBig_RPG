@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * Created by AST on 2016.01.15.
  */
 @Component
-public class HistoryBuilder {
+public class HistoryRecordBuilder {
     //  private Long id;
     private Long userID;
     private int health;
@@ -18,9 +18,9 @@ public class HistoryBuilder {
     private int dailyTodo;
     private java.sql.Timestamp dateCompleted;
 
-    private HistoryBuilder(){}
+    private HistoryRecordBuilder(){}
 
-    public  static HistoryBuilder buildHistory(){return new HistoryBuilder();}
+    public  static HistoryRecordBuilder buildHistoryRecord(){return new HistoryRecordBuilder();}
 
     public HistoryRecord build()
     {
@@ -36,35 +36,35 @@ public class HistoryBuilder {
         return historyRecord;
     }
 
-    public HistoryBuilder withUserID(Long userID) {
+    public HistoryRecordBuilder withUserID(Long userID) {
         this.userID = userID;
         return this;
     }
-    public HistoryBuilder withHealth(int health) {
+    public HistoryRecordBuilder withHealth(int health) {
         this.health = health;
         return this;
     }
-    public HistoryBuilder withIntelligence(int intelligence) {
+    public HistoryRecordBuilder withIntelligence(int intelligence) {
         this.intelligence = intelligence;
         return this;
     }
-    public HistoryBuilder withCommunication(int communication) {
+    public HistoryRecordBuilder withCommunication(int communication) {
         this.communication = communication;
         return this;
     }
-    public HistoryBuilder withStatValue(int statValue) {
+    public HistoryRecordBuilder withStatValue(int statValue) {
         this.statValue = statValue;
         return this;
     }
-    public HistoryBuilder withWillPower(int willPower) {
+    public HistoryRecordBuilder withWillPower(int willPower) {
         this.willPower = willPower;
         return this;
     }
-    public HistoryBuilder withDailyTodo(int dailyTodo) {
+    public HistoryRecordBuilder withDailyTodo(int dailyTodo) {
         this.dailyTodo = dailyTodo;
         return this;
     }
-    public HistoryBuilder withDateCompleted(java.sql.Timestamp dateCompleted) {
+    public HistoryRecordBuilder withDateCompleted(java.sql.Timestamp dateCompleted) {
         this.dateCompleted = dateCompleted;
         return this;
     }
