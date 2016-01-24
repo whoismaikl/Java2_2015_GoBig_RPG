@@ -42,15 +42,14 @@ public class MVCFilter implements Filter {
         controllers.put("/register", getBean(RegistrationControllerImpl.class));
         controllers.put("/createTask", getBean(CreateTaskControllerImpl.class));
         controllers.put("/taskManagement", getBean(TaskManagementControllerImpl.class));
-        controllers.put("/activeTasks", getBean(ActiveTasksControllerImpl.class));
         controllers.put("/taskStatistics", getBean(TaskStatisticsControllerImpl.class));
-        controllers.put("/editTask", getBean(EditTaskControllerImpl.class));
+        controllers.put("/updateTask", getBean(EditTaskControllerImpl.class));
         controllers.put("/admin", getBean(UserAdminControllerImpl.class));
         controllers.put("/createUser", getBean(CreateUserControllerImpl.class));
         controllers.put("/deleteUser", getBean(DeleteUserControllerImpl.class));
-        controllers.put("/createHistoryRecord", getBean(TaskHistoryControllerImpl.class));
+        controllers.put("/buildHistoryRecord", getBean(TaskHistoryRecordControllerImpl.class));
         controllers.put("/accomplishTask", getBean(AccomplishTaskControllerImpl.class));
-        controllers.put("/historyRecordFilter", getBean(HistoriRecordFilterControllerImpl.class));
+        controllers.put("/historyRecordFilter", getBean(HistoryRecordFilterControllerImpl.class));
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

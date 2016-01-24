@@ -16,17 +16,21 @@
     <body>
         <div class="login-card">
           <h1>Log-in</h1><br>
-         <!-- <form method="post" action="/index.jsp"> -->
+            <br>
             <form action="/java2/login" method="post">
                 <input type="text" name="email" placeholder="email">
+
                 <input type="password" name="password" placeholder="Password">
+
                 <input type="submit" name="login" class="login login-submit" value="login">
             </form>
+            <br>
           <div class="login-help">
             <a href="/java2/register.jsp">Register</a> • <a href="#">Forgot Password</a>
           </div>
             <div class="login-help">
-                <br><h1><%= request.getAttribute("model")%></h1>
+                <br>
+                <h1><%= request.getAttribute("model")%></h1>
             </div>
         </div>
         <script src='js/jquery.min.js'></script>

@@ -32,11 +32,32 @@ public class TaskDAOImpl implements TaskDAO {
         return  (Task)criteria.uniqueResult();
     }
     public List<Task> getAllUserTasks(User user) throws DBException {
-        Long userId  = user.getId();
+        Long userId = user.getId();
         List<Task> tasks;
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
         criteria.add(Restrictions.eq("userID", userId));
-        tasks = (List<Task>)criteria.list();
+        tasks = (List<Task>) criteria.list();
+        return tasks;
+    }
+
+    public List<Task> getActiveTaskList(User user) throws DBException {
+        Long userId = user.getId();
+        List<Task> tasks;
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
+        criteria.add(Restrictions.eq("userID", userId));
+        criteria.add(Restrictions.eq("accomplishedYN", "N"));
+        criteria.add(Restrictions.ne("repeatableYN", "No"));
+        tasks = (List<Task>) criteria.list();
+        return tasks;
+    }
+
+    public List<Task> getAccomplishedTaskList(User user) throws DBException {
+        Long userId = user.getId();
+        List<Task> tasks;
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
+        criteria.add(Restrictions.eq("userID", userId));
+        criteria.add(Restrictions.eq("accomplishedYN", "Y"));
+        tasks = (List<Task>) criteria.list();
         return tasks;
     }
 
@@ -48,7 +69,7 @@ public class TaskDAOImpl implements TaskDAO {
 
     }
 
-    public void editTask(Task task) throws DBException {
+    public void updateTask(Task task) throws DBException {
 
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
         criteria.add(Restrictions.eq("id", task.getId()));
@@ -60,10 +81,4 @@ public class TaskDAOImpl implements TaskDAO {
     public void accomplishTask(Long id) throws DBException {
 
     }
-
-    // getAllUserTasks nado budet dodelat', tk v dannom QueryBudut pokazyvatsja vse taski i vypolnennye i nevypolnennye
-    // ili dobavit' metod getActiveTasks where AccomplishedYN = N
-    // i getCompltedTasks wgere AccomplishedYN = Y
-
-
 }

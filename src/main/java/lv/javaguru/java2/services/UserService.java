@@ -2,48 +2,51 @@ package lv.javaguru.java2.services;
 
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.DefaultTaskDAO;
+import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.DefaultTask;
+import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.domain.builders.TaskBuilder;
+import lv.javaguru.java2.domain.builders.UserBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  * Created by JavaCourses on 2015.11.19..
  */
 @Component
-public class UserRegistrationService {
+public class UserService {
     @Autowired
     @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
-
     @Autowired
-    private CreateTaskService createTaskService;
-
+    @Qualifier("TaskDAO_ORM")
+    private TaskDAO taskDAO;
     @Autowired
     @Qualifier("DefaultTaskDAO_ORM")
     private DefaultTaskDAO defaultTaskDAO;
+    @Autowired
+    private TaskBuilder taskBuilder;
+    @Autowired
+    private UserBuilder userBuilder;
+    @Autowired
+    private TimeService timeService;
 
-    public User createUser(HttpServletRequest request) {
-        String userName = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password1 = request.getParameter("password1");
-        String password2 = request.getParameter("password2");
-        if (!userExist(email, userName) && passwordsMatch(password1, password2) && correctEmailSyntax(email)) {
-            User user = new User(email, password1, userName, "U");
-            try {
-                userDAO.createUser(user);
-            } catch (DBException e) {
-                e.printStackTrace();
-            }
+    public User createUser(String email, String password1, String password2, String userName) throws DBException {
+
+        User user = userBuilder.buildUser()
+                .withUserName(userName)
+                .withEmail(email)
+                .withPassword(password1)
+                .withDateRegistered(timeService.getSqlTimestamp())
+                .build();
+        userDAO.createUser(user);
             return user;
-        } else {
-            return null;
-        }
     }
 
     public boolean userExist(String email, String username) {
@@ -59,7 +62,7 @@ public class UserRegistrationService {
         }
     }
 
-    public boolean passwordsMatch(String password1, String password2) {
+    public boolean passwordsMatches(String password1, String password2) {
         if (password1.equals(password2) && !password1.equals(null) && !password1.equals("")) {
             return true;
         } else {
@@ -76,20 +79,20 @@ public class UserRegistrationService {
     }
 
     public void addDefaultTasks(User user) throws DBException {
-        Long userId = user.getId();
-        String statDescription;
-        int statValue;
-        String statType;
-        String repeatableYN;
-        int repeatFrequencyDays;
+        Task task;
         List<DefaultTask> defaultTaskList = defaultTaskDAO.getDefaultTaskList();
         for(DefaultTask defaultTask : defaultTaskList){
-            statDescription = defaultTask.getStatDescription();
-            statValue = defaultTask.getStatValue();
-            statType = defaultTask.getStatType();
-            repeatableYN = defaultTask.getRepeatableYN();
-            repeatFrequencyDays = defaultTask.getRepeatFrequencyDays();
-            createTaskService.createUserTask(userId,statType,statValue,statDescription,repeatableYN, repeatFrequencyDays, "N");
+            task = taskBuilder.buildTask()
+                    .withUserID(user.getId())
+                    .withStatType(defaultTask.getStatType())
+                    .withStatValue(defaultTask.getStatValue())
+                    .withStatDescription(defaultTask.getStatDescription())
+                    .withRepeatableYN(defaultTask.getRepeatableYN())
+                    .withRepeatFrequencyDays(defaultTask.getRepeatFrequencyDays())
+                    .withDateAdded(timeService.getSqlTimestamp())
+                    .build();
+
+            taskDAO.createTask(task);
         }
     }
 }

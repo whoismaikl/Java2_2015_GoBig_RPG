@@ -15,6 +15,10 @@ public interface HistoryRecordDAO {
 
     void sendTaskToHistory(HistoryRecord historyRecord) throws DBException;
 
+    void deleteHistoryRecordById(Long historyRecordId) throws DBException;
+
+    void deleteAllHistoryRecordByUserId(Long userId) throws DBException;
+
     List<HistoryRecord> getAllHistoryRecords(User user) throws DBException;
 
     List<HistoryRecord> getHistoryRecordsInRange(User user, Date startDate, Date stopDate) throws DBException;

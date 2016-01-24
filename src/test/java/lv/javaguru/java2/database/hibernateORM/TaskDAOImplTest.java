@@ -129,7 +129,7 @@ public class TaskDAOImplTest {
         Long task1Id = task1.getId();
         Task taskBeforeEdit = taskDAO.getTaskById(task1Id);
         task2.setId(task1Id);
-        taskDAO.editTask(task2);
+        taskDAO.updateTask(task2);
         Task taskAfterEdit = taskDAO.getTaskById(task1Id);
 
         assertNotEquals(taskBeforeEdit.getStatType(), taskAfterEdit.getStatType());
@@ -239,7 +239,7 @@ public class TaskDAOImplTest {
         taskDAO.createTask(task2);
         Long taskId1 = task1.getId();
         task1.setAccomplishedYN("Y");
-        taskDAO.editTask(task1);
+        taskDAO.updateTask(task1);
 
     }
 }

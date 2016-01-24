@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class HistoryRecordBuilder {
     //  private Long id;
     private Long userID;
+    private Long taskID;
     private int health;
     private int intelligence;
     private int communication;
@@ -26,6 +27,7 @@ public class HistoryRecordBuilder {
     {
         HistoryRecord historyRecord = new HistoryRecord();
         historyRecord.setUserID(userID);
+        historyRecord.setTaskID(taskID);
         historyRecord.setHealth(health);
         historyRecord.setIntelligence(intelligence);
         historyRecord.setCommunication(communication);
@@ -38,6 +40,10 @@ public class HistoryRecordBuilder {
 
     public HistoryRecordBuilder withUserID(Long userID) {
         this.userID = userID;
+        return this;
+    }
+    public HistoryRecordBuilder withTaskID(Long taskID) {
+        this.taskID = taskID;
         return this;
     }
     public HistoryRecordBuilder withHealth(int health) {

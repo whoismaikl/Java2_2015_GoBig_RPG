@@ -18,8 +18,11 @@ public interface TaskDAO {
 
     List<Task> getAllUserTasks(User user) throws DBException;
 
-    //void editTask(Long id, Task task) throws DBException;
-    void editTask(Task task) throws DBException;
+    List<Task> getActiveTaskList(User user) throws DBException;
+
+    List<Task> getAccomplishedTaskList(User user) throws DBException;
+
+    void updateTask(Task task) throws DBException;
 
     void accomplishTask(Long id) throws DBException;
 

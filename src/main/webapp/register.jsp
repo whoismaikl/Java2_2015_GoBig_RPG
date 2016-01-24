@@ -16,7 +16,7 @@
   <body>
   <div class="login-card">
     <h1>Register</h1><br>
-    <form action="/java2/register" method="post">
+    <form action="/java2/registration" method="post">
       <input type="text" name="username" placeholder="Username">
       <input type="text" name="email" placeholder="email">
       <input type="password" name="password1" placeholder="Password">

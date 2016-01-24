@@ -10,6 +10,7 @@ import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.TaskService;
 import lv.javaguru.java2.services.ButtonFunctionService;
 import lv.javaguru.java2.services.SessionService;
+import lv.javaguru.java2.services.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -21,12 +22,16 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by AST on 2015.11.03..
  */
 @Controller
-public class AccomplishTaskControllerImpl{
+public class UndoAccomplishedTaskControllerImpl {
     @Autowired
     @Qualifier("TaskDAO_ORM")
     private TaskDAO taskDAO;
@@ -42,8 +47,10 @@ public class AccomplishTaskControllerImpl{
     private TaskService taskService;
     @Autowired
     private SessionService sessionService;
+    @Autowired
+    TimeService timeService;
 
-    @RequestMapping(value = "/accomplishTask", method = {RequestMethod.POST})
+    @RequestMapping(value = "/undoTask", method = {RequestMethod.POST})
     public ModelAndView execute(HttpServletRequest request) throws DBException, IOException {
 
         String buttonName = buttonFunctionService.getButtonName(request);
@@ -54,15 +61,21 @@ public class AccomplishTaskControllerImpl{
 
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
+            List<Task> accomplishedTaskList = (List<Task>) session.getAttribute("accomplishedTaskList");
+            java.sql.Timestamp stopDate = timeService.getSqlTimestamp();
+            java.sql.Timestamp startDate = timeService.getStartDateTimestamp();
 
-            user = taskService.setUserPropertiesByAccomplishedTask(user, task);
-            userDAO.updateUserData(user);
+            List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
 
-            task = taskService.setTaskAccomplished(task);
+            Long accomplishedTaskId = taskService.getAccomplishedTaskId(accomplishedTaskList, user, task);
+            Long historyRecordId = taskService.getHistoryRecordId(historyRecordsInRange, accomplishedTaskId);
+            historyRecordDAO.deleteHistoryRecordById(historyRecordId);
+
+            task = taskService.setTaskNotAccomplished(task);
             taskDAO.updateTask(task);
 
-            HistoryRecord historyRecord = taskService.buildHistoryRecord(user, task);
-            historyRecordDAO.createHistoryRecord(historyRecord);
+            user = taskService.resetUserPropertiesByAccomplishedTask(user, task);
+            userDAO.updateUserData(user);
 
             sessionService.updateSessionVariables(request);
 

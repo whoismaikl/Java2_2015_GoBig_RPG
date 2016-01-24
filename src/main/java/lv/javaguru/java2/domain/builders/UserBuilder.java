@@ -14,14 +14,14 @@ public class UserBuilder {
     private String password;
     private String userName;
     private String userType ="U";
-    private int health = 50;
-    private int intelligence= 50;
-    private int communication= 50;
-    private int willPower= 25;
+    private int health = 0;
+    private int intelligence= 0;
+    private int communication= 0;
+    private int willPower= 0;
     private int dailyTodo;
     private java.sql.Timestamp lastLogin;
     private java.sql.Timestamp dateRegistered;
-    private String accountActiveYN;
+    private String accountActiveYN = "Y";
     private List<HistoryRecord> historyRecordList;
 
 // chtoby nebylo vozmozhnosti sozdat' eksempljar

@@ -28,7 +28,6 @@ public class UserDAOImpl implements UserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    //@Override
     public void createUser(User user) throws DBException {
         sessionFactory.getCurrentSession().persist(user);
     }

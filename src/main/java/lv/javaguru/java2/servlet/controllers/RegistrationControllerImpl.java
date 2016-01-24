@@ -1,24 +1,27 @@
 package lv.javaguru.java2.servlet.controllers;
 
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.services.RegistrationService;
-import lv.javaguru.java2.servlet.controllers.controllerInterfaces.RegistrationController;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
+import lv.javaguru.java2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by mike on 2015.11.03..
  */
-@Component
-public class RegistrationControllerImpl implements RegistrationController {
+@Controller
+public class RegistrationControllerImpl {
 
     @Autowired
-    private RegistrationService registrationService;
+    private UserService userService;
 
-    public MVCModel execute(HttpServletRequest request) {
+    @RequestMapping(value = "/registration", method = {RequestMethod.POST})
+    public ModelAndView execute(HttpServletRequest request) {
 
         String username = request.getParameter("username");
         String email = request.getParameter("email");
@@ -26,14 +29,23 @@ public class RegistrationControllerImpl implements RegistrationController {
         String password2 = request.getParameter("password2");
 
         try {
-            User user = registrationService.createUser(email, password1, password2, username);
-            registrationService.addDefaultTasks(user);
-            return new MVCModel("User Registered", "/index.jsp");
+            if(userService.userExist(email, username))
+                return new ModelAndView("/register.jsp", "model", "Registration Failed - Username and email already exist!");
+
+            if(!userService.passwordsMatches(password1, password2))
+                return new ModelAndView("/register.jsp", "model", "Registration Failed - Passwords do'nt matches!");
+
+            if(!userService.correctEmailSyntax(email))
+                return new ModelAndView("/register.jsp", "model", "Registration Failed - email not correct!");
+
+            User user = userService.createUser(email, password1, password2, username);
+
+            userService.addDefaultTasks(user);
+
+            return new ModelAndView("/index.jsp", "model", "User Registration Successful");
 
         } catch (Exception e) {
-            return new MVCModel("Registration Failed", "/register.jsp");
+            return new ModelAndView("/register.jsp", "model", "Registration Failed");
         }
-
     }
-
 }

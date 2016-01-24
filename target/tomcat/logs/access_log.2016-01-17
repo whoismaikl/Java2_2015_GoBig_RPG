@@ -1,7 +1,0 @@
-0:0:0:0:0:0:0:1 - - [17/Jan/2016:21:11:11 +0200] "GET /java2 HTTP/1.1" 302 - http-bio-8080-exec-1 0
-0:0:0:0:0:0:0:1 - - [17/Jan/2016:21:11:12 +0200] "GET /java2/ HTTP/1.1" 200 997 http-bio-8080-exec-2 1195
-0:0:0:0:0:0:0:1 - - [17/Jan/2016:21:11:12 +0200] "GET /java2/js/jquery.min.js HTTP/1.1" 404 995 http-bio-8080-exec-3 6
-0:0:0:0:0:0:0:1 - - [17/Jan/2016:21:11:12 +0200] "GET /java2/css/jquery-ui.css HTTP/1.1" 404 997 http-bio-8080-exec-5 1
-0:0:0:0:0:0:0:1 - - [17/Jan/2016:21:11:12 +0200] "GET /java2/js/jquery-ui.min.js HTTP/1.1" 404 1001 http-bio-8080-exec-4 4
-0:0:0:0:0:0:0:1 - - [17/Jan/2016:21:11:12 +0200] "GET /java2/js/jquery-ui.min.js HTTP/1.1" 404 1001 http-bio-8080-exec-8 4
-0:0:0:0:0:0:0:1 - - [17/Jan/2016:21:11:12 +0200] "GET /java2/css/jquery-ui.css HTTP/1.1" 404 997 http-bio-8080-exec-9 2

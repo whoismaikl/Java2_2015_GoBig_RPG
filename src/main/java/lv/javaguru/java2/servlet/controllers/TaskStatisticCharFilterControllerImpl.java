@@ -1,15 +1,12 @@
 package lv.javaguru.java2.servlet.controllers;
+
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.HistoryRecordDAO;
 import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.ChartService;
-import lv.javaguru.java2.services.TimeSeriesChart_image;
-import lv.javaguru.java2.services.TimeService;
-import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskStatisticsController;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -26,27 +25,33 @@ import java.util.List;
  * Created by AST on 2015.11.03..
  */
 @Controller
-public class TaskStatisticsControllerImpl{
+public class TaskStatisticCharFilterControllerImpl {
+    @Autowired
+    @Qualifier("HistoryDAO_ORM")
+    private HistoryRecordDAO historyRecordDAO;
     @Autowired
     private ChartService chartService;
-    @Autowired
-    HistoryRecordDAO historyRecordDAO;
-    @Autowired
-    TimeService timeService;
 
-    @RequestMapping(value = "/taskStatistics", method = {RequestMethod.GET})
-    public ModelAndView execute(HttpServletRequest request) throws DBException, IOException {
+    @RequestMapping(value = "/statisticCharFilter", method = {RequestMethod.POST})
+    public ModelAndView execute(HttpServletRequest request) throws DBException, IOException, ParseException {
+
+        String startDateStr = request.getParameter("startDate");
+        String stopDateStr = request.getParameter("stopDate");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = dateFormat.parse(startDateStr);
+        Date stopDate = dateFormat.parse(stopDateStr);
 
         HttpSession session = request.getSession();
         final User user = (User) session.getAttribute("user");
-        Date startDate = (Date) session.getAttribute("startDate");
-        Date stopDate = (Date) session.getAttribute("stopDate");
 
         List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
+        session.setAttribute("historyRecordListInRange", historyRecordListInRange);
 
         chartService.createTimeSeriesChart(historyRecordListInRange);
 
-        return  new ModelAndView("/taskStatisticChart.jsp","model", "Task Statistics");
-    }
+        session.setAttribute("startDate", startDate);
+        session.setAttribute("stopDate", stopDate);
 
+        return  new ModelAndView("/taskStatisticChart.jsp", "model", "Statistic Chart Filter");
+    }
 }

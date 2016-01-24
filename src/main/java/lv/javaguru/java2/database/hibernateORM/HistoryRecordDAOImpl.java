@@ -42,13 +42,18 @@ public class HistoryRecordDAOImpl implements HistoryRecordDAO {
         return histories;
     }
 
-    public void accomplishTask(Task task) throws DBException {
-        Long id = task.getId();
-        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Task.class);
-        criteria.add(Restrictions.eq("id", id));
-        //Task taskFromDAO = (Task)criteria.uniqueResult();
-        //taskFromDAO = task;
-        sessionFactory.getCurrentSession().update(task);
+    public void deleteHistoryRecordById(Long historyRecordId) throws DBException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(HistoryRecord.class);
+        criteria.add(Restrictions.eq("id", historyRecordId));
+        HistoryRecord historyRecord = (HistoryRecord)criteria.uniqueResult();
+        sessionFactory.getCurrentSession().delete(historyRecord);
+    }
+
+    public void deleteAllHistoryRecordByUserId(Long userId) throws DBException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(HistoryRecord.class);
+        criteria.add(Restrictions.eq("userID", userId));
+        List<HistoryRecord> histories = (List<HistoryRecord>) criteria.list();
+        sessionFactory.getCurrentSession().delete(histories);
     }
 
     public List<HistoryRecord> getHistoryRecordsInRange(User user, Date startDate, Date stopDate) throws DBException{

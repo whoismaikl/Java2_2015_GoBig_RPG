@@ -138,7 +138,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         }
     }
 
-    public void editTask(Task task) throws DBException {
+    public void updateTask(Task task) throws DBException {
         if (task == null) {
             return;
         }
@@ -155,7 +155,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             preparedStatement.setLong(6, task.getId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute TaskDAOImpl.editTask()");
+            System.out.println("Exception while execute TaskDAOImpl.updateTask()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -179,6 +179,14 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         } finally {
             closeConnection(connection);
         }
+    }
+
+    public List<Task> getActiveTaskList(User user) throws DBException{
+        return null;
+    }
+
+    public List<Task> getAccomplishedTaskList(User user) throws DBException {
+        return null;
     }
 
 }

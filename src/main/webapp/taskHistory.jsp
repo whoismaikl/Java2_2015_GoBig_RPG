@@ -70,7 +70,6 @@
       Event.observe(window, 'load', function() { setupCalendars() })
     </script>
   </head>
-  </head>
   <%@ include file="includes/header.jsp" %>
   <%@ include file="includes/menu.jsp" %>
   <body>
@@ -114,12 +113,12 @@
         <!-- end of #tab -->
       </article>
       <article class="module width_full">
-        <header><h3 class="tabs_involved">Accomplished Task List</h3>
+        <header><h3 class="tabs_involved">History Record List</h3>
         </header>
         <div class="tab_container">
           <div id="tab1" class="tab_content">
             <html>
-            <form action="/java2/deleteHistory" method="post">
+            <form action="/java2/deleteHistoryRecord" method="post">
               <table class="tablesorter" cellspacing="0">
                 <thead>
                 <tr>
@@ -127,7 +126,7 @@
                   <th>Health</th>
                   <th>Intell.</th>
                   <th>Commun.</th>
-                  <th>Stat Value</th>
+                  <th>Task Value</th>
                   <th>Date Completed</th>
                   <th>Delete</th>
                 </tr>
@@ -154,34 +153,16 @@
       </article>
       <!-- end of messages article -->
       <article class="module width_full">
-        <header><h3 class="tabs_involved">New Record - For Test Only</h3>
+        <header><h3 class="tabs_involved">Delete All History Records</h3>
         </header>
         <div class="tab_container">
           <div id="tab4" class="tab_content">
-            <form action="/java2/createHistory" method="post">
+            <form action="/java2/deleteAllHistoryRecords" method="post">
               <table class="tablesorter" cellspacing="0">
-                <thead>
-                <tr>
-                  <th>health</th>
-                  <th>intelligence</th>
-                  <th>communication</th>
-                  <th>statValue</th>
-                </tr>
-                </thead>
                 <tbody>
                 <tr>
-                  <th><input type="text" name="health" placeholder="1"></th>
-                  <th><input type="text" name="intelligence" placeholder="2"></th>
-                  <th><input type="text" name="communication" placeholder="3"></th>
-                  <th><input type="text" name="statValue" placeholder="6"></th>
-                </tr>
-                <tr>
-                  <th>dateCompleted</th>
-                  <th>New History Record</th>
-                </tr>
-                <tr>
-                  <th><input type="text" name="dateCompleted" placeholder="2015-11-17 10:07:46"></th>
-                  <th><input type="submit" name="New History" class="login login-submit" value="Add New History"></th>
+                  <th>Delete All History Records:</th>
+                  <td><input type="submit" name="Delete History" class="login login-submit" value="Delete History"></td>
                 </tr>
                 </tbody>
               </table>

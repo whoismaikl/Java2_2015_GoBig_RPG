@@ -2,15 +2,18 @@ package lv.javaguru.java2.servlet.controllers;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.TaskDAO;
 import lv.javaguru.java2.domain.builders.TaskBuilder;
-import lv.javaguru.java2.services.SessionUpdateService;
+import lv.javaguru.java2.services.SessionService;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.services.TimeService;
-import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskNewController;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -18,19 +21,20 @@ import java.io.IOException;
 /**
  * Created by AST on 2015.11.03..
  */
-@Component
-public class CreateTaskControllerImpl implements TaskNewController{
+@Controller
+public class CreateTaskControllerImpl {
     @Autowired
     @Qualifier("TaskDAO_ORM")
     private TaskDAO taskDAO;
     @Autowired
     private TaskBuilder taskBuilder;
     @Autowired
-    private SessionUpdateService sessionUpdateService;
+    private SessionService sessionService;
     @Autowired
     private TimeService timeService;
 
-    public MVCModel execute(HttpServletRequest request) throws DBException, IOException {
+    @RequestMapping(value = "/createTask", method = {RequestMethod.POST})
+    public ModelAndView execute(HttpServletRequest request) throws DBException, IOException {
 
         String statType = request.getParameter("statType");
         int statValue = Integer.parseInt(request.getParameter("statValue"));
@@ -53,8 +57,8 @@ public class CreateTaskControllerImpl implements TaskNewController{
 
         taskDAO.createTask(task);
 
-        sessionUpdateService.updateSessionVariables(request);
+        sessionService.updateSessionVariables(request);
 
-        return  new MVCModel("New Task", "/taskManagement.jsp");
+        return  new ModelAndView("/taskManagement.jsp", "model", "New Task");
     }
 }

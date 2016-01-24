@@ -5,6 +5,10 @@ import lv.javaguru.java2.servlet.controllers.controllerInterfaces.LogoutControll
 import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,20 +16,15 @@ import javax.servlet.http.HttpSession;
 /**
  * Created by mike on 11/25/2015.
  */
+@Controller
+public class LogoutControllerImpl {
 
+    @RequestMapping(value = "/logout", method = {RequestMethod.GET})
+    public ModelAndView execute(HttpServletRequest request) throws DBException {
 
-@Component
-//@RequestMapping("/index.jsp")
-public class LogoutControllerImpl implements LogoutController {
-    //@RequestMapping(method=RequestMethod.POST)
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/index.jsp";
-    }
-
-    public MVCModel execute(HttpServletRequest request) throws DBException {
         HttpSession session = request.getSession();
         session.invalidate();
-        return new MVCModel("Logout", "/index.jsp");
+
+        return new ModelAndView("/index.jsp", "model", "Logout");
     }
 }
