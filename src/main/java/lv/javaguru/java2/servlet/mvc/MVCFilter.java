@@ -1,4 +1,5 @@
 package lv.javaguru.java2.servlet.mvc;
+
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.config.SpringConfig;
 import lv.javaguru.java2.servlet.controllers.*;
@@ -53,14 +54,14 @@ public class MVCFilter implements Filter {
     }
 
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest req = (HttpServletRequest)servletRequest;
-        HttpServletResponse resp = (HttpServletResponse)servletResponse;
+        HttpServletRequest req = (HttpServletRequest) servletRequest;
+        HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         String contextURL = req.getServletPath();
 
         MVCController controller = controllers.get(contextURL);
 
-        if(controller != null){
+        if (controller != null) {
             MVCModel model = null;
             try {
                 model = controller.execute(req);
@@ -75,15 +76,14 @@ public class MVCFilter implements Filter {
             ServletContext context = req.getServletContext();
             RequestDispatcher requestDispatcher = context.getRequestDispatcher(model.getViewName());
             requestDispatcher.forward(req, resp);
-        }
-        else filterChain.doFilter(servletRequest,servletResponse);
+        } else filterChain.doFilter(servletRequest, servletResponse);
     }
 
     public void destroy() {
 
     }
 
-    private MVCController getBean(Class clazz){
+    private MVCController getBean(Class clazz) {
         return (MVCController) springContext.getBean(clazz);
     }
 }
