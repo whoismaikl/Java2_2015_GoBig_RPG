@@ -41,7 +41,7 @@
       <div id="menu">
         <ul>
           <li><a href="/java2/activeTasks"> Active tasks </a></li>
-          <li><a href="/java2/taskManagement"> Task Management </a></li>
+          <li><a href="/java2/taskManagement.jsp"> Task Management </a></li>
           <li><a href="/java2/taskStatistics"> Task Statistics </a></li>
           <li><a href="/java2/taskHistory"> Task History </a></li>
           <%User user=(User)session.getAttribute("user");

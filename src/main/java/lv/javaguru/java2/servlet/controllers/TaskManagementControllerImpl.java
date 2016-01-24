@@ -29,7 +29,7 @@ public class TaskManagementControllerImpl{
     @Autowired
     private ButtonFunctionService buttonFunctionService;
 
-    @RequestMapping(value = "/taskManagement", method = {RequestMethod.GET})
+    @RequestMapping(value = "/taskManagement", method = {RequestMethod.POST})
     public ModelAndView execute(HttpServletRequest request) throws DBException, IOException {
 
         String buttonName = buttonFunctionService.getButtonName(request);
@@ -48,7 +48,7 @@ public class TaskManagementControllerImpl{
                 Task taskForEdit = taskDAO.getTaskById(taskId);
                 HttpSession session = request.getSession();
                 session.setAttribute("taskForEdit", taskForEdit);
-                return new ModelAndView("/updateTask.jsp","model","Edit Task");
+                return new ModelAndView("/editTask.jsp","model","Edit Task");
             }
 
         }

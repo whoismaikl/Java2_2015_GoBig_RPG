@@ -23,7 +23,6 @@
   <%@ include file="includes/menu.jsp" %>
   <body>
     <section id="main" class="column">
-      <jsp:useBean id="task" class="lv.javaguru.java2.domain.Task" scope="session"/>
       <article class="module width_full">
         <header><h3 class="tabs_involved">Edit Task</h3>
         </header>

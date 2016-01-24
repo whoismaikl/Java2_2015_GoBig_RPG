@@ -26,8 +26,8 @@
     <section id="main" class="column">
       <article class="module width_full">
         <div class="tab_container">
-          <div id="tab11" class="tab_content">
-            <img src="java2/includes/BarChart.jpeg" width="920" height="100" alt="" />
+          <div id="tab12" class="tab_content">
+            <img src="includes/BarChart.jpeg" width="920" height="100" alt="" />
           </div><!-- end of #tab1 -->
         </div><!-- end of #tab -->
       </article><!-- end of messages article -->
@@ -86,11 +86,10 @@
                     <td>${accomplishedTask.statValue}</td>
                     <td>${accomplishedTask.dateAccomplished}</td>
                     <td>
-                      <input type="submit" value="Undo" name="accomp${accomplishedTask.id}" class="alt_btn">
+                      <input type="submit" value="Undo" name="undo__${accomplishedTask.id}" class="alt_btn">
                     </td>
                   </tr>
                 </c:forEach>
-                <img src="/webapp/includes/BarChart.jpeg" width="920" height="100" alt="" />
                 </tbody>
               </table>
             </form>

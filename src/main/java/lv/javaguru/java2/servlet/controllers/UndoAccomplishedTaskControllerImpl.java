@@ -56,26 +56,24 @@ public class UndoAccomplishedTaskControllerImpl {
         String buttonName = buttonFunctionService.getButtonName(request);
 
         if (!buttonName.isEmpty()) {
-            Long taskId = buttonFunctionService.getId(buttonName);
-            Task task = taskDAO.getTaskById(taskId);
+            Long accomplishedTaskId = buttonFunctionService.getId(buttonName);
+            Task task = taskDAO.getTaskById(accomplishedTaskId);
 
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
-            List<Task> accomplishedTaskList = (List<Task>) session.getAttribute("accomplishedTaskList");
+            user = taskService.resetUserPropertiesByAccomplishedTask(user, task);
+            userDAO.updateUserData(user);
+
             java.sql.Timestamp stopDate = timeService.getSqlTimestamp();
             java.sql.Timestamp startDate = timeService.getStartDateTimestamp();
 
             List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
 
-            Long accomplishedTaskId = taskService.getAccomplishedTaskId(accomplishedTaskList, user, task);
             Long historyRecordId = taskService.getHistoryRecordId(historyRecordsInRange, accomplishedTaskId);
             historyRecordDAO.deleteHistoryRecordById(historyRecordId);
 
             task = taskService.setTaskNotAccomplished(task);
             taskDAO.updateTask(task);
-
-            user = taskService.resetUserPropertiesByAccomplishedTask(user, task);
-            userDAO.updateUserData(user);
 
             sessionService.updateSessionVariables(request);
 

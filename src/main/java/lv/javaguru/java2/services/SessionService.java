@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ public class SessionService {
     private HistoryRecordDAO historyRecordDAO;
     @Autowired
     TimeService timeService;
+    @Autowired
+    ChartService chartService;
 
     public void updateSessionVariables(HttpServletRequest request) throws DBException, IOException {
         HttpSession session = request.getSession();
@@ -59,10 +62,23 @@ public class SessionService {
         List<HistoryRecord> historyRecordList = historyRecordDAO.getAllHistoryRecords(user);
         session.setAttribute("historyRecordList", historyRecordList);
 
+        List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getAllHistoryRecords(user);
+        session.setAttribute("historyRecordList", historyRecordList);
+
+        java.sql.Timestamp stopDate = (Timestamp) session.getAttribute("stopDate");
+        java.sql.Timestamp startDate = timeService.getStartDateTimestamp();
+
+
+        List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
+
+        chartService.createBarChart(user);
+
+        chartService.createTimeSeriesChart(historyRecordsInRange);
+
     }
 
 
-    public void initiateSessionVariables(HttpServletRequest request) throws ParseException, DBException {
+    public void initiateSessionVariables(HttpServletRequest request) throws ParseException, DBException, IOException {
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
@@ -99,5 +115,11 @@ public class SessionService {
 
         List<HistoryRecord> historyRecordList = historyRecordDAO.getAllHistoryRecords(user);
         session.setAttribute("historyRecordList", historyRecordList);
+
+        List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, dateToday);
+
+        chartService.createBarChart(user);
+
+        chartService.createTimeSeriesChart(historyRecordsInRange);
     }
 }

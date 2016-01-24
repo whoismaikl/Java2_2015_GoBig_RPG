@@ -70,7 +70,7 @@ public class TaskService {
         return historyRecord;
     }
 
-    public Long getAccomplishedTaskId(List<Task> accomplishedTaskList, User user, Task task) {
+    /*public Long getAccomplishedTaskId(List<Task> accomplishedTaskList, User user, Task task) {
         Long userId = user.getId();
         Long taskId = task.getId();
         Long accomplishedTaskUserId = null;
@@ -85,7 +85,7 @@ public class TaskService {
             }
         }
         return accomplishedTaskId;
-    }
+    }*/
     public Long getHistoryRecordId(List<HistoryRecord> historyRecordsInRange, Long accomplishedTaskId) {
         Long historyRecordId = null;
         Long historyRecordTaskId = null;
