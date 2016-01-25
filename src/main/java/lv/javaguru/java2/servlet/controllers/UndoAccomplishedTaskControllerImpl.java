@@ -7,14 +7,10 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.services.TaskService;
-import lv.javaguru.java2.services.ButtonFunctionService;
-import lv.javaguru.java2.services.SessionService;
-import lv.javaguru.java2.services.TimeService;
+import lv.javaguru.java2.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,9 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.security.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,6 +42,8 @@ public class UndoAccomplishedTaskControllerImpl {
     private SessionService sessionService;
     @Autowired
     TimeService timeService;
+    @Autowired
+    ChartService chartService;
 
     @RequestMapping(value = "/undoTask", method = {RequestMethod.POST})
     public ModelAndView execute(HttpServletRequest request) throws DBException, IOException {
@@ -64,8 +59,8 @@ public class UndoAccomplishedTaskControllerImpl {
             user = taskService.resetUserPropertiesByAccomplishedTask(user, task);
             userDAO.updateUserData(user);
 
-            java.sql.Timestamp stopDate = timeService.getSqlTimestamp();
-            java.sql.Timestamp startDate = timeService.getStartDateTimestamp();
+            java.sql.Timestamp stopDate = timeService.getEndOfDateTimestamp();
+            java.sql.Timestamp startDate = timeService.getStartOfDateTimestamp();
 
             List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
 
@@ -74,6 +69,8 @@ public class UndoAccomplishedTaskControllerImpl {
 
             task = taskService.setTaskNotAccomplished(task);
             taskDAO.updateTask(task);
+
+            chartService.createBarChart(user);
 
             sessionService.updateSessionVariables(request);
 

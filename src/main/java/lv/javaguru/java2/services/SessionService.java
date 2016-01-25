@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -65,16 +64,6 @@ public class SessionService {
         List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getAllHistoryRecords(user);
         session.setAttribute("historyRecordList", historyRecordList);
 
-        java.sql.Timestamp stopDate = (Timestamp) session.getAttribute("stopDate");
-        java.sql.Timestamp startDate = timeService.getStartDateTimestamp();
-
-
-        List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
-
-        chartService.createBarChart(user);
-
-        chartService.createTimeSeriesChart(historyRecordsInRange);
-
     }
 
 
@@ -83,25 +72,25 @@ public class SessionService {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        java.sql.Timestamp dateToday = timeService.getSqlTimestamp();
-        String formattedDateToday = new SimpleDateFormat("yyyy-MM-dd").format(dateToday);
+        java.sql.Timestamp stopDate = timeService.getEndOfDateTimestamp();
+        String formattedStopDate = new SimpleDateFormat("yyyy-MM-dd").format(stopDate);
 
         java.sql.Timestamp lastLogin = user.getLastLogin();
         String formattedLastLogin = new SimpleDateFormat("yyyy-MM-dd").format(lastLogin);
 
-        if(!formattedLastLogin.equals(formattedDateToday)) {
+        if(!formattedLastLogin.equals(formattedStopDate)) {
             List<Task> taskList = user.getTaskList();
             for (Task task : taskList) {
                 task.setAccomplishedYN("N");
             }
-            user.setLastLogin(dateToday);
+            user.setLastLogin(stopDate);
             userDAO.updateUserData(user);
         }
 
-        Date startDate = timeService.subtractDays(dateToday, INITIAL_OFFSET_IN_DAYS);
-        session.setAttribute("formattedDateToday", formattedDateToday);
+        Date startDate = timeService.subtractDays(stopDate, INITIAL_OFFSET_IN_DAYS);
+        session.setAttribute("formattedDateToday", formattedStopDate);
         session.setAttribute("startDate", startDate);
-        session.setAttribute("stopDate", dateToday);
+        session.setAttribute("stopDate", stopDate);
         session.setAttribute("user", user);
 
         List<Task> taskList = taskDAO.getAllUserTasks(user);
@@ -116,7 +105,7 @@ public class SessionService {
         List<HistoryRecord> historyRecordList = historyRecordDAO.getAllHistoryRecords(user);
         session.setAttribute("historyRecordList", historyRecordList);
 
-        List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, dateToday);
+        List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
 
         chartService.createBarChart(user);
 

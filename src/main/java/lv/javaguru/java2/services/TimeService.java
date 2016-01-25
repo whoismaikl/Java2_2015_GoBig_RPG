@@ -25,7 +25,7 @@ public class TimeService {
         return sqlTimestamp;
     }
 
-    public java.sql.Timestamp getStartDateTimestamp(){
+    public java.sql.Timestamp getStartOfDateTimestamp(){
         java.util.Date utilDate = new java.util.Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(utilDate);
@@ -36,6 +36,19 @@ public class TimeService {
         java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(calendar.getTime().getTime());
         return sqlTimestamp;
     }
+
+    public java.sql.Timestamp getEndOfDateTimestamp(){
+        java.util.Date utilDate = new java.util.Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(utilDate);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
+        java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(calendar.getTime().getTime());
+        return sqlTimestamp;
+    }
+
     public Date subtractDays(Date date, int day){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);

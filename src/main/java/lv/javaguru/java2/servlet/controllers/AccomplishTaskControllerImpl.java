@@ -7,6 +7,7 @@ import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
+import lv.javaguru.java2.services.ChartService;
 import lv.javaguru.java2.services.TaskService;
 import lv.javaguru.java2.services.ButtonFunctionService;
 import lv.javaguru.java2.services.SessionService;
@@ -21,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by AST on 2015.11.03..
@@ -42,6 +45,8 @@ public class AccomplishTaskControllerImpl{
     private TaskService taskService;
     @Autowired
     private SessionService sessionService;
+    @Autowired
+    ChartService chartService;
 
     @RequestMapping(value = "/accomplishTask", method = {RequestMethod.POST})
     public ModelAndView execute(HttpServletRequest request) throws DBException, IOException {
@@ -63,6 +68,8 @@ public class AccomplishTaskControllerImpl{
 
             HistoryRecord historyRecord = taskService.buildHistoryRecord(user, task);
             historyRecordDAO.createHistoryRecord(historyRecord);
+
+            chartService.createBarChart(user);
 
             sessionService.updateSessionVariables(request);
 

@@ -21,8 +21,9 @@ import java.util.Properties;
 /**
  * Created by xxx on 2015.11.20..
  */
+    //@ComponentScan(basePackages = {"lv.javaguru.java2", "Java2_2015_GoBig_RPG"})
     @Configuration
-    @ComponentScan(basePackages = {"lv.javaguru.java2", "Java2_2015_GoBig_RPG"})
+    @ComponentScan(basePackages = {"lv.javaguru.java2"})
     @EnableTransactionManagement
     public class SpringConfig {
 

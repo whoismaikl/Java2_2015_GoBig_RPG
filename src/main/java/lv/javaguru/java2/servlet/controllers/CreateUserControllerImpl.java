@@ -13,13 +13,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by mike on 2015.11.03..
  */
-@Transactional
 @Controller
 public class CreateUserControllerImpl {
+    @Autowired
+    @Qualifier("UserDAO_ORM")
+    private UserDAO userDAO;
     @Autowired
     private UserService userService;
     @Autowired
@@ -47,7 +51,9 @@ public class CreateUserControllerImpl {
 
             userService.addDefaultTasks(user);
 
-            sessionService.updateSessionVariables(request);
+            List<User> userList = userDAO.getAllUsers();
+            HttpSession session = request.getSession();
+            session.setAttribute("userList", userList);
 
             return new ModelAndView("/userAdmin.jsp", "model", "User Registration Successful");
 
