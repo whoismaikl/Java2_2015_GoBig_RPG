@@ -132,15 +132,28 @@ INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`rep
   ('1009','1003','Communication','1','Description for communication','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 
 INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
-  ('1001','1001','1001','5','8','10','1','1','1','2015-11-17 10:07:46');
+  ('1001','1001','1001','0','0','0','1','1','1','2015-11-17 10:07:46');
 INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
-  ('1002','1001','1001','7','3','15','1','1','1','2015-11-19 10:07:46');
+  ('1002','1001','1002','4','3','5','1','1','1','2015-11-24 10:07:46');
 INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
-  ('1003','1001','1001','3','12','20','1','1','1','2015-11-24 10:07:46');
+  ('1003','1001','1003','7','12','9','1','1','1','2015-11-29 10:07:46');
 INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
-  ('1004','1001','1001','9','14','17','1','1','1','2015-11-29 10:07:46');
+  ('1004','1001','1001','9','14','11','1','1','1','2015-12-10 10:07:46');
 INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
-  ('1005','1001','1001','12','16','19','1','1','1','2015-11-30 10:07:46');
+  ('1005','1001','1002','12','16','14','1','1','1','2015-12-20 10:07:46');
+INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+  ('1006','1001','1003','15','19','17','1','1','1','2015-12-30 10:07:46');
+INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+  ('1007','1001','1001','19','20','19','1','1','1','2016-01-05 10:07:46');
+INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+  ('1008','1001','1002','20','25','26','1','1','1','2016-01-10 10:07:46');
+INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+  ('1009','1001','1002','21','29','31','1','1','1','2016-01-15 10:07:46');
+INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+  ('1010','1001','1001','22','31','33','1','1','1','2016-01-20 10:07:46');
+INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
+  ('1011','1001','1002','24','33','36','1','1','1','2016-01-25 10:07:46');
+
 
 INSERT INTO `defaultTasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
   ('1001','1001','Health','1','Description for health','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');

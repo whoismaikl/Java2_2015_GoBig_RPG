@@ -45,7 +45,6 @@ public class SessionService {
         User userFromSession = (User) session.getAttribute("user");
         Long userId = userFromSession.getId();
 
-
         User user = userDAO.getUserById(userId);
         session.setAttribute("user", user);
 
@@ -57,12 +56,6 @@ public class SessionService {
 
         List<Task> accomplishedTaskList = taskDAO.getAccomplishedTaskList(user);
         session.setAttribute("accomplishedTaskList", accomplishedTaskList);
-
-        List<HistoryRecord> historyRecordList = historyRecordDAO.getAllHistoryRecords(user);
-        session.setAttribute("historyRecordList", historyRecordList);
-
-        List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getAllHistoryRecords(user);
-        session.setAttribute("historyRecordList", historyRecordList);
 
     }
 
@@ -87,7 +80,7 @@ public class SessionService {
             userDAO.updateUserData(user);
         }
 
-        Date startDate = timeService.subtractDays(stopDate, INITIAL_OFFSET_IN_DAYS);
+        java.sql.Timestamp startDate = timeService.subtractDays(stopDate, INITIAL_OFFSET_IN_DAYS);
         session.setAttribute("formattedDateToday", formattedStopDate);
         session.setAttribute("startDate", startDate);
         session.setAttribute("stopDate", stopDate);
@@ -106,6 +99,7 @@ public class SessionService {
         session.setAttribute("historyRecordList", historyRecordList);
 
         List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
+        session.setAttribute("historyRecordsInRange", historyRecordsInRange);
 
         chartService.createBarChart(user);
 

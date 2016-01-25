@@ -37,6 +37,19 @@ public class TimeService {
         return sqlTimestamp;
     }
 
+    public java.sql.Timestamp setStartOfDateTimestamp(String date) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date startDate = dateFormat.parse(date);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(calendar.getTime().getTime());
+        return sqlTimestamp;
+    }
+
     public java.sql.Timestamp getEndOfDateTimestamp(){
         java.util.Date utilDate = new java.util.Date();
         Calendar calendar = Calendar.getInstance();
@@ -49,17 +62,34 @@ public class TimeService {
         return sqlTimestamp;
     }
 
-    public Date subtractDays(Date date, int day){
+    public java.sql.Timestamp setEndOfDateTimestamp(String date) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date stopDate = dateFormat.parse(date);
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
+        calendar.setTime(stopDate);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        calendar.set(Calendar.MILLISECOND, 999);
+        java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(calendar.getTime().getTime());
+        return sqlTimestamp;
+    }
+
+    public java.sql.Timestamp subtractDays(java.sql.Timestamp timestamp, int day){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(timestamp);
         calendar.add(Calendar.DAY_OF_YEAR, -day);
-        return calendar.getTime();
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(calendar.getTime().getTime());
+        return sqlTimestamp;
     }
 
     public String getFormattedDate(Date date) throws ParseException {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = df.format(date);
-
         return formattedDate;
     }
 }

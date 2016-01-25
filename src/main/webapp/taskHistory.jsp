@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: AST
@@ -89,8 +90,8 @@
                     <td width="80">
                         <div>
                           <div id="popupDateField2">
-                            <input type="date" name="startDate" id="startDate" value="2016-01-01">
-                            <!--input type="button" id="calendarButton" value="Set Date"-->
+                            <input type="date" name="startDate" id="startDate"
+                                   value="<fmt:formatDate value='${startDate}' pattern='yyyy-MM-dd'/>">
                           </div>
                         </div>
                     </td>
@@ -98,7 +99,8 @@
                     <td width="80">
                         <div>
                           <div id="popupDateField3">
-                            <input type="date" name="stopDate" id="stopDate" value="2016-01-21">
+                            <input type="date" name="stopDate" id="stopDate"
+                                   value="<fmt:formatDate value='${stopDate}' pattern='yyyy-MM-dd'/>">
                             <!--input type="button" id="calendarButton" value="Set Date"-->
                           </div>
                         </div>
@@ -117,7 +119,6 @@
         </header>
         <div class="tab_container">
           <div id="tab1" class="tab_content">
-            <html>
             <form action="/java2/deleteHistoryRecord" method="post">
               <table class="tablesorter" cellspacing="0">
                 <thead>
@@ -140,7 +141,7 @@
                     <td>${historyRecord.communication}</td>
                     <td>${historyRecord.statValue}</td>
                     <td>${historyRecord.dateCompleted}</td>
-                    <td><input type="submit" name="delete${record.id}" class="login login-submit" value="Delete"></td>
+                    <td><input type="submit" name="delete${historyRecord.id}" class="login login-submit" value="Delete"></td>
                   </tr>
                 </c:forEach>
                 </tbody>

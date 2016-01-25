@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.HistoryRecordDAO;
 import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.ChartService;
+import lv.javaguru.java2.services.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -31,15 +32,17 @@ public class TaskStatisticCharFilterControllerImpl {
     private HistoryRecordDAO historyRecordDAO;
     @Autowired
     private ChartService chartService;
+    @Autowired
+    TimeService timeService;
 
     @RequestMapping(value = "/statisticCharFilter", method = {RequestMethod.POST})
     public ModelAndView execute(HttpServletRequest request) throws DBException, IOException, ParseException {
 
         String startDateStr = request.getParameter("startDate");
         String stopDateStr = request.getParameter("stopDate");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date startDate = dateFormat.parse(startDateStr);
-        Date stopDate = dateFormat.parse(stopDateStr);
+
+        java.sql.Timestamp startDate = timeService.setStartOfDateTimestamp(startDateStr);
+        java.sql.Timestamp stopDate = timeService.setStartOfDateTimestamp(stopDateStr);
 
         HttpSession session = request.getSession();
         final User user = (User) session.getAttribute("user");

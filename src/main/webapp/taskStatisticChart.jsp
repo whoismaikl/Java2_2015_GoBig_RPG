@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 
   <head>
@@ -91,7 +92,8 @@
                   <td width="80">
                     <div>
                       <div id="popupDateField2">
-                        <input type="date" name="startDate" id="startDate" value="2016-01-01">
+                        <input type="date" name="startDate" id="startDate"
+                               value="<fmt:formatDate value='${startDate}' pattern='yyyy-MM-dd'/>">
                         <!--input type="button" id="calendarButton" value="Set Date"-->
                       </div>
                     </div>
@@ -100,7 +102,8 @@
                   <td width="80">
                     <div>
                       <div id="popupDateField3">
-                        <input type="date" name="stopDate" id="stopDate" value="2016-01-21">
+                        <input type="date" name="stopDate" id="stopDate"
+                               value="<fmt:formatDate value='${stopDate}' pattern='yyyy-MM-dd'/>">
                         <!--input type="button" id="calendarButton" value="Set Date"-->
                       </div>
                     </div>

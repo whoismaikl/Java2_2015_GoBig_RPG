@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by AST on 2015.11.03..
@@ -46,7 +47,7 @@ public class UndoAccomplishedTaskControllerImpl {
     ChartService chartService;
 
     @RequestMapping(value = "/undoTask", method = {RequestMethod.POST})
-    public ModelAndView execute(HttpServletRequest request) throws DBException, IOException {
+    public ModelAndView execute(HttpServletRequest request) throws DBException, IOException, InterruptedException {
 
         String buttonName = buttonFunctionService.getButtonName(request);
 
@@ -70,9 +71,12 @@ public class UndoAccomplishedTaskControllerImpl {
             task = taskService.setTaskNotAccomplished(task);
             taskDAO.updateTask(task);
 
+            sessionService.updateSessionVariables(request);
+
+            user = (User) session.getAttribute("user");
             chartService.createBarChart(user);
 
-            sessionService.updateSessionVariables(request);
+            //TimeUnit.SECONDS.sleep(1);
 
             return new ModelAndView("/activeTasks.jsp", "model", "Task Accomplished");
         }
