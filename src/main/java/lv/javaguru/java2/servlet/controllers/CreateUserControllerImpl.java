@@ -38,13 +38,13 @@ public class CreateUserControllerImpl {
         String password2 = request.getParameter("password2");
 
         try {
-            if(userService.userExist(email, username))
+            if (userService.userExist(email, username))
                 return new ModelAndView("/register.jsp", "model", "Registration Failed - Username and email already exist!");
 
-            if(!userService.passwordsMatches(password1, password2))
+            if (!userService.passwordsMatches(password1, password2))
                 return new ModelAndView("/userAdmin.jsp", "model", "Registration Failed - Passwords do'nt matches!");
 
-            if(!userService.correctEmailSyntax(email))
+            if (!userService.isValidEmailAddress(email))
                 return new ModelAndView("/userAdmin.jsp", "model", "Registration Failed - email not correct!");
 
             User user = userService.createUser(email, password1, password2, username);

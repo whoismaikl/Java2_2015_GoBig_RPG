@@ -13,11 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
- * Created by JavaCourses on 2015.11.19..
+ * Created by mike on 2015.11.19..
  */
 @Component
 public class UserService {
@@ -70,13 +72,34 @@ public class UserService {
         }
     }
 
-    public boolean correctEmailSyntax(String email) {
-        // add string check for xxx@ccc.zz
-        return true;
+    public static boolean isValidEmailAddress(String email) {
+        boolean result = true;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            result = false;
+        }
+        return result;
     }
-    public void createDefaultTasks(){
+/*/
+    public boolean checkEmailExistence(String email){
+        boolean result = false;
+        try {
+            if (userDAO.getUserByMail(email)){
+                result = true;
+            }
+        } catch (DBException e) {
 
+            e.printStackTrace();
+            result = false;
+        }
+        return result;
     }
+/*/
+
+
+
 
     public void addDefaultTasks(User user) throws DBException {
         Task task;

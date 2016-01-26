@@ -4,7 +4,6 @@ import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by mike on 2015.11.03..
+ * Created by mike on 2013.01.26.
  */
 @Controller
 public class RegistrationControllerImpl {
@@ -29,13 +28,13 @@ public class RegistrationControllerImpl {
         String password2 = request.getParameter("password2");
 
         try {
-            if(userService.userExist(email, username))
+            if (userService.userExist(email, username))
                 return new ModelAndView("/register.jsp", "model", "Registration Failed - Username and email already exist!");
 
-            if(!userService.passwordsMatches(password1, password2))
+            if (!userService.passwordsMatches(password1, password2))
                 return new ModelAndView("/register.jsp", "model", "Registration Failed - Passwords do'nt matches!");
 
-            if(!userService.correctEmailSyntax(email))
+            if (!userService.isValidEmailAddress(email))
                 return new ModelAndView("/register.jsp", "model", "Registration Failed - email not correct!");
 
             User user = userService.createUser(email, password1, password2, username);
