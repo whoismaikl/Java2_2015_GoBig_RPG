@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component("UserDAO_JDBC")
-public class UserDAOImpl extends DAOImpl implements UserDAO {
+public class UserDAOImpl_OLD extends DAOImpl_OLD implements UserDAO {
 
     public void createUser(User user) throws DBException {
         if (user == null) {
@@ -252,6 +252,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
             closeConnection(connection);
         }
     }
+
+
 
 
     public User getPasswordByMail(String email) throws DBException {

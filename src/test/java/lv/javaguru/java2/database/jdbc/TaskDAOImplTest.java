@@ -19,8 +19,8 @@ public class TaskDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
     java.sql.Timestamp sqlTimestamp = new TimeService().getSqlTimestamp();
 
-    private TaskDAOImpl userTaskDAO = new TaskDAOImpl();
-    private UserDAOImpl userDAO = new UserDAOImpl();
+    private TaskDAOImpl_OLD userTaskDAO = new TaskDAOImpl_OLD();
+    private UserDAOImpl_OLD userDAO = new UserDAOImpl_OLD();
 
 
     @Before
