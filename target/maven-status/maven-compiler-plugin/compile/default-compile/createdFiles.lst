@@ -61,7 +61,9 @@ lv\javaguru\java2\config\SpringWebMvcInitializer.class
 lv\javaguru\java2\database\hibernateORM\TaskDAOImpl.class
 lv\javaguru\java2\services\TimeSeriesChart_image.class
 lv\javaguru\java2\database\hibernateORM\UserDAOImpl.class
+lv\javaguru\java2\services\BarChartService.class
 lv\javaguru\java2\database\TaskDAO.class
+lv\javaguru\java2\servlet\controllers\BarChartControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskManagementController.class
 lv\javaguru\java2\database\jdbc\DAOImpl.class
 lv\javaguru\java2\database\jdbc\DefaultTaskDAOImpl.class
