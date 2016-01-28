@@ -26,7 +26,7 @@
             </form>
             <br>
           <div class="login-help">
-            <a href="/java2/register.jsp">Register</a> • <a href="#">Forgot Password</a>
+            <a href="/java2/register.jsp">Register</a> • <a href="/java2/retreivePassword.jsp">Forgot Password</a>
           </div>
             <div class="login-help">
                 <br>

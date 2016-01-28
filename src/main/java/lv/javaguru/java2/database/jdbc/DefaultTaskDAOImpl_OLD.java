@@ -1,21 +1,21 @@
 package lv.javaguru.java2.database.jdbc;
 
-import java.util.Date;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.TaskDAO;
-import lv.javaguru.java2.domain.User;
-import lv.javaguru.java2.domain.Task;
+import lv.javaguru.java2.database.DefaultTaskDAO;
+import lv.javaguru.java2.domain.DefaultTask;
 import org.springframework.stereotype.Component;
 
-import javax.transaction.Transactional;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component("TaskDAO_JDBC")
-public class TaskDAOImpl extends DAOImpl implements TaskDAO {
+@Component("DefaultTaskDAO_JDBC")
+public class DefaultTaskDAOImpl_OLD extends DAOImpl_OLD implements DefaultTaskDAO {
 
-    public void createTask(Task task) throws DBException {
+    public void createDefaultTask(DefaultTask task) throws DBException {
         if (task == null) {
             return;
         }
@@ -25,7 +25,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("INSERT INTO tasks VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("INSERT INTO defaultTasks VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setLong(1, task.getUserID());
             preparedStatement.setString(2, task.getStatType());
             preparedStatement.setInt(3, task.getStatValue());
@@ -41,7 +41,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
                 task.setId(rs.getLong(1));
             }
         } catch (Throwable e) {
-            System.out.println("Exception while execute TaskDAOImpl.createTask()");
+            System.out.println("Exception while execute DefaultTaskDAOImpl.createDefaultTask()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -50,18 +50,18 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
 
     }
 
-    public Task getTaskById(Long id) throws DBException {
+    public DefaultTask getDefaultTaskById(Long id) throws DBException {
         Connection connection = null;
 
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("SELECT * FROM tasks WHERE id = ?");
+                    .prepareStatement("SELECT * FROM defaultTasks WHERE id = ?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            Task task = null;
+            DefaultTask task = null;
             if (resultSet.next()) {
-                task = new Task();
+                task = new DefaultTask();
                 task.setId(resultSet.getLong("id"));
                 task.setUserID(resultSet.getLong("userID"));
                 task.setStatType(resultSet.getString("statType"));
@@ -75,30 +75,26 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             }
             return task;
         } catch (Throwable e) {
-            System.out.println("Exception while execute TaskDAOImpl.getTaskById()");
+            System.out.println("Exception while execute DefaultTaskDAOImpl.getDefaultTaskById()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
             closeConnection(connection);
         }
     }
-    // getAllUserTasks nado budet dodelat', tk v dannom QueryBudut pokazyvatsja vse taski i vypolnennye i nevypolnennye
-    // ili dobavit' metod getActiveTasks where AccomplishedYN = N
-    // i getCompltedTasks wgere AccomplishedYN = Y
-    public List<Task> getAllUserTasks(User user) throws DBException {
-        List<Task> tasks = new ArrayList<Task>();
+
+    public List<DefaultTask> getDefaultTaskList() throws DBException {
+        List<DefaultTask> tasks = new ArrayList<DefaultTask>();
         Connection connection = null;
-        Long userId1 = user.getId();
 
         try {
             connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tasks WHERE userID="
-                    + userId1);
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM defaultTasks");
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            Task task;
+            DefaultTask task;
             while (resultSet.next()) {
-                task = new Task();
+                task = new DefaultTask();
                 task.setId(resultSet.getLong("id"));
                 task.setUserID(resultSet.getLong("userID"));
                 task.setStatType(resultSet.getString("statType"));
@@ -112,7 +108,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
                 tasks.add(task);
             }
         } catch (Throwable e) {
-            System.out.println("Exception while getting customer list TaskDAOImpl.getAllUserTasks()");
+            System.out.println("Exception while getting customer list DefaultTaskDAOImpl.getDefaultTaskList()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -121,16 +117,16 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         return tasks;
     }
 
-    public void deleteTaskByID(Long id) throws DBException {
+    public void deleteDefaultTaskByID(Long id) throws DBException {
         Connection connection = null;
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("DELETE FROM tasks WHERE id = ?");
+                    .prepareStatement("DELETE FROM defaultTasks WHERE id = ?");
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute TaskDAOImpl.deleteTaskByID()");
+            System.out.println("Exception while execute DefaultTaskDAOImpl.deleteDefaultTask()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -138,7 +134,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         }
     }
 
-    public void updateTask(Task task) throws DBException {
+    public void editDefaultTask(DefaultTask task) throws DBException {
         if (task == null) {
             return;
         }
@@ -146,7 +142,7 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE tasks SET statType = ?, statValue = ?, statDescription = ?, repeatableYN = ?, dateAdded = ?" + "WHERE id = ?");
+                    .prepareStatement("UPDATE defaultTasks SET statType = ?, statValue = ?, statDescription = ?, repeatableYN = ?, dateAdded = ?" + "WHERE id = ?");
             preparedStatement.setString(1, task.getStatType());
             preparedStatement.setInt(2, task.getStatValue());
             preparedStatement.setString(3, task.getStatDescription());
@@ -155,38 +151,11 @@ public class TaskDAOImpl extends DAOImpl implements TaskDAO {
             preparedStatement.setLong(6, task.getId());
             preparedStatement.executeUpdate();
         } catch (Throwable e) {
-            System.out.println("Exception while execute TaskDAOImpl.updateTask()");
+            System.out.println("Exception while execute DefaultTaskDAOImpl.updateDefaultTask()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
             closeConnection(connection);
         }
     }
-    public void accomplishTask(Long id) throws DBException {
-        Connection connection = null;
-        try {
-            connection = getConnection();
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("UPDATE tasks SET accomplishedYN = ?, dateAccomplished = ?" + "WHERE id = ?");
-            preparedStatement.setString(1, "Y");
-            preparedStatement.setTimestamp(2,  new java.sql.Timestamp(new Date().getTime()));
-            preparedStatement.setLong(3, id);
-            preparedStatement.executeUpdate();
-        } catch (Throwable e) {
-            System.out.println("Exception while execute TaskDAOImpl.accomplishTask()");
-            e.printStackTrace();
-            throw new DBException(e);
-        } finally {
-            closeConnection(connection);
-        }
-    }
-
-    public List<Task> getActiveTaskList(User user) throws DBException{
-        return null;
-    }
-
-    public List<Task> getAccomplishedTaskList(User user) throws DBException {
-        return null;
-    }
-
 }

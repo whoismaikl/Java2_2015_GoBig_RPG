@@ -4,10 +4,8 @@ package lv.javaguru.java2.database.hibernateORM;
 //import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
-import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
 import org.hibernate.Criteria;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +48,6 @@ public class UserDAOImpl implements UserDAO {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
         criteria.add(Restrictions.eq("id", user.getId()));
         sessionFactory.getCurrentSession().update(user);
-
     }
 
 
@@ -80,6 +77,12 @@ public class UserDAOImpl implements UserDAO {
         return  (User) criteria.uniqueResult();
     }
 
+    public User getPasswordByMail(String email) {
+
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("email", email));
+        return (User) criteria.uniqueResult();
+    }
 
 
 }

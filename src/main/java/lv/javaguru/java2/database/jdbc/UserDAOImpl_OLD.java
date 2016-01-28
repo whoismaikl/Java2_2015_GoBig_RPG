@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component("UserDAO_JDBC")
-public class UserDAOImpl extends DAOImpl implements UserDAO {
+public class UserDAOImpl_OLD extends DAOImpl_OLD implements UserDAO {
 
     public void createUser(User user) throws DBException {
         if (user == null) {
@@ -246,6 +246,39 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
 
         } catch (Throwable e) {
             System.out.println("Exception while execute LoginDAOImpl.checkLoginData()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
+
+
+
+
+    public User getPasswordByMail(String email) throws DBException {
+        Connection connection = null;
+        String password = "";
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("SELECT * FROM users WHERE email = ?");
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User user = null;
+
+            if (resultSet.next()) {
+                user = new User();
+                user.setId(resultSet.getLong("id"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                user.setUserName(resultSet.getString("userName"));
+                user.setUserType(resultSet.getString("userType"));
+            }
+
+        return user;
+        } catch (Throwable e) {
+            System.out.println("Exception while execute LoginDAOImpl.getPasswordByMail()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {

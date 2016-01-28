@@ -17,7 +17,7 @@ public class UserDAOImplTest {
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
 
     @Qualifier("UserDAO_JDBC")
-    private UserDAOImpl userDAO = new UserDAOImpl();
+    private UserDAOImpl_OLD userDAO = new UserDAOImpl_OLD();
 
 
     @Before

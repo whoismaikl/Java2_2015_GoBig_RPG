@@ -27,4 +27,6 @@ public interface UserDAO {
 
     User getUserByLoginData(String email, String password) throws DBException;
 
+    User getPasswordByMail(String email) throws DBException;
+
 }
