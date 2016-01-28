@@ -46,6 +46,7 @@ public class UserService {
                 .withEmail(email)
                 .withPassword(password1)
                 .withDateRegistered(timeService.getSqlTimestamp())
+                .withLastLogin(timeService.getSqlTimestamp())
                 .build();
         userDAO.createUser(user);
             return user;
