@@ -23,10 +23,10 @@
   <%@ include file="includes/header.jsp" %>
   <%@ include file="includes/menu.jsp" %>
   <body>
-    <section id="main" class="column">
-      <article class="module width_full">
-        <div class="tab_container">
-          <div id="tab12" class="tab_content">
+    <section id="main" class="column" width="1500">
+      <article class="module width_full" width="1500">
+        <div class="tab_container" width="1500">
+          <div id="tab12" class="tab_content" width="1500">
             <img src="includes/BarChart.jpeg" width="920" height="100" alt="" />
           </div><!-- end of #tab1 -->
         </div><!-- end of #tab -->

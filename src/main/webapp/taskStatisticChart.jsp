@@ -76,7 +76,7 @@
   <%@ include file="includes/header.jsp" %>
   <%@ include file="includes/menu.jsp" %>
   <body>
-    <section id="main0" class="column">
+    <section id="main" class="column">
       <article class="module width_full">
         <header><h3 class="tabs_involved">History Record Filter</h3>
         </header>
