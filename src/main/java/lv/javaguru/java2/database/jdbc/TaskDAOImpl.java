@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component("TaskDAO_JDBC")
-public class TaskDAOImpl_OLD extends DAOImpl_OLD implements TaskDAO {
+public class TaskDAOImpl extends DAOImpl implements TaskDAO {
 
     public void createTask(Task task) throws DBException {
         if (task == null) {

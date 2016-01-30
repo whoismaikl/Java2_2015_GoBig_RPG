@@ -38,7 +38,7 @@ public class CreateUserControllerImpl {
         String password2 = request.getParameter("password2");
 
         try {
-            if (userService.userExist(email, username))
+            if (userService.userExist(email))
                 return new ModelAndView("/register.jsp", "model", "Registration Failed - Username and email already exist!");
 
             if (!userService.passwordsMatches(password1, password2))

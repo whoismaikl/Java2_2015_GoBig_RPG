@@ -1,6 +1,6 @@
 package lv.javaguru.java2.database.jdbc;
 
-
+/*/
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component("UserDAO_JDBC")
-public class UserDAOImpl_OLD extends DAOImpl_OLD implements UserDAO {
+public class UserDAOImpl extends DAOImpl implements UserDAO {
 
     public void createUser(User user) throws DBException {
         if (user == null) {
@@ -152,7 +152,9 @@ public class UserDAOImpl_OLD extends DAOImpl_OLD implements UserDAO {
         }
     }
 
-    public boolean getUserByMail(String email) throws DBException {
+    public String getUserByMail(String email) throws DBException {
+
+
             Connection connection = null;
 
             try {
@@ -161,12 +163,7 @@ public class UserDAOImpl_OLD extends DAOImpl_OLD implements UserDAO {
                         .prepareStatement("SELECT * FROM users WHERE email = ?");
                 preparedStatement.setString(1, email);
                 ResultSet resultSet = preparedStatement.executeQuery();
-                /*/
-                if (resultSet.next()) {
-                    return true;
-                }
-                return false;
-                /*/
+
                 return resultSet.next();
             } catch (Throwable e) {
                 System.out.println("Exception while execute UserDAOImpl.getUserById()");
@@ -175,9 +172,11 @@ public class UserDAOImpl_OLD extends DAOImpl_OLD implements UserDAO {
             } finally {
                 closeConnection(connection);
             }
+
         }
 
-    public boolean getUserByName(String name) throws DBException {
+    public String getUserByName(String name) throws DBException {
+
         Connection connection = null;
 
         try {
@@ -186,12 +185,12 @@ public class UserDAOImpl_OLD extends DAOImpl_OLD implements UserDAO {
                     .prepareStatement("SELECT * FROM users WHERE userName = ?");
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
-            /*/
+   //////
             if (resultSet.next()) {
                 return true;
             }
             return false;
-            /*/
+      /////
             return resultSet.next();
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.getByLogin()");
@@ -200,6 +199,7 @@ public class UserDAOImpl_OLD extends DAOImpl_OLD implements UserDAO {
         } finally {
             closeConnection(connection);
         }
+
     }
 
     public boolean checkLoginData(String email, String password) throws DBException {
@@ -287,3 +287,4 @@ public class UserDAOImpl_OLD extends DAOImpl_OLD implements UserDAO {
     }
 
 }
+/*/

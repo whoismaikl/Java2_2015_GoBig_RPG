@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component("DefaultTaskDAO_JDBC")
-public class DefaultTaskDAOImpl_OLD extends DAOImpl_OLD implements DefaultTaskDAO {
+public class DefaultTaskDAOImpl extends DAOImpl implements DefaultTaskDAO {
 
     public void createDefaultTask(DefaultTask task) throws DBException {
         if (task == null) {

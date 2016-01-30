@@ -49,16 +49,19 @@ public class UserService {
                 .withLastLogin(timeService.getSqlTimestamp())
                 .build();
         userDAO.createUser(user);
-            return user;
+        return user;
     }
 
-    public boolean userExist(String email, String username) {
+    public boolean userExist(String email ) {
         try {
-            if (!userDAO.getUserByMail(email) && !userDAO.getUserByName(username)) {
-                return false;
-            } else {
+
+            String useremail = userDAO.getUserByMail(email);
+            if (useremail != "" && useremail != null) {
                 return true;
             }
+
+            return false;
+
         } catch (DBException e) {
             e.printStackTrace();
             return true;
@@ -100,12 +103,10 @@ public class UserService {
 /*/
 
 
-
-
     public void addDefaultTasks(User user) throws DBException {
         Task task;
         List<DefaultTask> defaultTaskList = defaultTaskDAO.getDefaultTaskList();
-        for(DefaultTask defaultTask : defaultTaskList){
+        for (DefaultTask defaultTask : defaultTaskList) {
             task = taskBuilder.buildTask()
                     .withUserID(user.getId())
                     .withStatType(defaultTask.getStatType())

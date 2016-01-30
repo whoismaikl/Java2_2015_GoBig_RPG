@@ -13,7 +13,7 @@ import java.util.Properties;
  * Created by Viktor on 01/07/2014.
  */
 @Component
-public class DAOImpl_OLD {
+public class DAOImpl {
 
     private static final String DB_CONFIG_FILE = "database.properties";
 
@@ -22,7 +22,7 @@ public class DAOImpl_OLD {
     private String password = null;
 
 
-    public DAOImpl_OLD() {
+    public DAOImpl() {
         registerJDBCDriver();
         initDatabaseConnectionProperties();
     }
@@ -39,7 +39,7 @@ public class DAOImpl_OLD {
     private void initDatabaseConnectionProperties() {
         Properties properties = new Properties();
         try {
-            properties.load(DAOImpl_OLD.class.getClassLoader().getResourceAsStream(DB_CONFIG_FILE));
+            properties.load(DAOImpl.class.getClassLoader().getResourceAsStream(DB_CONFIG_FILE));
 
             dbUrl = properties.getProperty("dbUrl");
             userName = properties.getProperty("userName");
