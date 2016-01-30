@@ -92,4 +92,12 @@ public class TimeService {
         String formattedDate = df.format(date);
         return formattedDate;
     }
+
+    public int getDate(java.sql.Timestamp timestamp){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(timestamp);
+        int date = calendar.DAY_OF_YEAR;
+        return date;
+    }
+
 }

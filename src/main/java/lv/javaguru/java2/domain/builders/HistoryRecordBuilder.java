@@ -11,6 +11,7 @@ public class HistoryRecordBuilder {
     //  private Long id;
     private Long userID;
     private Long taskID;
+    private String statType;
     private int health;
     private int intelligence;
     private int communication;
@@ -28,6 +29,7 @@ public class HistoryRecordBuilder {
         HistoryRecord historyRecord = new HistoryRecord();
         historyRecord.setUserID(userID);
         historyRecord.setTaskID(taskID);
+        historyRecord.setStatType(statType);
         historyRecord.setHealth(health);
         historyRecord.setIntelligence(intelligence);
         historyRecord.setCommunication(communication);
@@ -44,6 +46,10 @@ public class HistoryRecordBuilder {
     }
     public HistoryRecordBuilder withTaskID(Long taskID) {
         this.taskID = taskID;
+        return this;
+    }
+    public HistoryRecordBuilder withStatType(String statType) {
+        this.statType = statType;
         return this;
     }
     public HistoryRecordBuilder withHealth(int health) {

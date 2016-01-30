@@ -1,4 +1,6 @@
 package lv.javaguru.java2.services;
+import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.HistoryRecordDAO;
 import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.Task;
 import lv.javaguru.java2.domain.User;
@@ -6,6 +8,10 @@ import lv.javaguru.java2.domain.builders.HistoryRecordBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -21,6 +27,8 @@ public class TaskService {
     private TimeService timeService;
     @Autowired
     private HistoryRecordBuilder historyRecordBuilder;
+    @Autowired
+    HistoryRecordDAO historyRecordDAO;
 
     public User setUserPropertiesByAccomplishedTask(User user, Task task) {
         String taskType = task.getStatType();
@@ -40,19 +48,18 @@ public class TaskService {
         return user;
     }
 
-    private int calculateWillPower(User user){
-        return (user.getHealth()+user.getIntelligence()+user.getCommunication())/COUNT_OF_STATUSES;
+    private int calculateWillPower(User user) {
+        return (user.getHealth() + user.getIntelligence() + user.getCommunication()) / COUNT_OF_STATUSES;
     }
 
-    public Task setTaskAccomplished(Task task){
+    public Task setTaskAccomplished(Task task) {
         task.setAccomplishedYN("Y");
         task.setDateAccomplished(timeService.getSqlTimestamp());
         return task;
     }
 
-    public Task setTaskNotAccomplished(Task task){
+    public Task setTaskNotAccomplished(Task task) {
         task.setAccomplishedYN("N");
-        //task.setDateAccomplished(null);
         return task;
     }
 
@@ -60,6 +67,7 @@ public class TaskService {
         HistoryRecord historyRecord = historyRecordBuilder.buildHistoryRecord()
                 .withUserID(user.getId())
                 .withTaskID(task.getId())
+                .withStatType(task.getStatType())
                 .withHealth(user.getHealth())
                 .withIntelligence(user.getIntelligence())
                 .withCommunication(user.getCommunication())
@@ -70,28 +78,12 @@ public class TaskService {
         return historyRecord;
     }
 
-    /*public Long getAccomplishedTaskId(List<Task> accomplishedTaskList, User user, Task task) {
-        Long userId = user.getId();
-        Long taskId = task.getId();
-        Long accomplishedTaskUserId = null;
-        Long accomplishedTaskId = null;
-        Long historyRecordId = null;
-
-        for (Task accomplishedTask : accomplishedTaskList) {
-            accomplishedTaskUserId = accomplishedTask.getUserID();
-            accomplishedTaskId = accomplishedTask.getId();
-            if(accomplishedTaskUserId.equals(userId) && accomplishedTaskId.equals(taskId)) {
-                return accomplishedTaskId;
-            }
-        }
-        return accomplishedTaskId;
-    }*/
     public Long getHistoryRecordId(List<HistoryRecord> historyRecordsInRange, Long accomplishedTaskId) {
         Long historyRecordId = null;
         Long historyRecordTaskId = null;
-        for (HistoryRecord historyRecord: historyRecordsInRange){
+        for (HistoryRecord historyRecord : historyRecordsInRange) {
             historyRecordTaskId = historyRecord.getTaskID();
-            if(historyRecordTaskId.equals(accomplishedTaskId)){
+            if (historyRecordTaskId.equals(accomplishedTaskId)) {
                 historyRecordId = historyRecord.getId();
                 return historyRecordId;
             }
@@ -115,5 +107,55 @@ public class TaskService {
         }
         user.setWillPower(calculateWillPower(user));
         return user;
+    }
+
+    public List<Integer> getScoresForDay(List<HistoryRecord> historyRecordsForDay) {
+        List<Integer> scores = new ArrayList<Integer>();
+        Integer scoresHealth = 0;
+        Integer scoresIntelligence = 0;
+        Integer scoresCommunication = 0;
+        String statType;
+        for (HistoryRecord historyRecord : historyRecordsForDay) {
+            statType = historyRecord.getStatType();
+            if (statType.equals(TASK_STATUS_TYPE_HEALTH)) {
+                scoresHealth += historyRecord.getStatValue();
+            } else if (statType.equals(TASK_STATUS_TYPE_INTELLIGENCE)) {
+                scoresIntelligence += historyRecord.getStatValue();
+            } else if (statType.equals(TASK_STATUS_TYPE_COMMUNICATION)) {
+                scoresCommunication += historyRecord.getStatValue();
+            }
+        }
+        scores.add(scoresHealth);
+        scores.add(scoresIntelligence);
+        scores.add(scoresCommunication);
+        return scores;
+    }
+
+    public List<Integer> getScoresAverage(List <HistoryRecord> historyRecordsInRange) throws ParseException {
+        List<Integer> scoresAverage = new ArrayList<Integer>();
+        Integer scoresHealth = 0;
+        Integer scoresIntelligence = 0;
+        Integer scoresCommunication = 0;
+        String startDate;
+        String stopDate = timeService.getFormattedDate(historyRecordsInRange.get(historyRecordsInRange.size() - 1).getDateCompleted());
+        int dateCount = 1;
+        String statType;
+        for (HistoryRecord historyRecord : historyRecordsInRange) {
+            startDate = timeService.getFormattedDate(historyRecord.getDateCompleted());
+            if (!startDate.equals(stopDate))
+                dateCount++;
+            statType = historyRecord.getStatType();
+            if (statType.equals(TASK_STATUS_TYPE_HEALTH)) {
+                scoresHealth += historyRecord.getStatValue();
+            } else if (statType.equals(TASK_STATUS_TYPE_INTELLIGENCE)) {
+                scoresIntelligence += historyRecord.getStatValue();
+            } else if (statType.equals(TASK_STATUS_TYPE_COMMUNICATION)) {
+                scoresCommunication += historyRecord.getStatValue();
+            }
+        }
+        scoresAverage.add(scoresHealth / dateCount);
+        scoresAverage.add(scoresIntelligence / dateCount);
+        scoresAverage.add(scoresCommunication / dateCount);
+        return scoresAverage;
     }
 }

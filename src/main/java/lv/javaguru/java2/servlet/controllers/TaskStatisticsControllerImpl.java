@@ -4,6 +4,7 @@ import lv.javaguru.java2.database.HistoryRecordDAO;
 import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.ChartService;
+import lv.javaguru.java2.services.TaskService;
 import lv.javaguru.java2.services.TimeSeriesChart_image;
 import lv.javaguru.java2.services.TimeService;
 import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskStatisticsController;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -33,9 +35,11 @@ public class TaskStatisticsControllerImpl{
     HistoryRecordDAO historyRecordDAO;
     @Autowired
     TimeService timeService;
+    @Autowired
+    TaskService taskService;
 
     @RequestMapping(value = "/taskStatistics", method = {RequestMethod.GET})
-    public ModelAndView execute(HttpServletRequest request) throws DBException, IOException {
+    public ModelAndView execute(HttpServletRequest request) throws DBException, IOException, ParseException {
 
         HttpSession session = request.getSession();
         final User user = (User) session.getAttribute("user");
@@ -43,8 +47,18 @@ public class TaskStatisticsControllerImpl{
         Date stopDate = (Date) session.getAttribute("stopDate");
 
         List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
-
         chartService.createTimeSeriesChart(historyRecordListInRange);
+
+        List<Integer> scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
+
+        List<HistoryRecord> historyRecordListToday = historyRecordDAO
+                .getHistoryRecordsInRange(user,
+                        timeService.getStartOfDateTimestamp(),
+                        timeService.getEndOfDateTimestamp());
+        List<Integer> scoresToday = taskService.getScoresForDay(historyRecordListToday);
+
+        session.setAttribute("scoresToday", scoresToday);
+        session.setAttribute("scoresAverage", scoresAverage);
 
         return  new ModelAndView("/taskStatisticChart.jsp","model", "Task Statistics");
     }
