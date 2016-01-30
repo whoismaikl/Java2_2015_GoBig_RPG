@@ -55,6 +55,10 @@ public class UndoAccomplishedTaskControllerImpl {
             Long accomplishedTaskId = buttonFunctionService.getId(buttonName);
             Task task = taskDAO.getTaskById(accomplishedTaskId);
 
+            String taskAccomplished = task.getAccomplishedYN();
+            if(taskAccomplished.equals("N"))
+                return new ModelAndView("/activeTasks.jsp", "model", "Task Already Undone");
+
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
             user = taskService.resetUserPropertiesByAccomplishedTask(user, task);

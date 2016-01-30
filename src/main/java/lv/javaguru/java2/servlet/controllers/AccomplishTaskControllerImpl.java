@@ -58,6 +58,10 @@ public class AccomplishTaskControllerImpl{
             Long taskId = buttonFunctionService.getId(buttonName);
             Task task = taskDAO.getTaskById(taskId);
 
+            String taskAccomplished = task.getAccomplishedYN();
+            if(taskAccomplished.equals("Y"))
+                return new ModelAndView("/activeTasks.jsp", "model", "Task Already Accomplished");
+
             HttpSession session = request.getSession();
             User user = (User) session.getAttribute("user");
 

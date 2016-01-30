@@ -76,7 +76,7 @@
   <%@ include file="includes/header.jsp" %>
   <%@ include file="includes/menu.jsp" %>
   <body>
-    <section id="main0" class="column">
+    <section id="main" class="column">
       <article class="module width_full">
         <header><h3 class="tabs_involved">History Record Filter</h3>
         </header>
@@ -144,21 +144,27 @@
                 <tbody>
                 <tr>
                   <th>Health</th>
-                  <td>${user.health}</td>
-                  <td>6</td>
+                  <td>${scoresToday[0]}</td>
+                  <td>${scoresAverage[0]}</td>
                   <td>${user.health}</td>
                 </tr>
                 <tr>
                   <th>Intelligence</th>
-                  <td>${user.intelligence}</td>
-                  <td>5</td>
+                  <td>${scoresToday[1]}</td>
+                  <td>${scoresAverage[1]}</td>
                   <td>${user.intelligence}</td>
                 </tr>
                 <tr>
                   <th>Communication</th>
+                  <td>${scoresToday[2]}</td>
+                  <td>${scoresAverage[2]}</td>
                   <td>${user.communication}</td>
-                  <td>6</td>
-                  <td>${user.communication}</td>
+                </tr>
+                <tr>
+                  <th>Will Power</th>
+                  <td></td>
+                  <td></td>
+                  <td>${user.willPower}</td>
                 </tr>
                 </tbody>
               </table>

@@ -1,4 +1,5 @@
 package lv.javaguru.java2.services;
+
 import lv.javaguru.java2.domain.User;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
@@ -10,6 +11,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -17,9 +19,9 @@ import java.io.IOException;
  * Created by AST on 2015.12.05..
  */
 @Component
-public class BarChart_image
-{
-    public void createBarChart(User user) throws IOException {
+public class BarChartService {
+
+    public File createBarChart(User user) throws IOException {
         final String HEALTH = "Health";
         final String INTELLIGENCE = "Intelligence";
         final String COMMUNICATION = "Communication";
@@ -54,8 +56,9 @@ public class BarChart_image
 
         int width = 920; /* Width of the image */
         int height = 100; /* Height of the image */
-        File barChartFile = new File("./includes/BarChart.jpeg");
-        ChartUtilities.saveChartAsJPEG(barChartFile, barChart, width, height);
+        File barChartFile = new File("BarChart.jpeg");
+        //ChartUtilities.saveChartAsJPEG(barChartFile, barChart, width, height);
+        return barChartFile;
     }
     public int getMaxValue(int val1,int val2,int val3){
         int maxValue;

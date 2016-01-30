@@ -66,7 +66,7 @@ public class TimeSeriesChart_image
 
         int width = 920; /* Width of the image */
         int height = 480; /* Height of the image */
-        File timeChart = new File("./src/main/webapp/includes/LineChart.jpeg");
+        File timeChart = new File("./includes/LineChart.jpeg");
         ChartUtilities.saveChartAsJPEG(timeChart, timechart, width, height);
     }
 

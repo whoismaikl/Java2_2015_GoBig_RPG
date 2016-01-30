@@ -16,9 +16,13 @@ public class HistoryRecord {
     //@Transient
     @Column(name="taskID", columnDefinition = "BIGINT", nullable = false)
     private Long taskID;
+    @Column(name="statType", columnDefinition = "CHAR(17)")
+    private String statType = " ";
+
     //@Transient
     @Column(name="statValue", columnDefinition = "INTEGER")
     private int statValue = 0;
+
     //@Transient
     @Column(name="health", columnDefinition = "INTEGER")
     private int health;
@@ -37,18 +41,6 @@ public class HistoryRecord {
     //@Transient
     @Column(name="dateCompleted", columnDefinition = "DATETIME(6)")
     private java.sql.Timestamp dateCompleted;
-    /*@ManyToOne
-    //@JoinColumn(name = "id")
-    private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }*/
-
     public HistoryRecord(){}
 
     public Long getId() {
@@ -65,6 +57,25 @@ public class HistoryRecord {
 
     public void setTaskID(Long taskID) {
         this.taskID = taskID;
+    }
+
+    /*@ManyToOne
+    //@JoinColumn(name = "id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }*/
+    public String getStatType() {
+        return statType;
+    }
+
+    public void setStatType(String statType) {
+        this.statType = statType;
     }
 
     public Long getUserID() {
