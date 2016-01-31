@@ -58,12 +58,22 @@ public class UserDAOImpl implements UserDAO {
         return users;
     }
 
-    public boolean getUserByMail(String mail) throws DBException {
-        return false;
+    public String getUserByMail(String mail) throws DBException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("email", mail));
+        String email = (String) criteria.uniqueResult();
+
+        return email;
     }
 
-    public boolean getUserByName(String name) throws DBException {
-        return false;
+    public String getUserByName(String name) throws DBException {
+
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        criteria.add(Restrictions.eq("userName", name));
+
+        String username = (String) criteria.uniqueResult();
+        return username;
+
     }
 
     public boolean checkLoginData(String email, String password) throws DBException {
