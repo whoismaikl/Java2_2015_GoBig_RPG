@@ -9,7 +9,6 @@ import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.domain.builders.HistoryRecordBuilder;
 import lv.javaguru.java2.domain.builders.UserBuilder;
-import lv.javaguru.java2.services.BarChart_image;
 import lv.javaguru.java2.services.TimeService;
 import org.junit.Before;
 import org.junit.Test;

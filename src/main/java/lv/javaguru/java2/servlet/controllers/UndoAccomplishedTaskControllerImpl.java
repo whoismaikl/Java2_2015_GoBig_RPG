@@ -68,7 +68,6 @@ public class UndoAccomplishedTaskControllerImpl {
             java.sql.Timestamp startDate = timeService.getStartOfDateTimestamp();
 
             List<HistoryRecord> historyRecordsInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
-
             Long historyRecordId = taskService.getHistoryRecordId(historyRecordsInRange, accomplishedTaskId);
             historyRecordDAO.deleteHistoryRecordById(historyRecordId);
 
@@ -76,11 +75,6 @@ public class UndoAccomplishedTaskControllerImpl {
             taskDAO.updateTask(task);
 
             sessionService.updateSessionVariables(request);
-
-            user = (User) session.getAttribute("user");
-            chartService.createBarChart(user);
-
-            //TimeUnit.SECONDS.sleep(1);
 
             return new ModelAndView("/activeTasks.jsp", "model", "Task Accomplished");
         }

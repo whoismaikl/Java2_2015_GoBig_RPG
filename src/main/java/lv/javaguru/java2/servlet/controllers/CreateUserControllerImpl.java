@@ -26,8 +26,6 @@ public class CreateUserControllerImpl {
     private UserDAO userDAO;
     @Autowired
     private UserService userService;
-    @Autowired
-    private SessionService sessionService;
 
     @RequestMapping(value = "/createUser", method = {RequestMethod.POST})
     public ModelAndView execute(HttpServletRequest request) {

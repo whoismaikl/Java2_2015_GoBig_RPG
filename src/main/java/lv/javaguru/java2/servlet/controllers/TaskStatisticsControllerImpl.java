@@ -5,14 +5,9 @@ import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.User;
 import lv.javaguru.java2.services.ChartService;
 import lv.javaguru.java2.services.TaskService;
-import lv.javaguru.java2.services.TimeSeriesChart_image;
 import lv.javaguru.java2.services.TimeService;
-import lv.javaguru.java2.servlet.controllers.controllerInterfaces.TaskStatisticsController;
-import lv.javaguru.java2.servlet.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,8 +25,6 @@ import java.util.List;
 @Controller
 public class TaskStatisticsControllerImpl{
     @Autowired
-    private ChartService chartService;
-    @Autowired
     HistoryRecordDAO historyRecordDAO;
     @Autowired
     TimeService timeService;
@@ -47,8 +40,6 @@ public class TaskStatisticsControllerImpl{
         Date stopDate = (Date) session.getAttribute("stopDate");
 
         List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
-        chartService.createTimeSeriesChart(historyRecordListInRange);
-
         List<Integer> scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
 
         List<HistoryRecord> historyRecordListToday = historyRecordDAO

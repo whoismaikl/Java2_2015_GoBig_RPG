@@ -9,7 +9,6 @@ import lv.javaguru.java2.services.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,11 +24,6 @@ import java.util.List;
  */
 @Controller
 public class TaskStatisticCharFilterControllerImpl {
-    @Autowired
-    @Qualifier("HistoryDAO_ORM")
-    private HistoryRecordDAO historyRecordDAO;
-    @Autowired
-    private ChartService chartService;
     @Autowired
     TimeService timeService;
 
@@ -45,13 +37,6 @@ public class TaskStatisticCharFilterControllerImpl {
         java.sql.Timestamp stopDate = timeService.setStartOfDateTimestamp(stopDateStr);
 
         HttpSession session = request.getSession();
-        final User user = (User) session.getAttribute("user");
-
-        List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
-        session.setAttribute("historyRecordListInRange", historyRecordListInRange);
-
-        chartService.createTimeSeriesChart(historyRecordListInRange);
-
         session.setAttribute("startDate", startDate);
         session.setAttribute("stopDate", stopDate);
 

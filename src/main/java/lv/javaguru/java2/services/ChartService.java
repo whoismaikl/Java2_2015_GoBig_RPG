@@ -21,6 +21,9 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.springframework.stereotype.Component;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -31,25 +34,25 @@ import java.util.List;
  * Created by AST on 2015.12.05..
  */
 @Component
-public class ChartService
-{
-    public void createTimeSeriesChart(List<HistoryRecord> historyRecordList) throws IOException {
+public class ChartService {
+
+    public byte[] createTimeSeriesChart(List<HistoryRecord> historyRecordList) throws IOException {
         final TimeSeries series1 = new TimeSeries("Health");
         final TimeSeries series2 = new TimeSeries("Intelligence");
         final TimeSeries series3 = new TimeSeries("Communication");
         long healthVal;
-        long inteligenceVal;
+        long intelligenceVal;
         long communicationVal;
         double value;
         for (HistoryRecord historyRecord : historyRecordList) {
             try {
                 healthVal = historyRecord.getHealth();
-                inteligenceVal = historyRecord.getIntelligence();
+                intelligenceVal = historyRecord.getIntelligence();
                 communicationVal = historyRecord.getCommunication();
                 Date date = historyRecord.getDateCompleted();
                 Day day = new Day(date);
                 series1.add(day, healthVal);
-                series2.add(day, inteligenceVal);
+                series2.add(day, intelligenceVal);
                 series3.add(day, communicationVal);
             } catch (SeriesException e) {
                 System.err.println("Error adding to series");
@@ -60,7 +63,7 @@ public class ChartService
         timeSeriesCollection.addSeries(series2);
         timeSeriesCollection.addSeries(series3);
 
-        JFreeChart timechart = ChartFactory.createTimeSeriesChart(
+        JFreeChart timeChart = ChartFactory.createTimeSeriesChart(
                 "Task Statistic",
                 "Date",
                 "Scores",
@@ -69,7 +72,7 @@ public class ChartService
                 true,
                 false);
 
-        XYPlot plot = (XYPlot) timechart.getPlot();
+        XYPlot plot = (XYPlot) timeChart.getPlot();
         DateAxis axis = (DateAxis) plot.getDomainAxis();
         axis.setDateFormatOverride(new SimpleDateFormat("dd-MMM-yyyy"));
         axis.setVerticalTickLabels(true);
@@ -77,22 +80,31 @@ public class ChartService
 
         int width = 920; /* Width of the image */
         int height = 480; /* Height of the image */
-        File timeChart = new File("./src/main/webapp/includes/LineChart.jpeg");
-        ChartUtilities.saveChartAsJPEG(timeChart, timechart, width, height);
+        //File timeChart = new File("./src/main/webapp/includes/LineChart.jpeg");
+        //ChartUtilities.saveChartAsJPEG(timeChart, timechart, width, height);
+        BufferedImage objBufferedImage=timeChart.createBufferedImage(920,480);
+        ByteArrayOutputStream bas = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(objBufferedImage, "png", bas);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        byte[] byteArray=bas.toByteArray();
+        return byteArray;
     }
 
-    public void createBarChart(User user) throws IOException {
+    public byte[] createBarChart(User user) throws IOException {
         final String HEALTH = "Health";
         final String INTELLIGENCE = "Intelligence";
         final String COMMUNICATION = "Communication";
         int healthVal = user.getHealth();
-        int inteligenceVal = user.getIntelligence();
+        int intelligenceVal = user.getIntelligence();
         int communicationVal = user.getCommunication();
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         dataset.addValue(healthVal, HEALTH, HEALTH);
-        dataset.addValue(inteligenceVal, INTELLIGENCE, INTELLIGENCE);
+        dataset.addValue(intelligenceVal, INTELLIGENCE, INTELLIGENCE);
         dataset.addValue(communicationVal, COMMUNICATION, COMMUNICATION);
 
         JFreeChart barChart = ChartFactory.createBarChart(
@@ -116,8 +128,17 @@ public class ChartService
 
         int width = 920; /* Width of the image */
         int height = 100; /* Height of the image */
-        File barChartFile = new File("./src/main/webapp/includes/BarChart.jpeg");
-        ChartUtilities.saveChartAsJPEG(barChartFile, barChart, width, height);
+        //File barChartFile = new File("BarChart.jpeg");
+        //ChartUtilities.saveChartAsJPEG(barChartFile, barChart, width, height);
+        BufferedImage objBufferedImage=barChart.createBufferedImage(920,100);
+        ByteArrayOutputStream bas = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(objBufferedImage, "png", bas);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        byte[] byteArray=bas.toByteArray();
+        return byteArray;
     }
     public int getMaxValue(int val1,int val2,int val3){
         int maxValue;

@@ -121,7 +121,7 @@
         <header><h3 class="tabs_involved">Task Statistic Chart</h3></header>
           <div class="tab_container">
             <div id="tab1" class="tab_content">
-              <img src="includes/LineChart.jpeg" width="920" height="480" alt="" />
+              <img src="/java2/getTaskStatisticChart" width="920" height="480" alt="" />
             </div>
           </div>
       </article><!-- end of messages article -->
