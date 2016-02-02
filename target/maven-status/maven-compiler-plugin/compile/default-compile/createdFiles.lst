@@ -1,3 +1,4 @@
+lv\javaguru\java2\database\jdbc\LoginDAOImpl.class
 lv\javaguru\java2\domain\DefaultTask.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\UserAdminController.class
 lv\javaguru\java2\servlet\controllers\TaskStatisticCharFilterControllerImpl.class
@@ -14,7 +15,6 @@ lv\javaguru\java2\servlet\controllers\controllerInterfaces\RegistrationControlle
 lv\javaguru\java2\servlet\controllers\TaskStatisticsControllerImpl.class
 lv\javaguru\java2\services\PasswordService$2.class
 lv\javaguru\java2\services\SessionService.class
-lv\javaguru\java2\database\jdbc\LoginDAOImpl_OLD.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskHistoryController.class
 lv\javaguru\java2\servlet\controllers\EditTaskControllerImpl.class
 lv\javaguru\java2\services\TaskService.class
@@ -35,15 +35,14 @@ lv\javaguru\java2\services\TimeService.class
 lv\javaguru\java2\config\WebMVCConfig.class
 lv\javaguru\java2\database\DBException.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskStatisticsController.class
-lv\javaguru\java2\database\jdbc\DAOImpl_OLD.class
 lv\javaguru\java2\domain\builders\TaskBuilder.class
-lv\javaguru\java2\database\jdbc\DefaultTaskDAOImpl_OLD.class
 lv\javaguru\java2\servlet\controllers\CreateTaskControllerImpl.class
 lv\javaguru\java2\servlet\controllers\AccomplishTaskControllerImpl.class
 lv\javaguru\java2\services\PasswordService$1.class
 lv\javaguru\java2\servlet\controllers\CreateUserControllerImpl.class
 lv\javaguru\java2\database\DefaultTaskDAO.class
 lv\javaguru\java2\services\ButtonFunctionService.class
+lv\javaguru\java2\database\jdbc\TaskDAOImpl.class
 lv\javaguru\java2\database\HistoryRecordDAO.class
 lv\javaguru\java2\servlet\originals\RedirectToJSPServlet.class
 lv\javaguru\java2\servlet\controllers\TaskManagementControllerImpl.class
@@ -52,7 +51,6 @@ lv\javaguru\java2\servlet\mvc\MVCFilter.class
 lv\javaguru\java2\servlet\originals\RegisterServlet.class
 lv\javaguru\java2\domain\Task.class
 lv\javaguru\java2\servlet\controllers\TimeSeriesChartControllerImpl.class
-lv\javaguru\java2\database\jdbc\TaskDAOImpl_OLD.class
 lv\javaguru\java2\servlet\controllers\ActiveTasksControllerImpl.class
 lv\javaguru\java2\servlet\controllers\PasswordRestoreControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\HistoriRecordFilterController.class
@@ -62,13 +60,14 @@ lv\javaguru\java2\servlet\controllers\LogoutControllerImpl.class
 lv\javaguru\java2\servlet\controllers\TaskHistoryRecordControllerImpl.class
 lv\javaguru\java2\servlet\originals\SessionUsageServlet.class
 lv\javaguru\java2\servlet\originals\HelloWorldController.class
-lv\javaguru\java2\database\jdbc\UserDAOImpl_OLD.class
 lv\javaguru\java2\config\SpringWebMvcInitializer.class
 lv\javaguru\java2\database\hibernateORM\TaskDAOImpl.class
 lv\javaguru\java2\database\hibernateORM\UserDAOImpl.class
 lv\javaguru\java2\database\TaskDAO.class
 lv\javaguru\java2\servlet\controllers\BarChartControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskManagementController.class
+lv\javaguru\java2\database\jdbc\DAOImpl.class
+lv\javaguru\java2\database\jdbc\DefaultTaskDAOImpl.class
 lv\javaguru\java2\database\UserDAO.class
 lv\javaguru\java2\servlet\controllers\UserAdminControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\EditTaskController.class
