@@ -40,7 +40,7 @@ public class TaskStatisticsControllerImpl{
         Date stopDate = (Date) session.getAttribute("stopDate");
 
         List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
-        List<Integer> scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
+        List<Double> scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
 
         List<HistoryRecord> historyRecordListToday = historyRecordDAO
                 .getHistoryRecordsInRange(user,
