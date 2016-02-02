@@ -10,6 +10,7 @@ import lv.javaguru.java2.domain.HistoryRecord;
 import lv.javaguru.java2.domain.builders.HistoryRecordBuilder;
 import lv.javaguru.java2.domain.builders.UserBuilder;
 import lv.javaguru.java2.domain.Task;
+import lv.javaguru.java2.services.TaskService;
 import lv.javaguru.java2.services.TimeService;
 import lv.javaguru.java2.domain.User;
 import org.junit.Before;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.List;
 
@@ -28,6 +30,7 @@ import static org.junit.Assert.assertNotNull;
 //@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringConfig.class)
+@WebAppConfiguration
 public class TaskDAOImplTest {
 
     @Autowired
@@ -41,7 +44,8 @@ public class TaskDAOImplTest {
     @Autowired
     @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;
-
+    @Autowired
+    private TaskService taskService;
     @Autowired
     private UserBuilder userBuilder;
     @Autowired
@@ -174,51 +178,41 @@ public class TaskDAOImplTest {
     }
     @Test
     public void testDeleteUserTasksHistory() throws DBException {
-
-        User user = userBuilder.buildUser()
-                .withEmail("e")
-                .withUserName("user101")
-                .withPassword("p")
-                .withUserType("U")
-                .build();
         User user1 = new User("2@com14", "p14", "n14", "U");
         User user2 = new User("3@com15", "p15", "n15", "U");
-        userDAO.createUser(user);
         userDAO.createUser(user1);
         userDAO.createUser(user2);
         Long userId1 = user1.getId();
         Long userId2 = user2.getId();
+
         Task task1 = createUserTask(userId1, "Health", 5, "Description1", "Y", "N");
         Task task2 = createUserTask(userId1, "Health", 4, "Description2", "Y", "N");
         Task task3 = createUserTask(userId2, "Health", 6, "Description3", "Y", "N");
         Task task4 = createUserTask(userId2, "Health", 7, "Description4", "Y", "N");
-        HistoryRecord historyRecord1 = historyRecordBuilder.buildHistoryRecord()
-                .withUserID(userId1)
-                .build();
-        HistoryRecord historyRecord2 = historyRecordBuilder.buildHistoryRecord()
-                .withUserID(userId1)
-                .build();
-        HistoryRecord historyRecord3 = historyRecordBuilder.buildHistoryRecord()
-                .withUserID(userId2)
-                .build();
-        historyRecordDAO.createHistoryRecord(historyRecord1);
-        historyRecordDAO.createHistoryRecord(historyRecord2);
-        historyRecordDAO.createHistoryRecord(historyRecord3);
         taskDAO.createTask(task1);
         taskDAO.createTask(task2);
         taskDAO.createTask(task3);
         taskDAO.createTask(task4);
+
+        HistoryRecord historyRecord1 = taskService.buildHistoryRecord(user1, task1);
+        historyRecordDAO.createHistoryRecord(historyRecord1);
+        HistoryRecord historyRecord2 = taskService.buildHistoryRecord(user1, task2);
+        historyRecordDAO.createHistoryRecord(historyRecord2);
+        HistoryRecord historyRecord3 = taskService.buildHistoryRecord(user2, task3);
+        historyRecordDAO.createHistoryRecord(historyRecord3);
+
         //userDAO.deleteUser(userId2);
         User user3 = userDAO.getUserById(userId1);
 
 
         List<HistoryRecord> historyRecordList = user3.getHistoryRecordList();
+        assertEquals(2, historyRecordList.size());
         for(HistoryRecord historyRecord : historyRecordList) {
-            historyRecordList.remove(historyRecord);
+            historyRecordDAO.deleteHistoryRecordById(historyRecord.getId());
         }
-
-        List<Task> taskList = user3.getTaskList();
-        assertEquals(2, taskList.size());
+        user3 = userDAO.getUserById(userId1);
+        historyRecordList = user3.getHistoryRecordList();
+        assertEquals(0, historyRecordList.size());
     }
     @Test
     public void testUpdateTasks() throws DBException {
