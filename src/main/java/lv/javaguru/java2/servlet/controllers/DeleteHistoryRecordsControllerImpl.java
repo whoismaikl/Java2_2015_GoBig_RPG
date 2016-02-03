@@ -42,6 +42,7 @@ public class DeleteHistoryRecordsControllerImpl {
 
         sessionService.updateSessionVariables(request);
 
+
         return new ModelAndView("/taskHistory.jsp", "model", "All History Record Deleted");
     }
 }

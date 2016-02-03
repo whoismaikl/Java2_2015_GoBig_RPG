@@ -123,7 +123,6 @@
               <table class="tablesorter" cellspacing="0">
                 <thead>
                 <tr>
-                  <th>Record ID</th>
                   <th>Health</th>
                   <th>Intell.</th>
                   <th>Commun.</th>
@@ -135,7 +134,6 @@
                 <tbody>
                 <c:forEach var="historyRecord" items="${historyRecordListInRange}">
                   <tr>
-                    <td>${historyRecord.id}</td>
                     <td>${historyRecord.health}</td>
                     <td>${historyRecord.intelligence}</td>
                     <td>${historyRecord.communication}</td>

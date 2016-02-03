@@ -53,7 +53,10 @@ public class HistoryRecordDAOImpl implements HistoryRecordDAO {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(HistoryRecord.class);
         criteria.add(Restrictions.eq("userID", userId));
         List<HistoryRecord> histories = (List<HistoryRecord>) criteria.list();
-        sessionFactory.getCurrentSession().delete(histories);
+
+        for (int i = 0; i < histories.size(); i++) {
+            sessionFactory.getCurrentSession().delete(histories.get(i));
+        }
     }
 
     public List<HistoryRecord> getHistoryRecordsInRange(User user, Date startDate, Date stopDate) throws DBException{

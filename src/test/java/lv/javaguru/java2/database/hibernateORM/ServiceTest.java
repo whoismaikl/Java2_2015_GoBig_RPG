@@ -1,3 +1,4 @@
+/*/
 package lv.javaguru.java2.database.hibernateORM;
 
 import lv.javaguru.java2.config.SpringConfig;
@@ -73,4 +74,6 @@ public class ServiceTest {
 
         assertEquals(1, 1);
     }
+
 }
+/*/

@@ -40,16 +40,21 @@ public class TaskStatisticsControllerImpl{
         Date stopDate = (Date) session.getAttribute("stopDate");
 
         List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
-        List<Integer> scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
 
-        List<HistoryRecord> historyRecordListToday = historyRecordDAO
-                .getHistoryRecordsInRange(user,
-                        timeService.getStartOfDateTimestamp(),
-                        timeService.getEndOfDateTimestamp());
-        List<Integer> scoresToday = taskService.getScoresForDay(historyRecordListToday);
+      if (historyRecordListInRange.size()>0){
+          List<Integer> scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
 
-        session.setAttribute("scoresToday", scoresToday);
-        session.setAttribute("scoresAverage", scoresAverage);
+          List<HistoryRecord> historyRecordListToday = historyRecordDAO
+                  .getHistoryRecordsInRange(user,
+                          timeService.getStartOfDateTimestamp(),
+                          timeService.getEndOfDateTimestamp());
+          List<Integer> scoresToday = taskService.getScoresForDay(historyRecordListToday);
+
+          session.setAttribute("scoresToday", scoresToday);
+          session.setAttribute("scoresAverage", scoresAverage);
+
+      }
+
 
         return  new ModelAndView("/taskStatisticChart.jsp","model", "Task Statistics");
     }
