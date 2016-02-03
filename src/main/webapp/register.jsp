@@ -24,7 +24,7 @@
       <input type="submit" name="login" class="login login-submit" value="register">
     </form>
     <div class="login-help">
-      <a href="/java2/index.jsp">Back</a> • <a href="#">Forgot Password</a>
+      <a href="/java2/index.jsp">Back</a>
     </div>
     <div class="login-help">
       <br><h1><%= request.getAttribute("model")%></h1>
