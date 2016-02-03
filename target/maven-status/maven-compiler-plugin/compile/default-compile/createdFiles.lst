@@ -1,3 +1,4 @@
+lv\javaguru\java2\database\jdbc\LoginDAOImpl.class
 lv\javaguru\java2\domain\DefaultTask.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\UserAdminController.class
 lv\javaguru\java2\servlet\controllers\TaskStatisticCharFilterControllerImpl.class
@@ -39,8 +40,10 @@ lv\javaguru\java2\servlet\controllers\CreateTaskControllerImpl.class
 lv\javaguru\java2\servlet\controllers\AccomplishTaskControllerImpl.class
 lv\javaguru\java2\services\PasswordService$1.class
 lv\javaguru\java2\servlet\controllers\CreateUserControllerImpl.class
+lv\javaguru\java2\database\jdbc\UserDAOImpl.class
 lv\javaguru\java2\database\DefaultTaskDAO.class
 lv\javaguru\java2\services\ButtonFunctionService.class
+lv\javaguru\java2\database\jdbc\TaskDAOImpl.class
 lv\javaguru\java2\database\HistoryRecordDAO.class
 lv\javaguru\java2\servlet\originals\RedirectToJSPServlet.class
 lv\javaguru\java2\servlet\controllers\TaskManagementControllerImpl.class
@@ -64,6 +67,8 @@ lv\javaguru\java2\database\hibernateORM\UserDAOImpl.class
 lv\javaguru\java2\database\TaskDAO.class
 lv\javaguru\java2\servlet\controllers\BarChartControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskManagementController.class
+lv\javaguru\java2\database\jdbc\DAOImpl.class
+lv\javaguru\java2\database\jdbc\DefaultTaskDAOImpl.class
 lv\javaguru\java2\database\UserDAO.class
 lv\javaguru\java2\servlet\controllers\UserAdminControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\EditTaskController.class
