@@ -145,19 +145,19 @@
                 <tr>
                   <th>Health</th>
                   <td>${scoresToday[0]}</td>
-                  <td>${scoresAverage[0]}</td>
+                  <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${scoresAverage[0]}" /></td>
                   <td>${user.health}</td>
                 </tr>
                 <tr>
                   <th>Intelligence</th>
                   <td>${scoresToday[1]}</td>
-                  <td>${scoresAverage[1]}</td>
+                  <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${scoresAverage[1]}" /></td>
                   <td>${user.intelligence}</td>
                 </tr>
                 <tr>
                   <th>Communication</th>
                   <td>${scoresToday[2]}</td>
-                  <td>${scoresAverage[2]}</td>
+                  <td><fmt:formatNumber type="number" maxFractionDigits="2" value="${scoresAverage[2]}" /></td>
                   <td>${user.communication}</td>
                 </tr>
                 <tr>

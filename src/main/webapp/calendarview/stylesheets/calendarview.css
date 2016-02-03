@@ -57,7 +57,7 @@ div.calendar td.button:hover
   cursor: pointer;
 }
 
-div.calendar tr.days td:active
+div.calendar tr.days td:active,
 div.calendar td.button:active
 {
   background-color: #cde;

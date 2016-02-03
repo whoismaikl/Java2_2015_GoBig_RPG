@@ -33,10 +33,18 @@ public class UserAdminControllerImpl {
     public ModelAndView execute(HttpServletRequest request) throws DBException {
 
         HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        String userType = user.getUserType();
 
-        List<User> userList = userDAO.getAllUsers();
-        session.setAttribute("userList", userList);
+        if(userType.equals("A")) {
 
-        return  new ModelAndView("/userAdmin.jsp", "model", "Refresh UserList");
+            List<User> userList = userDAO.getAllUsers();
+            session.setAttribute("userList", userList);
+
+            return new ModelAndView("/userAdmin.jsp", "model", "Refresh UserList");
+        }
+        session.invalidate();
+
+        return new ModelAndView("/index.jsp", "model", "Logout");
     }
 }

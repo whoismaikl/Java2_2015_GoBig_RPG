@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.io.IOException;
 
@@ -26,6 +27,7 @@ import static org.junit.Assert.*;
 //@Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringConfig.class)
+@WebAppConfiguration
 public class ServiceTest {
 
     @Autowired
@@ -42,14 +44,10 @@ public class ServiceTest {
 
     @Autowired
     private UserBuilder userBuilder;
-    @Autowired
-    private HistoryRecordBuilder historyRecordBuilder;
 
-    @Autowired
-    BarChart_image barChart_image;
 
     private DatabaseCleaner databaseCleaner = new DatabaseCleaner();
-    java.sql.Timestamp sqlTimestamp = new TimeService().getSqlTimestamp();
+
 
     @Before
     public void init() throws DBException {
@@ -69,7 +67,6 @@ public class ServiceTest {
                 .withCommunication(27)
                 .build();
         userDAO.createUser(user);
-        barChart_image.createBarChart(user);
 
 
         assertEquals(1, 1);

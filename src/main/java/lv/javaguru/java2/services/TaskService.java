@@ -131,8 +131,8 @@ public class TaskService {
         return scores;
     }
 
-    public List<Integer> getScoresAverage(List <HistoryRecord> historyRecordsInRange) throws ParseException {
-        List<Integer> scoresAverage = new ArrayList<Integer>();
+    public List<Double> getScoresAverage(List <HistoryRecord> historyRecordsInRange) throws ParseException {
+        List<Double> scoresAverage = new ArrayList<Double>();
         Integer scoresHealth = 0;
         Integer scoresIntelligence = 0;
         Integer scoresCommunication = 0;
@@ -153,9 +153,9 @@ public class TaskService {
                 scoresCommunication += historyRecord.getStatValue();
             }
         }
-        scoresAverage.add(scoresHealth / dateCount);
-        scoresAverage.add(scoresIntelligence / dateCount);
-        scoresAverage.add(scoresCommunication / dateCount);
+        scoresAverage.add(((double)scoresHealth / dateCount));
+        scoresAverage.add(((double)scoresIntelligence / dateCount));
+        scoresAverage.add(((double)scoresCommunication / dateCount));
         return scoresAverage;
     }
 }

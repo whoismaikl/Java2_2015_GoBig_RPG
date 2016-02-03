@@ -34,12 +34,12 @@ public class TaskStatisticCharFilterControllerImpl {
         String stopDateStr = request.getParameter("stopDate");
 
         java.sql.Timestamp startDate = timeService.setStartOfDateTimestamp(startDateStr);
-        java.sql.Timestamp stopDate = timeService.setStartOfDateTimestamp(stopDateStr);
+        java.sql.Timestamp stopDate = timeService.setEndOfDateTimestamp(stopDateStr);
 
         HttpSession session = request.getSession();
         session.setAttribute("startDate", startDate);
         session.setAttribute("stopDate", stopDate);
 
-        return  new ModelAndView("/taskStatisticChart.jsp", "model", "Statistic Chart Filter");
+        return  new ModelAndView("redirect:/taskStatistics");
     }
 }

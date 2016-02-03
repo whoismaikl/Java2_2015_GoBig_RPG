@@ -1,6 +1,6 @@
 package lv.javaguru.java2.database.jdbc;
 
-/*/
+
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.UserDAO;
 import lv.javaguru.java2.domain.User;
@@ -163,8 +163,9 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                         .prepareStatement("SELECT * FROM users WHERE email = ?");
                 preparedStatement.setString(1, email);
                 ResultSet resultSet = preparedStatement.executeQuery();
+                //if (resultSet.next())
+                    return resultSet.getString("email");
 
-                return resultSet.next();
             } catch (Throwable e) {
                 System.out.println("Exception while execute UserDAOImpl.getUserById()");
                 e.printStackTrace();
@@ -185,13 +186,8 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
                     .prepareStatement("SELECT * FROM users WHERE userName = ?");
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
-   //////
-            if (resultSet.next()) {
-                return true;
-            }
-            return false;
-      /////
-            return resultSet.next();
+            //if (resultSet.next())
+            return resultSet.getString("name");
         } catch (Throwable e) {
             System.out.println("Exception while execute UserDAOImpl.getByLogin()");
             e.printStackTrace();
@@ -287,4 +283,3 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
     }
 
 }
-/*/
