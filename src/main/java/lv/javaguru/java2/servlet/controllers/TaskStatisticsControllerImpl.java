@@ -42,7 +42,7 @@ public class TaskStatisticsControllerImpl{
         List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
 
       if (historyRecordListInRange.size()>0){
-          List<Integer> scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
+          List<Double> scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
 
           List<HistoryRecord> historyRecordListToday = historyRecordDAO
                   .getHistoryRecordsInRange(user,
