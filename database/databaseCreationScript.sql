@@ -114,23 +114,23 @@ INSERT INTO `users` (`id`,`email`,`password`,`userName`,`userType`,`health`,`int
   ('1003','c','c','User C','U','22','33','31','0','0','2015-10-26 02:01:03','2015-10-26 02:01:03','Y');
 
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1001','1001','Health','1','Description for health','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1001','1001','Health','1','Use Legs To go Home','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1002','1001','Intelligence','1','Description for intelligence','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1002','1001','Intelligence','1','Play Starcraft','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1003','1001','Communication','1','Description for communication','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1003','1001','Communication','1','GoTo Facebook','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1004','1002','Health','1','Description for health','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1004','1002','Health','1','Eat Heathy Food','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1005','1002','Intelligence','1','Description for intelligence','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1005','1002','Intelligence','5','Buy Brain','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1006','1002','Communication','1','Description for communication','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1006','1002','Communication','1','Go To Party','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1007','1003','Health','1','Description for health','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1007','1003','Health','1','Go To Gym','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1008','1003','Intelligence','1','Description for intelligence','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1008','1003','Intelligence','1','read News','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `tasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1009','1003','Communication','1','Description for communication','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
+  ('1009','1003','Communication','1','Talk With Cat About Java','Yes','N','2015-11-17 10:07:46','2015-11-17 10:07:46');
 
 INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`statType`,`health`,`intelligence`,`communication`, `statValue`,`willPower`,`dailyTodo`,`dateCompleted`) VALUES
   ('1001','1001','1001','Health','1','0','0','1','1','1','2015-11-17 10:07:46');
@@ -157,8 +157,8 @@ INSERT INTO `taskHistory` (`id`,`userID`,`taskID`,`statType`,`health`,`intellige
 
 
 INSERT INTO `defaultTasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1001','1001','Health','1','Description for health','Yes','N','2016-01-17 10:07:46','2015-11-17 10:07:46');
+  ('1001','1001','Health','1','Zarjadka','Yes','N','2016-01-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `defaultTasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1002','1001','Intelligence','1','Description for intelligence','Yes','N','2016-01-17 10:07:46','2015-11-17 10:07:46');
+  ('1002','1001','Intelligence','1','Read Java Books','Yes','N','2016-01-17 10:07:46','2015-11-17 10:07:46');
 INSERT INTO `defaultTasks` (`id`,`userID`,`statType`,`statValue`,`statDescription`,`repeatableYN`,`accomplishedYN`,`dateAdded`,`dateAccomplished`) VALUES
-  ('1003','1001','Communication','1','Description for communication','Yes','N','2016-01-17 10:07:46','2015-11-17 10:07:46');
+  ('1003','1001','Communication','1','Meet Parents','Yes','N','2016-01-17 10:07:46','2015-11-17 10:07:46');
