@@ -18,7 +18,6 @@ lv\javaguru\java2\services\SessionService.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskHistoryController.class
 lv\javaguru\java2\servlet\controllers\EditTaskControllerImpl.class
 lv\javaguru\java2\services\TaskService.class
-lv\javaguru\java2\servlet\controllers\DeleteHistoryRecordsControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\TaskNewController.class
 lv\javaguru\java2\config\SpringConfig.class
 lv\javaguru\java2\domain\User.class
@@ -40,6 +39,7 @@ lv\javaguru\java2\servlet\controllers\CreateTaskControllerImpl.class
 lv\javaguru\java2\servlet\controllers\AccomplishTaskControllerImpl.class
 lv\javaguru\java2\services\PasswordService$1.class
 lv\javaguru\java2\servlet\controllers\CreateUserControllerImpl.class
+lv\javaguru\java2\servlet\controllers\DeleteHistoryAllRecordsControllerImpl.class
 lv\javaguru\java2\database\jdbc\UserDAOImpl.class
 lv\javaguru\java2\database\DefaultTaskDAO.class
 lv\javaguru\java2\services\ButtonFunctionService.class
@@ -53,6 +53,7 @@ lv\javaguru\java2\servlet\originals\RegisterServlet.class
 lv\javaguru\java2\domain\Task.class
 lv\javaguru\java2\servlet\controllers\TimeSeriesChartControllerImpl.class
 lv\javaguru\java2\servlet\controllers\ActiveTasksControllerImpl.class
+lv\javaguru\java2\servlet\controllers\DeleteHistoryRecordControllerImpl.class
 lv\javaguru\java2\servlet\controllers\PasswordRestoreControllerImpl.class
 lv\javaguru\java2\servlet\controllers\controllerInterfaces\HistoriRecordFilterController.class
 lv\javaguru\java2\servlet\controllers\DeleteUserControllerImpl.class
