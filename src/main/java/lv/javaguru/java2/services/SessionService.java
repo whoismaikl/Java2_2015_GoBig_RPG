@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Component
 public class SessionService {
-    private final int INITIAL_OFFSET_IN_DAYS = 30;
+    private final int INITIAL_OFFSET_IN_DAYS = 14;
     @Autowired
     @Qualifier("UserDAO_ORM")
     private UserDAO userDAO;

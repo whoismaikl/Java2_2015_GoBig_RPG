@@ -78,14 +78,14 @@
                 </thead>
               <tbody>
                 <tr>
-                  <th>
+                  <td>
                     <input type="text"
                            name="statDescription"
                            placeholder="Description"
                            value="Enter Task Description Here"
                            maxlength="255"
                            size="124">
-                  </th>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -103,18 +103,18 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <th><select name="statType" value="Health" style="width:92%;">
+                    <td><select name="statType" value="Health" style="width:92%;">
                       <option>Health</option>
                       <option>Intelligence</option>
                       <option>Communication</option>
-                    </select></th>
-                    <th><input type="number" name="statValue" placeholder="1" value="1"></th>
-                    <th><select name="repeatableYN" value="No" style="width:92%;">
+                    </select></td>
+                    <td><input type="number" name="statValue" placeholder="1" value="1"></td>
+                    <td><select name="repeatableYN" value="No" style="width:92%;">
                       <option>Yes</option>
                       <option>No</option>
-                    </select></th>
-                    <th><input type="number" name="repeatFrequencyDays" placeholder="1" value="1"></th>
-                    <th><input type="submit" name="newTask" class="login login-submit" value="Create New Task"></th>
+                    </select></td>
+                    <td><input type="number" name="repeatFrequencyDays" placeholder="1" value="1"></td>
+                    <td><input type="submit" name="newTask" class="login login-submit" value="Create New Task"></td>
                   </tr>
                 </tbody>
               </table>

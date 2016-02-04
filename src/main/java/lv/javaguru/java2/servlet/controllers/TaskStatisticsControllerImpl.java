@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,22 +39,22 @@ public class TaskStatisticsControllerImpl{
         final User user = (User) session.getAttribute("user");
         Date startDate = (Date) session.getAttribute("startDate");
         Date stopDate = (Date) session.getAttribute("stopDate");
+        List<Double> scoresAverage = new ArrayList<Double>();
+        List<Integer> scoresToday = new ArrayList<Integer>();
 
         List<HistoryRecord> historyRecordListInRange = historyRecordDAO.getHistoryRecordsInRange(user, startDate, stopDate);
 
       if (historyRecordListInRange.size()>0){
-          List<Double> scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
+            scoresAverage = taskService.getScoresAverage(historyRecordListInRange);
 
           List<HistoryRecord> historyRecordListToday = historyRecordDAO
                   .getHistoryRecordsInRange(user,
                           timeService.getStartOfDateTimestamp(),
                           timeService.getEndOfDateTimestamp());
-          List<Integer> scoresToday = taskService.getScoresForDay(historyRecordListToday);
-
-          session.setAttribute("scoresToday", scoresToday);
-          session.setAttribute("scoresAverage", scoresAverage);
-
+          scoresToday = taskService.getScoresForDay(historyRecordListToday);
       }
+        session.setAttribute("scoresToday", scoresToday);
+        session.setAttribute("scoresAverage", scoresAverage);
 
 
         return  new ModelAndView("/taskStatisticChart.jsp","model", "Task Statistics");
